@@ -102,8 +102,7 @@
 }
 .tab-content{
     float: left;
-    margin-left: 30px;
-    border: 1px solid #d9d9d9;
+    margin-left: 35px;
 }
 .tab-content:first-child{
     margin-left:0;
@@ -111,6 +110,7 @@
 .movie-content{
     position: relative;
     background: #fff;
+    border: 1px solid #d9d9d9;
 }
 .movie_img{
     width: 250px;
@@ -148,9 +148,7 @@
     text-overflow:ellipsis;
     white-space:nowrap;
 }
-.movie-content:hover>.movie-btn-area{
-    display: block;
-}
+
 .movie-btn-area{
     display: none;
     position: absolute;
@@ -171,16 +169,23 @@
     font-size: 16px;
     font-weight: 500;
     background: transparent;
+    text-align: center;
 }
-.movie-btn:hover{
+.movie-btn:hover, .movie-btn:focus{
     background: #fff;
     color: #666;
 }
 .movie-btn:first-child{
     margin-bottom: 10px;
 }
+.movie_img a{
+    display: block;
+}
+.movie-btn-area.on{
+    display: block;
+}
 /* 영화 관람연령대 */
-.movie-title>span{
+.movie-title>a>span{
     margin-top:-4px;
     margin-right: 10px;
 }
