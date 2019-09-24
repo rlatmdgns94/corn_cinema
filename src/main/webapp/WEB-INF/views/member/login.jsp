@@ -11,12 +11,13 @@
     </head>
     
     <body>
+
         <div class="membership-login-form">
             <h2 class="login-logo"><img src="/resources/img/logo_black.png" alt=""></h2>
-            <form action="" method="">
+            <form action="/member/login" method="POST" accept-charset="UTF-8">
                 <div class="login-form">
-                    <input type="text" placeholder="ID" title="아이디 입력">
-                    <input type="password"  placeholder="PASSWORD" title="비밀번호 입력">
+                    <input type="text" id="id" name="id" placeholder="ID" title="아이디 입력">
+                    <input type="password"  id="password" name="password"placeholder="PASSWORD" title="비밀번호 입력">
                 </div>
                 <div class="login-btn-area">
                     <input type="submit" class="login-btn" value="로그인" title="로그인버튼">

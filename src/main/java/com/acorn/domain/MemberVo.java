@@ -19,7 +19,7 @@ public class MemberVo {
 	private Date regdate;
 	private Date updatedate;
 
-	
+	// private List<TicketVO> ticket;
 	
 	
 }
