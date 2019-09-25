@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="join-button-wrap">
-                <input type="submit" value="메인으로 이동" class="join-button join-submit">
-                <input type="reset" value="로그인" class="join-button">
+                <a href="" class="join-button join-submit">홈으로</a>
+            	<a href="" class="join-button">로그인</a>
             </div>
         </div>
     </body>
