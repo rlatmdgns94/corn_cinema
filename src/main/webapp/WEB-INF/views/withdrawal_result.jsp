@@ -9,7 +9,6 @@
         <title>Document</title>
         <link rel="stylesheet" href="./css/style.css">
     </head>
-    
     <body>
         <div class="wrap">
             <div class="withdrawal_result_wrap">
@@ -18,7 +17,6 @@
                     <div class="join_result_main">회원탈퇴 완료</div>
                     <div class="join_result_sub">회원님의 콘시네마 회원탈퇴가 완료되었습니다.</div>
                 </div>
-    
                 <div class="welcom_msg">
                     <p>그동안 콘시네마를 이용해 주셔서 진심으로 감사드립니다.</p>
                     <p>회원님의 계정은 비활성화되었으며 30일 이내에 영구 삭제될 예정입니다.<br>
@@ -31,8 +29,7 @@
                 </div>
             </div>
             <div class="join-button-wrap">
-                <input type="submit" value="메인으로 이동" class="join-button join-submit">
-                <input type="reset" value="새아이디 만들기"" class=" join-button">
+                <a href="" class="join-button join-submit">홈으로</a>
             </div>
         </div>
     </body>

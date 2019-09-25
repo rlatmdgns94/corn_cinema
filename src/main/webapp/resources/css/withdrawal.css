@@ -17,7 +17,6 @@
 .join_result_sub{
     font-size: 25px;
     text-align: center;
-    
 }
 
 .welcom_msg{
@@ -27,15 +26,9 @@
     font-size: 15px;
 }
 
-.join-button-wrap{
-    margin-bottom: 100px;
-
-}
-
 .withdrawal_result img{
     width: 100px;
     display: block;
     margin-left: auto;
-    margin-right: auto;
-    
+    margin-right: auto; 
 }
