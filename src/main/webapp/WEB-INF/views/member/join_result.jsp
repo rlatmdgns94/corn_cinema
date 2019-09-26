@@ -13,7 +13,7 @@
         <div class="wrap">
             <div class="join_result_wrap">
                 <div class="join_result">
-                    <img src="/resource/img/task-complete.png">
+                    <img src="/resources/img/task-complete.png">
                     <div class="join_result_main">회원가입 완료</div>
                     <div class="join_result_sub">[<strong>CORN CINEMA</strong>] 회원이 되신 것을 환영합니다.</div>
                 </div>
