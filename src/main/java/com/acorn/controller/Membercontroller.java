@@ -38,14 +38,14 @@ public class Membercontroller {
 	private LoginService loginservice;
 	
 	
-	
 	@GetMapping("/login")
 	public void login() {
 		log.info("Get-Login");	
-	}
+	} //login()
 
-    @PostMapping("/login")
-    public String login_result (LoginDTO dto , Model model) throws Exception {
+	
+    @PostMapping("login_Post")
+    public String login_result(LoginDTO dto , Model model) throws Exception {
 		log.info("POST-Login");
 		log.info(" dto:" + dto );	
         log.info("loginservice:" + loginservice);
@@ -53,23 +53,22 @@ public class Membercontroller {
         MemberVo vo = loginservice.checkLogin(dto);
         
         if(vo==null) {
-        	log.info("로그인 실패 !");
-			 
-//          return"/member/login"; << 대신 redirect 사용
-            return "redirect:/member/login";
-           
-        }else {
-        	return "/index";
-        }
-    
-
-    }
+        	log.info("로그인 실패 !");		    
+            return "redirect:/member/login";      // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
+        }   	
+        
+      	   //로그인에 성공했다면 찾아낸 사용자 정보를 view 로 전달
+ 		   log.info("vo전달 !! : :" + vo);
+ 		   model.addAttribute("userVO",vo);
+           return "/index";  
+    } //login_POST()
     	
+    
 	@GetMapping("/join")
 	public void join(){
 		log.info("Get-join");
 		
-	}
+	} //join()
      
 	@PostMapping("/join")
 	public String join_result(MemberDTO dto , Model model)throws Exception {
@@ -86,9 +85,13 @@ public class Membercontroller {
 		  memberservice.regist(vo);
 		  
 		return "/member/join_result";
-	}
+	} //join_result()
 	
 	
+	@GetMapping("/test")
+	public void test()/*login 필요한 페이지test*/ {
+		  log.info("GET-TEST");
+	} 
 	
 	
 	

@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="join-button-wrap">
-                <a href="" class="join-button join-submit">홈으로</a>
-            	<a href="" class="join-button">로그인</a>
+                <a href="/" class="join-button join-submit">홈으로</a>
+            	<a href="/member/login" class="join-button">로그인</a>
             </div>
         </div>
     </body>

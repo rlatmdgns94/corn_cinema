@@ -17,7 +17,7 @@
                     <h2 class="blind">대표메뉴</h2>
                         <ul class="nav">
                             <li><a href="javascript:void(0)">3조</a></li>
-                            <li><a href="javascript:void(0)">최신개봉작</a></li>
+                            <li><a href="/contents/movie">최신개봉작</a></li>
                             <li><a href="javascript:void(0)">공지사항</a></li>
                         </ul>
                 </div>

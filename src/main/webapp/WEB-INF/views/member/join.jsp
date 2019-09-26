@@ -58,7 +58,7 @@
                             </tr>
                             <tr>
                                 <th scope="row"><label for="email">*이메일</label></th>
-                                <td>
+                                <td>	
                                     <input type="email" id="email" name="email" required="" placeholder='joe@example.com'>
                                 </td>
                             </tr>
