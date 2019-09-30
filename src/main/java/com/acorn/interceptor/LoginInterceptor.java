@@ -40,10 +40,11 @@ public class LoginInterceptor implements HandlerInterceptor{
         //이 속성객체를 세션영역에서 제거.       
         HttpSession session = request.getSession();
         if(session.getAttribute(loginkey) !=null ) {
-          
+                System.out.println("세션 제거 !!");
         	session.removeAttribute(loginkey);
         
         }    
+        System.out.println("preHandle NEXT !!");
        return true; // true = NEXT 로 이동!	
 	} //preHandle()
 
@@ -56,34 +57,36 @@ public class LoginInterceptor implements HandlerInterceptor{
 			ModelAndView modelAndView)
 				throws Exception {
 		
-		log.info("LoginInterceptor preHandle() invoked");
+		log.info("LoginInterceptor postHandle() invoked");
 		log.info("request : "  + request);
 		log.info("response : "  + response);
 		log.info("handler : "  + handler);
 		log.info("\t SessionID:" + request.getSession().getId());
 		log.info("\t SessionID:" + request.getSession());
 		log.info("modelAndView :" + modelAndView );
+	
 		
 		
         //기존에 생성된 세션 객체가 있으면 변환하고 , 없으면 새로이 세션 객체를만들어서 반환
 		HttpSession session = request.getSession();
 		log.info("session : "  +  session);
 		
-		// ModelAndView 객체를 이용하여 세션 스코프에 속성지정
+		
+		// ModelAndView 객체를 이용하여 세션 스코프에 속성지정 
 		ModelMap modelMap = modelAndView.getModelMap();
+
 		Object userVO = modelMap.get("userVO");
 		
 		log.info("modelMap : " + modelMap);	
 		log.info("userVO: " + userVO);
-	
-		// 세션 영역에 사용자 정보 객체를 속성으로 지정 (바인딩)
-		  if(userVO !=null)  {
-			  log.info("not userVO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		 session.setAttribute(loginkey, userVO);
-		 
-	     log.info("loginkey" +  loginkey);
-	     log.info("userVO:: " + userVO);
 		
+		  if(userVO !=null)  {
+
+		 session.setAttribute(loginkey, userVO); //	★
+		  
+	     log.info("loginkey: "  +  loginkey);
+	     log.info("userVO:  " + userVO);
+
 	     Object orignalRequestURI = session.getAttribute("originalURIkey");
 	       
 	     log.info("orignalRequestURI : "  + orignalRequestURI );
@@ -92,6 +95,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 	     response.sendRedirect(orignalRequestURI!= null ? (String)orignalRequestURI :"/" ); 
 		
 		  }
+	     
 	} //postHandle()
 
 	

@@ -7,14 +7,18 @@
   <mapper namespace ="com.acorn.mapper.MemberMapper">
   
   	   
-     <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  CRUD  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
-	              
-	  <select id="getTime" resultType="string">  	
+  <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  CRUD  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+ 	
+
+	  <select id="updateTime" resultType="string">  	
 	     select now()
 	  </select>
 	  
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡinsert Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+	
+	  
 	  <insert id="insertMember"  parameterType="com.acorn.domain.MemberVo">
-	      insert into corn_movie.member (
+	      insert into corn_movie.tbl_member (
 	        id, password, name, phone, email
 	      ) values(
 	       #{id}, #{password}, #{name}, #{phone}, #{email}
@@ -22,11 +26,35 @@
 	   </insert>
 	   
 	   
-	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡlogin Checkㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+	   
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡupdate Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->   
+	   
+	<update id="updateProfile">
+	   update tbl_member set
+       password = #{password}, 
+       phone = #{phone}, 
+       email = #{email},
+       updatedate = #{updatedate}
+       WHERE id =#{id}          
+    </update>
+	   
+
+
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡdelete Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->   
+
+   <delete id="deleteProfile">
+
+   DELETE FROM tbl_member WHERE id = #{id};
+
+   </delete>
+
+	   
+	   
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡlogin Checkㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 		   
 	 <select id="login" resultType="com.acorn.domain.MemberVo">    <!-- resultType -> UserVO 풀패키지명 -->
   
-      SELECT * FROM member WHERE id= #{id} and password = #{password}
+      SELECT * FROM tbl_member WHERE id= #{id} and password = #{password}
                  <!-- #{자바빈 객체의 프로퍼티 이름}  --> 
   </select>
 	   

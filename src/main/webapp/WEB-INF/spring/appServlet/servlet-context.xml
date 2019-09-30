@@ -38,7 +38,7 @@
         
         
           <interceptor>
-            <mapping path="/member/test"/>
+            <mapping path="/member/mypage"/>
             <beans:ref bean ="authInterceptor"/>
         </interceptor>
       

@@ -22,8 +22,7 @@ public class LoginDAOImpl
   private SqlSession sqlSession;
 	
   private final String namespace="com.acorn.mapper.MemberMapper";
-  private final String sqlId = "login";
-		
+
 		
     @Override
     public MemberVo login(LoginDTO dto) 
@@ -33,7 +32,7 @@ public class LoginDAOImpl
 		log.info("dto:" + dto);
 		log.info("\t+ sqlSession: " + sqlSession );
 		
-		MemberVo vo = sqlSession.<MemberVo>selectOne(namespace+"."+sqlId, dto);
+		MemberVo vo = sqlSession.<MemberVo>selectOne(namespace+"."+"login", dto);
         log.info("vo:" + vo); 
         return vo;
         

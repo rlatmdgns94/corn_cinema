@@ -25,8 +25,31 @@ private MemberDAO dao ;
 
 	       dao.insertMember(vo);
 		
+	} //regist
+
+	@Override
+	public void modify(MemberVo vo) throws Exception {
+        log.info("modify invoked");
+        log.info("vo:"+ vo);
+		dao.updateProfile(vo);
+		
+	} //modify
+
+	@Override
+	public String ModificationTime() throws Exception {
+	      log.info("ModificationTime invoked");
+		  return dao.updateTime();
+		
+
+	} //ModificationTime
+
+	@Override
+	public void remove(MemberVo vo) throws Exception {
+         log.info("remove invoked");
+         log.info("vo:" + vo);
+         dao.deleteProfile(vo);
+     
+		
 	}
-
-
 
 }

@@ -35,7 +35,7 @@
                             <tr>
                                 <th scope="row"><label for="password">*비밀번호</label></th>
                                 <td>
-                                    <input type="password" title="비밀번호" id="password;" name="password" required="">
+                                    <input type="password" title="비밀번호" id="password" name="password" required="">
                                 </td>
                             </tr>
                             <tr>
@@ -59,7 +59,7 @@
                             <tr>
                                 <th scope="row"><label for="email">*이메일</label></th>
                                 <td>	
-                                    <input type="email" id="email" name="email" required="" placeholder='joe@example.com'>
+                                    <input type="email" id="email" name="email" required="">
                                 </td>
                             </tr>
                         </tbody>
