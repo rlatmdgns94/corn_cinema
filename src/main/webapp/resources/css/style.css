@@ -4,7 +4,6 @@
 @import "main.css";
 @import "footer.css";
 @import "join.css";
-@import "movie_showing.css";
 @import "login.css";
 @import "agree.css";
 @import "find_id.css";
@@ -14,4 +13,5 @@
 @import "movie_detail.css";
 @import "mypage.css";
 @import "member_modify.css";
-
+@import "notice_contents.css";
+@import "ticket.css";

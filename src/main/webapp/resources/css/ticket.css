@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+.ticket-title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 40px 0;
+}
+/* 영화 예매정보 */
+.ticket-info-area{
+    background: #2b2e35;
+}
+.ticket-info{
+    overflow: hidden;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 25px 0;
+    color: #fff;
+}
+.ticket-info li{
+    float: left;
+    width: 23%;
+    padding-left: 2%;
+    min-height: 122px;
+    font-size: 16px;
+    border-right: 1px solid #1d1d1c;
+    box-shadow: 1px 0 0 #41434a;
+}
+.ticket-info li:first-child{
+    padding: 0;
+}
+.ticket-info li:last-child{
+    border: 0px;
+    box-shadow: 0px 0 0;
+}
+.ticket-movie-poster{
+    display: inline-block;
+    width: 80px;
+}
+.ticket-movie{
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 20px;
+}
+.ticket-info-title{
+    font-size: 18px;
+    color: #e6d3b5;
+}
+.ticket-price{
+    color: #e34545;
+    font-size: 24px;
+    font-weight: bold;
+}

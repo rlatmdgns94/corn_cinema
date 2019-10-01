@@ -64,16 +64,10 @@
                         <li>
                             <a href="javascript:void(0)" class="active"><strong>박스오피스</strong></a>
                             <div class="tab-content-wrap active">
-                            
-
                                <c:forEach items ="${list1}" var="boxMovie" begin = "0" end ="3">
                                 <div class="tab-content">
-                                
-                                    <div class="movie-content">
-                                    
-                                    
-                                        <div class="movie_img">
-                                        
+                              <div class="movie-content">                             
+                                        <div class="movie_img">                                        
                                             <a href="javascript:void(0);">
                                             <c:forEach items ="${boxMovie.viewvo}"  var = "boxMoiveView"> 
                                                <img src="${boxMoiveView.view_path}">
@@ -92,14 +86,10 @@
                                         <div class="movie-btn-area">
                                             <a href="#" class="movie-btn">예매하기</a>
                                             <a href="#" class="movie-btn">상세보기</a>
-                                        </div>
-                                       
+                                        </div>                                
                                     </div>
-  				
                                 </div>
                            </c:forEach>
-                        
-                    
                             </div>
                         </li>
                         <li>
@@ -132,8 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                          </c:forEach>
-                              
+                          </c:forEach>    
                             </div>
                         </li>
                     </ul>
@@ -257,6 +246,7 @@
             });
         });
     </script>
+    <script src="/resources/js/movie_age.js"></script>
 </body>
 
 </html>

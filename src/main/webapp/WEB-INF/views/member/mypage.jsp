@@ -24,14 +24,11 @@
                     <colgroup>
                         <col style="width:20%">
                     </colgroup>
-                    
-                                
-                              
-                              <%         //   scriptlet    
-                                  Object userVo = session.getAttribute("login");
-                                  System.out.println("userVo:" + userVo);                
-                              %>
-                                              
+                    <%
+                         //   scriptlet
+                        Object userVo = session.getAttribute("login");
+                        System.out.println("userVo:" + userVo);
+                    %>
                     <tbody>
                         <tr>
                             <th scope="row">아이디</th>
@@ -51,7 +48,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div> 
+            </div>
             <a href="member_modify" class="member-modify-btn mypage-btn">회원정보수정</a>
         </div>
         <div class="ticket-history-wrap">
