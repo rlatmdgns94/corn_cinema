@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+ 
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -20,198 +24,40 @@
                 <div class="cinema-movie-wrap">
                     <h3 class="cinema-movie-title">최신개봉작</h3>
                     <ul class="cinema-movie">
+                    
+                    <c:forEach items ="${list}" var="newMovie">
                         <li>
                             <div class="movie-content">
                                 <div class="movie_img">
                                     <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
+                                       <c:forEach items ="${newMovie.viewvo}"  var = "newMoiveView"> 
+                                               <img src="${newMoiveView.view_path}">
+                                            </c:forEach>
                                     </a>
                                 </div>
+                                
+                                
+                                
                                 <div class="movie-info">
                                     <h3 class="movie-title">
                                         <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
+                                            <span class="age_ico age_12">${newMovie.film_rate}</span>${newMovie.title}
                                         </a>
                                     </h3>
                                     <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
+                                        <span class="info-text"><fmt:formatDate value= "${newMovie.opening_day}" pattern="yyyy.MM.dd" /> 개봉</span>
+                                        <span class="info-text">관람 평점:${newMovie.avg_score}</span>
                                     </div>
                                 </div>
                                 <div class="movie-btn-area">
                                     <a href="#" class="movie-btn">예매하기</a>
                                     <a href="#" class="movie-btn">상세보기</a>
                                 </div>
+                                
                             </div>
                         </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="movie-content">
-                                <div class="movie_img">
-                                    <a href="javascript:void(0);">
-                                        <img src="/resources/img/movie_poster/tazza_poster.jpg">
-                                    </a>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">
-                                        <a href="">
-                                            <span class="age_ico age_12">청소년관람불가</span>타짜: 원 아이드 잭
-                                        </a>
-                                    </h3>
-                                    <div class="info-text-area">
-                                        <span class="info-text">2019.09.11 개봉</span>
-                                        <span class="info-text">관람평점 6</span>
-                                    </div>
-                                </div>
-                                <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
-                                </div>
-                            </div>
-                        </li>
+                       </c:forEach>
+                       
                     </ul>
                 </div>
             </div>
