@@ -1,5 +1,7 @@
 package com.acorn.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -118,18 +120,18 @@ public class Membercontroller {
 	  }
 	 
 	  @PostMapping("/withdrawal_result")
-	  public void withdrawal_result(MemberDTO dto) throws Exception{
+	  public void withdrawal_result(HttpSession session , MemberDTO dto) throws Exception{
 		  
 		  MemberVo vo = new MemberVo();
 		  
 		  vo.setId(dto.getId());  
 		  log.info("withdrawal_result vo : " + vo);
 		  memberservice.remove(vo);
-		  
+          session.invalidate();  //세션제거
 	  }
 	  
 	  
-	  
+	   
 	  
 	  
 	  

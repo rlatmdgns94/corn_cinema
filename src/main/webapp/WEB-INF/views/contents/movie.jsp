@@ -28,9 +28,11 @@
                             <div class="movie-content">
                                 <div class="movie_img">
                                     <a href="javascript:void(0);">
+                                    
                                         <c:forEach items="${newMovie.viewvo}" var="newMoiveView">
                                             <img src="${newMoiveView.view_path}">
                                         </c:forEach>
+                                        
                                     </a>
                                 </div>
                                 <div class="movie-info">
