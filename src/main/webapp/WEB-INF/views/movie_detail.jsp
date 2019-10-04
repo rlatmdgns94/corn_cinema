@@ -16,7 +16,7 @@
 <body>
     <div class="l_content movie-detail-wrap">
         <div class="movie-detail">
-            <div class="movie_img">
+            <div class="movie-detail-img">
                 <a href="javascript:void(0);">
                     <img src="img/movie_poster/tazza_poster.jpg">
                 </a>

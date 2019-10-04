@@ -97,7 +97,7 @@
     left:44px;
     overflow: hidden;
 }
-.tab-content-wrap.active{
+.tab-content-wrap.on{
     display: block;
 }
 .tab-content{

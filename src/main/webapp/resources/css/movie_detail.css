@@ -8,7 +8,7 @@
 .movie-detail{
     overflow: hidden;
 }
-.movie_img{
+.movie-detail-img{
     float: left;
 }
 .movie-detail-info{
