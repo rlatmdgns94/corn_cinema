@@ -3,7 +3,9 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
+ 
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +16,7 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap&subset=korean"
         rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/slick/slick.css" />
  
 </head>

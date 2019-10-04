@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ViewVO {
 
-	private String movie_num;
+	private String movie_num;   // FK
 	private String view_path;
 	
 }

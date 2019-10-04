@@ -31,6 +31,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public String updateTime() throws Exception {
+		
+		
  
 		 log.info("updateTime() invoked");
 		return sqlSession.selectOne(namespace+".updateTime");

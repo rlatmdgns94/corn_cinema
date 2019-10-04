@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.util.*" %>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -23,14 +26,27 @@
             <div class="cinema-movie-wrap">
                 <h3 class="cinema-movie-title">최신개봉작</h3>
                 <ul class="cinema-movie">
+                
+                
+                    <%  System.out.println("+++++++++");
+                    	List<String> values = (List<String>) request.getAttribute("list");
+                    	System.out.println("- newMovie: "+values);
+                    	System.out.println("+++++++++");
+                    %>
+                
                     <c:forEach items="${list}" var="newMovie">
+                    
+                    <% System.out.println("================================================");
+                    	%>
                         <li>
                             <div class="movie-content">
                                 <div class="movie_img">
                                     <a href="javascript:void(0);">
                                     
                                         <c:forEach items="${newMovie.viewvo}" var="newMoiveView">
+                    	<%  System.out.println("*******************************"); %>
                                             <img src="${newMoiveView.view_path}">
+                                              <% System.out.println("newMoiveView.movie_num"); %>
                                         </c:forEach>
                                         
                                     </a>
@@ -39,18 +55,21 @@
                                     <h3 class="movie-title">
                                         <a href="">
                                             <span class="age_ico">${newMovie.film_rate}</span>${newMovie.title}
+                                           <% System.out.println("newMovie.film_rate");%>
+                 
                                         </a>
                                     </h3>
                                     <div class="info-text-area">
                                         <span class="info-text">
                                             <fmt:formatDate value="${newMovie.opening_day}" pattern="yyyy.MM.dd" />
-                                            개봉</span>
+                                            개봉</span>                      <% System.out.println("newMovie.opening_day");%>
                                         <span class="info-text">관람 평점:${newMovie.avg_score}</span>
+                                              <% System.out.println("newMovie.avg_score");%>
                                     </div>
                                 </div>
                                 <div class="movie-btn-area">
                                     <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="#" class="movie-btn">상세보기</a>
+                                    <a href="${path}}/movie_detail?" class="movie-btn">상세보기</a>
                                 </div>
                             </div>
                         </li>

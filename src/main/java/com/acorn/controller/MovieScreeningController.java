@@ -26,6 +26,9 @@ public class MovieScreeningController {
 		log.info("MovieScreeningController::MoiveScreeningGetMovie invoked");
 		
 		List<MovieScreeningVO> list = service.movieList();
+		
+		log.info("MovieScreeningController list :" + list);
+		
 		model.addAttribute("list", list);
 	
 		

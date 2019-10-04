@@ -23,6 +23,8 @@ public class MovieScreeningDAOImpl implements MovieScreeningDAO {
 	@Override  
 	public List<MovieScreeningVO> movieList() throws Exception {
 										//xmapper.xml 쿼리문의 id
+		
+		log.info("MovieScreeningDAOImp sqlSession:" + sqlSession);
 		return sqlSession.selectList(namespace + ".movieList");
 	}	
 

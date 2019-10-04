@@ -17,12 +17,12 @@
             <p class="findid_title">아이디 찾기</p>
         </div>
         <div class="find_id_input_wrap">
-            <form action="" method="">
+            <form action="/find/find_resultid" method="POST">
                 <div class="find-form">
                     <!-- <label for="name">NAME</label> -->
-                    <input type="text" placeholder="이름" title="이름입력"> <br>
+                    <input type="text"  id="name"  name="name" placeholder="이름" title="이름입력"> <br>
                     <!-- <label for="user">E-MAIL</label> -->
-                    <input type="email" placeholder="메일을 입력해주세요.(비밀번호 재설정 인증 메일을 발송합니다.)" title="메일 입력">
+                    <input type="email" id="email" name="email" placeholder="가입된메일을 입력해주세요." title="메일 입력">
                 </div>
                 <div class="find-btn">
                     <input type="submit" class="find-btn" value="확인">

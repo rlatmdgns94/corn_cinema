@@ -22,15 +22,15 @@
                 </a>
             </div>
             <div class="movie-detail-info">
-                <h3 class="info-title"><strong>타짜: 원 아이드 잭</strong></h3>
+                <h3 class="info-title"><strong>     </strong></h3>
                 <div class="info-data">
                     <span class="blind">영화 상세 정보</span>
-                    <span class="score"><em>관람평점</em><span class="num">7.2</span></span>
+                    <span class="score"><em>관람평점</em><span class="num">    </span></span>
                     <ul class="data-movie">
-                        <li><span><em>개봉일 :</em>2019.09.11</span></li>
-                        <li><span><em>감독 :</em>권오광</span></li>
-                        <li><span><em>출연진 :</em>박정민, 류승범, 최유화</span></li>
-                        <li><span><em>장르 :</em>드라마, 범죄 / <span>140분</span></span></li>
+                        <li><span><em>개봉일 :</em>    </span></li>
+                        <li><span><em>감독 :</em>    </span></li>
+                        <li><span><em>출연진 :</em>    </span></li>
+                        <li><span><em>장르 :</em>   <span>      </span></span></li>
                     </ul>
                 </div>
                 <a href="" class="ticketing-btn">예매하기</a>

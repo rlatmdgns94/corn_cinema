@@ -83,7 +83,7 @@
             <input type="hidden" title="id" id="id" name="id" value=${login.id}>
             <input type="submit" value="탈퇴" class="join-button member-delete-btn">
         </form>
-        <!--      <a href="withdrawal_result" class="join-button member-delete-btn">회원탈퇴</a>  -->
+        
     </div>
     </div>
 </body>

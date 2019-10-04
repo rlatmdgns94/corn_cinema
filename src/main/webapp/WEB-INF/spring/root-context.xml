@@ -44,11 +44,8 @@
 	                   
 	        <property  name="mapperLocations"
 	                   value="classpath:mappers/**/*Mapper.xml"/>
-	        
 	   </bean>
 	   
-	   
-	
 	           <!-- DAO 구현객체가 MyBatis framework에 의존하고 있고,
 	       DAO 구현객체를 생성하려면, 의존하고있는 MyBatis의 SqlSessionTemplate
 	            타입의 구체를 주입받아서 DAO 구현 클래스를 만들수 있음 -->
@@ -62,15 +59,27 @@
 	          ref="sqlSessionFactory"/>
 	     </bean>
 		
+		<!-- =========================================================================================== -->		
 		
-		
+	<bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="username" value="zpzp627@gmail.com" />
+        <property name="password" value="azmsxfkmkvqbuluu" />
+        
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+     </bean>
+	        
+	   <bean id="email" class="com.acorn.email.Email"> </bean>
+	   <bean id="emailSender" class="com.acorn.email.EmailSender"></bean>
+	
      <context:component-scan base-package="com.acorn.persistence"/>
 	 <context:component-scan base-package="com.acorn.service"/>
-			
-		
-		
-		
-		
-		
 		
 </beans>

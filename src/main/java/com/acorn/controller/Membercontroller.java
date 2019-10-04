@@ -130,12 +130,7 @@ public class Membercontroller {
           session.invalidate();  //세션제거
 	  }
 	  
-	  
-	   
-	  
-	  
-	  
-	  
+
 	@GetMapping("/mypage")
 	public void mypage() {
 		log.info("mypage");
@@ -145,7 +140,6 @@ public class Membercontroller {
 	 //-----------------------------------------------------------------------------//
 	
 	
-
 
 	
 } //end class

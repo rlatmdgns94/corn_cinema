@@ -30,8 +30,8 @@ public class MainController {
 		   
 		   List<MovieScreeningVO> list1 = service.movieList();  //박스오피스
 		   List<MovieScreeningVO> list2 = service.movieList(); //최신상영작
-			model.addAttribute("list1", list1);  
-			model.addAttribute("list2", list2); 
+			model.addAttribute("list1", list1);   log.info("list1: " + list1);
+			model.addAttribute("list2", list2);   log.info("list2: " + list2);
 		   
 		  return "index";	  
 	  }
