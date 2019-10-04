@@ -10,7 +10,7 @@
     <div class="visual">
         <ul class="slick-items">
             <li class="visual">
-                <a href="" class="img_wrap" style="background-image:url(/resources/img/tazza.jpg')">
+                <a href="" class="img_wrap" style="background-image:url('/resources/img/tazza.jpg')">
                     <span class="visual-text">
                         <strong class="visual-text-title">타짜: 원 아이드 잭 <em>Tazza: One Eyed Jack</em></strong>
                         <span class="visual-text-sub">인생을 바꿀 판이 시작된다</span>
@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="visual">
-                <a href="" class="img_wrap" style="background-image:url('img/111.jpg')">
+                <a href="" class="img_wrap" style="background-image:url('/resources/img/111.jpg')">
                     <span class="visual-text">
                         <strong class="visual-text-title">타짜: 원 아이드 잭 <em>Tazza: One Eyed Jack</em></strong>
                         <span class="visual-text-sub">인생을 바꿀 판이 시작된다</span>
