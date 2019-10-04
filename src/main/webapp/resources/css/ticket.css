@@ -137,7 +137,3 @@
 .seat_choice .seat-choice-content{
     display: none;
 }
-/* 선택시 on class 추가 */
-.on{
-    display: block !important;
-}

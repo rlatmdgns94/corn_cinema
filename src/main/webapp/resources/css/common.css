@@ -7,6 +7,7 @@
 
 /* layout */
 .l_content{width: 1200px; margin: 0 auto;}
+img{max-width: 100%;}
 
 /* Skip Navigation */
 #u_skip{position:absolute;top:0;left:0;z-index:200;width:100%}
@@ -34,4 +35,8 @@ table{
 }
 th, td{
     padding:0;
+}
+/* 선택시 on class 추가 */
+.on{
+    display: block !important;
 }

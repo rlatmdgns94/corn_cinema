@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             <ul class="ticket-info">
                 <li>
                     <span class="ticket-movie-poster">
-                        <img src="img/movie_poster/tazza_poster.jpg" alt="타짜 원 아이드 잭">
+                        <img src="/resources/img/movie_poster/tazza_poster.jpg" alt="타짜 원 아이드 잭">
                     </span>
                     <div class="ticket-movie">
                         <div class="ticket-info-title">영화</div>

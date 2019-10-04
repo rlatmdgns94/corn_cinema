@@ -97,9 +97,6 @@
     left:44px;
     overflow: hidden;
 }
-.tab-content-wrap.on{
-    display: block;
-}
 .tab-content{
     float: left;
     margin-left: 35px;
