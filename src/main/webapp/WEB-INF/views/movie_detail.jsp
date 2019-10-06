@@ -10,7 +10,7 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap&subset=korean"
         rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="resources/css/style.css">
 </head>
 
 <body>

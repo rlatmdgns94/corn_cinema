@@ -34,6 +34,7 @@ public class LoginDAOImpl
 		
 		MemberVo vo = sqlSession.<MemberVo>selectOne(namespace+"."+"login", dto);
         log.info("vo:" + vo); 
+        
         return vo;
         
 	}

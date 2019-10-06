@@ -21,14 +21,37 @@ public class FindDAOImpl implements FindDAO {
 	
 	private static final String namespace = "com.acorn.mapper.FindMapper";
 
+	
 	@Override
 	public String findId(MemberVo vo) throws Exception {
-		log.info("idFind");
-		log.info( "FindDAOImpl vo : " + vo);
 		
-		return sqlSession.selectOne(namespace+".findId" , vo);
-	}
+		log.info("findId invoked");
+		log.info( "vo : " + vo);
+		
+		return sqlSession.selectOne(namespace+".findId", vo);
+	} //findId
 
-} //finId
+	
+	@Override
+	public String findPw(MemberVo vo) throws Exception {
+		
+		log.info("findPw invoked");
+		log.info( "vo : " + vo);
+		
+		return sqlSession.selectOne(namespace+".findPw", vo);
+	} //findPw
+	
+	
+	@Override
+	public void updatePw(MemberVo vo) throws Exception {
+    
+		log.info("updatePw invoked");
+        log.info("vo "+ vo); 
+        
+	   sqlSession.update(namespace+".updatePw", vo);
+	} //updatePw
+
+	
+} //end class
 
 

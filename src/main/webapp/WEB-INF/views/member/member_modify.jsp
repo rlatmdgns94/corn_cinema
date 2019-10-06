@@ -38,9 +38,7 @@
                             </td>
                         </tr>
                         <input type="hidden" title="id" id="id" name="id" value=${login.id}>
-                        <input type="hidden" title="updatedate" id="updatedate" name="updatedate"
-                            value=${login.updatedate}>
-
+                        <input type="hidden" title="name" id="name" name="name" value=${login.name}>
                         <tr>
                             <th scope="row"><label for="password">비밀번호</label></th>
                             <td>

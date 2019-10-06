@@ -1,3 +1,4 @@
+/*
 package com.acorn.controller;
 
 import java.util.List;
@@ -24,11 +25,11 @@ public class MovieScreeningController {
 	
 	@GetMapping("/movie")
 	public void MoiveScreeningGetMovie( Model model ) throws Exception {
-		log.info("MovieScreeningController::MoiveScreeningGetMovie invoked");
+//		log.info("MovieScreeningController::MoiveScreeningGetMovie invoked");
 		
 		List<MovieScreeningVO> list = service.movieList();
 		
-		log.info("MovieScreeningController list :" + list);
+//		log.info("MovieScreeningController list :" + list);
 		
 		model.addAttribute("list", list);
 	}
@@ -37,7 +38,7 @@ public class MovieScreeningController {
 		
 		@GetMapping("/reserve")
 		public String reserve() {
-			log.info("reserve invoked");
+//			log.info("reserve invoked");
 			
 			return "contents/movie/reserve";
 		} //예매
@@ -45,3 +46,5 @@ public class MovieScreeningController {
 	}
 
 }
+
+*/

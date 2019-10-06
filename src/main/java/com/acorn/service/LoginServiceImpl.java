@@ -31,11 +31,10 @@ public class LoginServiceImpl implements LoginService{
           log.info("\t Found user: " + vo);
        }else {	    	
     	  log.info("\t + No user Found." + vo);
-       }
+       } //if-else
       
-      return vo;
-
+       return vo;
 	
-	}
+	} // checkLogin
 
-}
+} // class

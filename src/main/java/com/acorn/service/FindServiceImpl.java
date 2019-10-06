@@ -21,11 +21,30 @@ public class FindServiceImpl implements FindService {
 	@Override
 	public String findId(MemberVo vo) throws Exception {
 
-         log.info("findId");
+         log.info("findId invoked");
          log.info("FindServiceImpl vo:" + vo );
          
-		return dao.findId(vo);
+		 return dao.findId(vo);
 	} //findId
+
+	@Override
+	public String findPw(MemberVo vo) throws Exception {
+		
+		log.info("findPw invoked");
+		log.info( "vo : " + vo);
+		
+		return dao.findPw(vo);
+	} //findPw
+	
+	
+	@Override
+	public void updatePw(MemberVo vo) throws Exception {
+
+		log.info("findId invoked");
+		log.info("findServiceImpl vo:"+ vo);
+		
+		dao.updatePw(vo);
+	} //updatePw
 
 	
 	

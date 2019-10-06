@@ -16,7 +16,7 @@ public class AuthInterceptor implements HandlerInterceptor{
 
 	private final String loginkey ="login";
 	  
-	  // 원래 갈랴고 했던 URI 저장하기위한 메소드
+	  // 원래 가려고 했던 URI 저장하기위한 메소드
 	private void saveOriginalRequestURI(HttpServletRequest request) {
 		
 		log.info("::saveOriginalRequestURI::");
@@ -34,8 +34,9 @@ public class AuthInterceptor implements HandlerInterceptor{
         	String originalRequestURI = requestURI + queryString;
         	
         	HttpSession session = request.getSession();           
-        	session.setAttribute("originalURIkey", originalRequestURI);  
-	}
+        	session.setAttribute("originalURIkey", originalRequestURI); 
+        	
+	}//saveOriginalRequestURI
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -51,14 +52,13 @@ public class AuthInterceptor implements HandlerInterceptor{
 		 saveOriginalRequestURI(request);  // 원래 들어갈려고 했던 (로그인이 필요한페이지) 원래의 URI 저장 !! 
 		
 		 response.sendRedirect("/member/login");     // 로그인 화면으로 이동시킴 !! 왜냐 .. 아직 로그인 안했으니까.. 
-	     return false; //다음 동작 false    
+	       return false; //다음 동작 false    
 	    }//if
 	
-    return true ;  // 로그인이 되어있다면 다음동작 true
+              return true ;  // 로그인이 되어있다면 다음동작 true
 
 	} //preHandle
 
-	
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

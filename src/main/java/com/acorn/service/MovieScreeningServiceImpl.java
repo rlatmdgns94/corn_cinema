@@ -1,3 +1,4 @@
+/*
 package com.acorn.service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class MovieScreeningServiceImpl implements MovieScreeningService {
 	
 	public void  MovieScreeningServiceImpl(){
 		
-	log.info("MovieScreeningServiceImpl invoked");
+//	log.info("MovieScreeningServiceImpl invoked");
 		
 	}
 	
@@ -33,3 +34,5 @@ public class MovieScreeningServiceImpl implements MovieScreeningService {
 	}
 
 }
+
+*/

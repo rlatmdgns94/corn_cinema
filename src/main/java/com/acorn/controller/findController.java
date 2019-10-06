@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.acorn.domain.MemberVo;
 import com.acorn.email.Email;
 import com.acorn.email.EmailSender;
+import com.acorn.getPw.getPassword;
 import com.acorn.model.FindDTO;
 import com.acorn.service.FindService;
 
@@ -38,14 +39,13 @@ public class findController {
 	@Autowired
 	private EmailSender emailSender;
 
+	
     @GetMapping("/find_id")
     public void idfind() {
     	
     log.info("idfind!!!");
     	
-    
     }
-
    
     @PostMapping("/find_resultid")          //모델 없어도댐 그냥 출력용
     public void idfind_POST(FindDTO dto , Model model) throws Exception {
@@ -56,12 +56,15 @@ public class findController {
 	String name = dto.getName();
 	String mail = dto.getEmail();
 
-											vo.setName(name);
-											vo.setEmail(mail);
-											vo.setId(findservice.findId(vo));     // << 그냥 브라우저에 출력해보기
-											model.addAttribute("userid" , vo);
+	vo.setName(name);
+	vo.setEmail(mail);
 	
 	String id = findservice.findId(vo);
+	vo.setId(id);     
+	
+	model.addAttribute("userid" , vo);
+	
+
 	
 	if(id!=null) {
 		
@@ -72,8 +75,63 @@ public class findController {
 		log.info(mail +"로아이디값 전송 !");
 	}else {
 		;;
-	}
+	}//if-else
 	
+  } //find_id
+    
+    //-------------------------------------------------------------------------------------//
+    
+    
+    @GetMapping("/find_pw")
+    public void findpwd_GET() {
+    	
+    log.info("find_password() invoked");
+   
     }
+    
+    @PostMapping("find_resultpw")
+    public void findpwd_POST(FindDTO dto , Model model) throws Exception {
+    	log.info("::: findpwd_POST :::");
+    	
+    	MemberVo vo = new MemberVo();
+    	
+    	String id = dto.getId();
+    	String mail = dto.getEmail();
+    	String newPassword = getPassword.newPw();
+    
+    	log.info("newPassword:" + newPassword);
+    	
+
+    	vo.setId(id);
+    	vo.setEmail(mail);
+    	
+    	String password = findservice.findPw(vo);
+    	log.info(": : password ::" + password);
+    	
+    	vo.setPassword(newPassword);   //새로운 비밀번호 세팅
+    	
+    	model.addAttribute("userpw" , vo);
+    	
+    	if(password!=null) {
+    		
+    		email.setContent("비밀번호는 "+newPassword+" 입니다");
+    		email.setReceiver(mail);
+    		email.setSubject(id+"님 corn_movie 'password' 찾기 메일입니다");
+    		emailSender.SendEmail(email);
+    		log.info(mail +"로아이디값 전송 !");
+    		findservice.updatePw(vo);
+    		
+    	}else {
+    		;;
+    	}//if-else
+    	
+      } //findpwd_POST
+    		
+    	
+    	
+    	
+   }
+ 
+ 
+     
 	    
-}

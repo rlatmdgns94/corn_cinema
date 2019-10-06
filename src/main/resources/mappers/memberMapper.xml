@@ -9,11 +9,8 @@
   	   
   <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  CRUD  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
  	
-
-	  <select id="updateTime" resultType="string">  	
-	     select now()
-	  </select>
-	  
+  
+	   
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡinsert Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 	
 	  
@@ -34,7 +31,7 @@
        password = #{password}, 
        phone = #{phone}, 
        email = #{email},
-       updatedate = #{updatedate}
+       updatedate = now()
        WHERE id =#{id}          
     </update>
 	   
@@ -58,15 +55,6 @@
                  <!-- #{자바빈 객체의 프로퍼티 이름}  --> 
   </select>
 	   
-	   
-	   
 
-	
-	
-	
-	
-	
-  
-  
   
   </mapper>
