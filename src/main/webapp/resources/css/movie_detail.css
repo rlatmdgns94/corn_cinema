@@ -12,9 +12,10 @@
     float: left;
 }
 .movie-detail-info{
+    position: relative;
     float: left;
+    min-height: 335px;
     margin-left:30px;
-    margin-top: -10px;
 }
 .info-title{
     font-size: 28px;
@@ -43,6 +44,8 @@
     margin-top:10px;
 }
 .ticketing-btn{
+    position: absolute;
+    bottom: 0;
     display: inline-block;
     padding: 10px 30px;
     margin-top: 55px;
@@ -82,7 +85,51 @@
     font-size: 14px;
     color: #666;
 }
+/*리뷰 작성 */
+.score-area{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    border: 1px solid #ccc;
+}
+.score-star{
+    float: left;
+}
+.score-star select{
+    width: 100px;
+    height: 101px;
+    font-size: 20px;
+}
+.score-textarea{
+    float: left;
+    width: 980px;
+}
+.score-textarea textarea {
+    width: 100%;
+    height: 101px;
+    padding: 5px 0 0 10px;
+    border: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 14px;
+    color: #666;
+    background: #ccc;
+    resize: none;
+}
+.review-btn{
+    float: right;
+    display: block;
+    width: 118px;
+    height: 101px;
+    background: #231f20;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
 /* 리뷰 댓글결과  */
+.review-entry{
+    border-top: 2px solid #231f20;
+}
 .review-content li{
     display: table;
     width: 100%;
@@ -121,6 +168,4 @@
     font-weight: 300;
     line-height: 18px;
     word-break: break-all;
-}
-.review-date{
 }
