@@ -46,5 +46,13 @@ public class MemberDAOImpl implements MemberDAO {
 		      
 	} //deleteProfile
 
+	@Override
+	public int idCheck(String user_id) throws Exception {
+	    
+	
+		return sqlSession.selectOne(namespace+".idCheck",user_id);
+		
+	} //idCheck
+
 
 }

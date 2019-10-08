@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.domain.MemberVo;
 import com.acorn.model.LoginDTO;
@@ -33,6 +35,19 @@ public class Membercontroller {
 	@Autowired
 	private LoginService loginservice;
 	
+	
+	
+	
+	//------------------------------------ idCheck -----------------------------------------//
+	
+	 @GetMapping("/idCheck")
+	 @ResponseBody
+	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {
+         
+		 return memberservice.DuplicateId(user_id);	 
+	
+	 } //idCheck
+
 	
 	//------------------------------------ login -----------------------------------------//
 	

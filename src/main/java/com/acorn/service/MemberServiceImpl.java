@@ -54,5 +54,13 @@ private MemberDAO dao ;
 	} //remove
 
 
+	@Override
+	public int DuplicateId(String user_id) throws Exception {
+	
+		log.info("DuplicateId");
+		return dao.idCheck(user_id);
+	}
+
+
 	
 } //end interface

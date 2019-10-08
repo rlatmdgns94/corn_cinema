@@ -12,6 +12,8 @@ public interface MemberService {
    public abstract void modify(MemberVo vo) throws Exception;
    
    public abstract void remove(MemberVo vo) throws Exception;
+   
+   public abstract int DuplicateId(String user_id) throws Exception ; 
 
 	
 }

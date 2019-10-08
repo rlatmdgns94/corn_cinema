@@ -13,7 +13,7 @@ public interface MemberDAO {
    
    public abstract void deleteProfile(MemberVo vo) throws Exception;
 
-
+   public abstract int idCheck(String user_id) throws Exception ;
 
 	
 }

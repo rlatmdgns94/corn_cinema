@@ -10,6 +10,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    
+    
+    
+    </script>
+    
+    
+    
 </head>
 
 <body>
@@ -31,7 +39,7 @@
                             </th>
                             <td>
                                 <input type="text" title="아이디" id="id" name="id" maxlength="12">
-                                <button class="check-bt">중복확인</button>
+                                <div class="check_font" id="id_check"></div>
                             </td>
                         </tr>
                         <tr>

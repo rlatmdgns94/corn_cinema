@@ -56,4 +56,14 @@
      </select>
 	   
 
+	 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ id Ckeck(id 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+    
+     <select id= "idCheck" parameterType="string" resultType="int">
+         select count(*) from tbl_memver where id=#{id}
+     </select>
+        
+ 
+ 
+ 
+ 
   </mapper>
