@@ -41,7 +41,7 @@
 
    <delete id="deleteProfile">
 
-   DELETE FROM tbl_member WHERE id = #{id};
+   DELETE FROM tbl_member WHERE id = #{user_id};
 
    </delete>
 
@@ -59,7 +59,7 @@
 	 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ id Ckeck(id 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
     
      <select id= "idCheck" parameterType="string" resultType="int">
-         select count(*) from tbl_memver where id=#{id}
+         SELECT count(*) from tbl_member where id=#{user_id}
      </select>
         
  

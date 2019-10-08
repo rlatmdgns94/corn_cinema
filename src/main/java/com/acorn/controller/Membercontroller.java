@@ -26,7 +26,6 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @RequestMapping("/member/*")
-
 public class Membercontroller {
 	
 	@Autowired  
@@ -40,8 +39,8 @@ public class Membercontroller {
 	
 	//------------------------------------ idCheck -----------------------------------------//
 	
-	 @GetMapping("/idCheck")
-	 @ResponseBody
+	@GetMapping("/idcheck")
+    @ResponseBody
 	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {
          
 		 return memberservice.DuplicateId(user_id);	 
