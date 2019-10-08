@@ -52,9 +52,8 @@
 	 <select id="login" resultType="com.acorn.domain.MemberVo">    <!-- resultType -> UserVO 풀패키지명 -->
   
       SELECT * FROM tbl_member WHERE id= #{id} and password = #{password}
-                 <!-- #{자바빈 객체의 프로퍼티 이름}  --> 
-  </select>
+          
+     </select>
 	   
 
-  
   </mapper>

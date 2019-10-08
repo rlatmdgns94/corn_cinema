@@ -13,5 +13,7 @@ public interface MemberDAO {
    
    public abstract void deleteProfile(MemberVo vo) throws Exception;
 
+
+
 	
 }

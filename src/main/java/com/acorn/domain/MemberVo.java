@@ -18,9 +18,7 @@ public class MemberVo {
 	private String email;
 	private Date regdate;
 	private Date updatedate;
-	//private String newPassword;
 
-	// private List<TicketVO> ticket; < 조인
 	
 	
 }

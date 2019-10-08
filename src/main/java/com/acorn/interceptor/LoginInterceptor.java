@@ -8,6 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.acorn.domain.MemberVo;
+
 import lombok.extern.log4j.Log4j;
 
 
@@ -77,17 +80,28 @@ public class LoginInterceptor implements HandlerInterceptor{
 		// ModelAndView 객체를 이용하여 세션 스코프에 속성지정 
 		ModelMap modelMap = modelAndView.getModelMap();
 
-		Object userVO = modelMap.get("userVO");
+		//MemberInfo info = (MemberInfo) modelMap.get("userInfo");
+		MemberVo memberInfo = (MemberVo) modelMap.get("memberInfo");
 		
 		 log.info("modelMap : " + modelMap);	
-		 log.info("userVO: " + userVO);
+		 log.info("----------------- userInfo: " + memberInfo);
+		 
 		
-		  if(userVO !=null)  {
+		 
+		  if(memberInfo !=null)  {
 
-		session.setAttribute(loginkey, userVO); //	★세션 스코프에 공유
+		session.setAttribute(loginkey, memberInfo); //	★세션 스코프에 공유
+	    
+		//---------------------------------------------------//
+	//	MemberVo tempVo = (MemberVo) session.getAttribute(loginkey);
+	//	log.info(tempVo.getId());
+		//---------------------------------------------------//
+		
+		
+		System.out.println(" ==== id: ====="+session.getAttribute(loginkey));
 		  
 	     log.info("loginkey: "  +  loginkey);
-	     log.info("userVO:  " + userVO);
+	     log.info("memberInfo:  " + memberInfo);
 
 	    Object orignalRequestURI = session.getAttribute("originalURIkey");
 	       

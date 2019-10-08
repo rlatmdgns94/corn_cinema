@@ -62,6 +62,8 @@ public class findController {
 	String id = findservice.findId(vo);
 	vo.setId(id);     
 	
+	log.info("vo----------------------:"+ vo);
+	
 	model.addAttribute("userid" , vo);
 	
 

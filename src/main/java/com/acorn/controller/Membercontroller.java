@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.acorn.domain.MemberVo;
 import com.acorn.model.LoginDTO;
 import com.acorn.model.MemberDTO;
+import com.acorn.security.Sha256;
 import com.acorn.service.LoginService;
 import com.acorn.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -45,10 +46,14 @@ public class Membercontroller {
     @PostMapping("login_Post")
     public String login_result(LoginDTO dto , Model model) throws Exception {
   	  log.info("POST-Login");
-	  log.info(" dto:" + dto );	
+  	  
+  	 String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
+     dto.setPassword(encryPassword);
+	  
+  	  log.info(" dto:" + dto );	
 	  log.info(" model:" + model);
       log.info("loginservice:" + loginservice);
-    
+   
      MemberVo vo = loginservice.checkLogin(dto);
         
        if(vo==null) {
@@ -58,7 +63,8 @@ public class Membercontroller {
         
       	//로그인에 성공했다면 찾아낸 사용자 정보를 view 로 전달
  		 log.info("vo전달 !! : :" + vo);
- 		 model.addAttribute("userVO",vo);       //requset 영역 공유 !! ★ ★ ★ 
+ 		 
+ 		 model.addAttribute("memberInfo",vo);       //requset 영역 공유 !! ★ ★ ★ 
            return "/index";  
         } //login_POST()
     	
@@ -78,8 +84,10 @@ public class Membercontroller {
 		
 		MemberVo vo = new MemberVo();
 		
+	   String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
+		
           vo.setId(dto.getId());
-		  vo.setPassword(dto.getPassword());
+		  vo.setPassword(encryPassword);
 		  vo.setName(dto.getName());
 		  vo.setPhone(dto.getPhone());
 		  vo.setEmail(dto.getEmail());
@@ -100,14 +108,13 @@ public class Membercontroller {
 	  @PostMapping("/member_modify") 
 	  public String member_modify(MemberDTO dto , HttpSession session) throws Exception {
 		  
-		  // 로그인 되어있는 세션 삭제하기  1. 휴대폰 2.이메일 
-	//	  session.removeAttribute("phone");
-	//	  session.removeAttribute("email");
-		  
 		  MemberVo vo = new MemberVo();
+		  
+		   String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
+			
 		  vo.setName(dto.getName());
 		  vo.setId(dto.getId());
-		  vo.setPassword(dto.getPassword());
+		  vo.setPassword(encryPassword);
 		  vo.setPhone(dto.getPhone());
 		  vo.setEmail(dto.getEmail());   
 		  

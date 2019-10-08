@@ -26,8 +26,8 @@
                     </colgroup>
                     <%
                          //   scriptlet
-                        Object userVo = session.getAttribute("login");
-                        System.out.println("userVo:" + userVo);
+                        Object memberInfo = session.getAttribute("login");
+                        System.out.println("memberInfo:" + memberInfo);
                     %>
                     <tbody>
                         <tr>

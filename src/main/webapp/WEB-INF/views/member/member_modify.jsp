@@ -21,8 +21,8 @@
                 <table class="join-table">
                     <%
                         //   scriptlet
-                          Object userVo = session.getAttribute("login");
-                          System.out.println("::::::userVo: ::::::::::::::::::"+ userVo);
+                          Object memberInfo = session.getAttribute("login");
+                          System.out.println("::::::memberInfo: ::::::::::::::::::"+ memberInfo);
                      %>
                     <caption class="blind">회원가입 정보입력</caption>
                     <colgroup>

@@ -46,5 +46,5 @@ public class MemberDAOImpl implements MemberDAO {
 		      
 	} //deleteProfile
 
-	
+
 }
