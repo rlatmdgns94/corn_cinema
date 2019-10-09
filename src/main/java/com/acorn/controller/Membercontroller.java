@@ -17,6 +17,7 @@ import com.acorn.model.MemberDTO;
 import com.acorn.security.Sha256;
 import com.acorn.service.LoginService;
 import com.acorn.service.MemberService;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -47,6 +48,31 @@ public class Membercontroller {
 	
 	 } //idCheck
 
+	//------------------------------------ phonecheck -----------------------------------------//
+	@GetMapping("/phonecheck")
+	@ResponseBody
+	  public int phoneCheck(@RequestParam("userPhone") String user_phone) throws Exception{
+		return memberservice.DuplicatePhone(user_phone);
+	}
+	
+	//------------------------------------ emailcheck -----------------------------------------//
+	@GetMapping("/emailcheck")
+	@ResponseBody
+	   public int emailcheck(@RequestParam("userEmail") String user_email) throws Exception{
+		  return memberservice.DuplicateEmail(user_email);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//------------------------------------ login -----------------------------------------//
 	

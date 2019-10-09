@@ -50,9 +50,23 @@ public class MemberDAOImpl implements MemberDAO {
 	public int idCheck(String user_id) throws Exception {
 	    
 	
-		return sqlSession.selectOne(namespace+".idCheck",user_id);
+		return sqlSession.selectOne(namespace+".idCheck", user_id);
 		
 	} //idCheck
+
+	@Override
+	public int phoneCheck(String user_phone) throws Exception {
+	
+		return sqlSession.selectOne(namespace+".phoneCheck", user_phone);
+		
+	} //phoneCheck
+
+	@Override
+	public int emailCheck(String user_email) throws Exception {
+		
+		 return sqlSession.selectOne(namespace+".emailCheck", user_email);
+
+	} //emailCheck
 
 
 }

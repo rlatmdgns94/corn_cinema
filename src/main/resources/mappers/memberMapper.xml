@@ -62,6 +62,20 @@
          SELECT count(*) from tbl_member where id=#{user_id}
      </select>
         
+     
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ phone Ckeck(phone 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     
+     <select id= "phoneCheck" parameterType="string" resultType="int">
+         SELECT count(*) from tbl_member where phone=#{user_phone}
+     </select>
+   
+     
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Ckeck(email 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     
+     <select id= "emailCheck" parameterType="string" resultType="int">
+          SELECT count(*) from tbl_member where email=#{user_email}
+     </select>
+     
  
  
  

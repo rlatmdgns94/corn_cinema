@@ -59,7 +59,23 @@ private MemberDAO dao ;
 		
 		log.info("DuplicateId");
 		return dao.idCheck(user_id);
-	}
+	} //DuplicateId
+
+
+	@Override
+	public int DuplicatePhone(String user_phone) throws Exception {
+		 
+		log.info("DuplicatePhone");  
+		return dao.phoneCheck(user_phone);
+	} //DuplicatePhone
+
+
+	@Override
+	public int DuplicateEmail(String user_email) throws Exception {
+		 
+	    log.info("DuplicateEmail");
+		return dao.emailCheck(user_email);
+	} //DuplicateEmail
 
 
 	
