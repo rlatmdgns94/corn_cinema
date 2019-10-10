@@ -31,44 +31,49 @@
                             </th>
                             <td>
                                 <input type="text" title="아이디" id="id" name="id" maxlength="12">
-                                <div class="check_font" id="id_check"></div>
+                                <span class="error-message" id="idMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row"><label for="password">*비밀번호</label></th>
                             <td>
                                 <input type="password" title="비밀번호" id="password" name="password">
+                                <span class="error-message" id="pwMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="user_check_pw">*비밀번호 확인</label></th>
+                            <th scope="row"><label for="password-check">*비밀번호 확인</label></th>
                             <td>
-                                <input type="password" title="비밀번호 확인" id="user_check_pw" name="user_check_pw">
+                                <input type="password" title="비밀번호 확인" id="password-check" name="user_check_pw">
+                                <span class="error-message" id="pwCheckMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
                             <th><label for="name">*이름</label></th>
                             <td>
                                 <input type="text" title="이름" id="name" name="name">
+                                <span class="error-message" id="nameMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row"><label for="phone">*휴대폰</label></th>
                             <td>
                                 <input type="text" title="휴대폰" id="phone" name="phone">
+                                <span class="error-message" id="phoneMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row"><label for="email">*이메일</label></th>
                             <td>
                                 <input type="email" id="email" name="email">
+                                <span class="error-message" id="emailMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>	
                     </tbody>
                 </table>
             </div>
             <div class="join-button-wrap">
-                <input type="submit" value="회원가입" class="join-button join-submit">
+                <button type="button" class="join-button join-submit">회원가입</button>
                 <input type="reset" value="취소" class="join-button">
             </div>
         </form>
