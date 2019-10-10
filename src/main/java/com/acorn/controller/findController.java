@@ -15,6 +15,7 @@ import com.acorn.email.Email;
 import com.acorn.email.EmailSender;
 import com.acorn.getPw.getPassword;
 import com.acorn.model.FindDTO;
+import com.acorn.security.Sha256;
 import com.acorn.service.FindService;
 
 import lombok.AllArgsConstructor;
@@ -91,6 +92,7 @@ public class findController {
    
     }
     
+    
     @PostMapping("find_resultpw")
     public void findpwd_POST(FindDTO dto , Model model) throws Exception {
     	log.info("::: findpwd_POST :::");
@@ -103,14 +105,16 @@ public class findController {
     
     	log.info("newPassword:" + newPassword);
     	
+    	String encryPassword = Sha256.encrypt(newPassword);  //newPassword 암호화
 
     	vo.setId(id);
     	vo.setEmail(mail);
+    	vo.setPassword(encryPassword);                    
     	
     	String password = findservice.findPw(vo);
     	log.info(": : password ::" + password);
     	
-    	vo.setPassword(newPassword);   //새로운 비밀번호 세팅
+    	   //새로운 비밀번호 세팅
     	
     	model.addAttribute("userpw" , vo);
     	
@@ -130,10 +134,4 @@ public class findController {
       } //findpwd_POST
     		
     	
-    	
-    	
-   }
- 
- 
-     
-	    
+}

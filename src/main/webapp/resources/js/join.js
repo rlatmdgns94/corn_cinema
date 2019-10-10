@@ -8,24 +8,24 @@ $(document).ready(function(){
 		if(user_id==""){
 			 console.log("aaa");
 	         alert("아이디를 입력해주세요.");
-	         //$("#id").focus(); - 무한루프돔
+
 	         return false;
 	     }//if
 		$.ajax({
 			url: '/member/idcheck?userId='+ user_id,
-			type: 'get',
+			type: 'post',
 			success: function(data){
 				console.log(data);
 				if (data > 0) {    
 			        alert("이미 가입된 아이디입니다.");  
 			         $("#id").val("");	
-			        //$("#id").focus(); - 무한루프돔
+
 			        return false;
 				}
 				if(!idReg.test(user_id)){
 					console.log("bbb");
-					alert("아이디는 숫자 문자 포함 6~10자로 입력해주세요."); //이거 텍스트area-최대 10자까지 들어가게 하실수있나요?
-					 //$("#id").focus(); - 무한루프돔
+					alert("아이디는 숫자 문자 포함 6~10자로 입력해주세요."); 
+
 					return false;
 				}
 				else{
@@ -51,18 +51,18 @@ $(document).ready(function(){
 		if(!phoneReg.test(user_phone)){
 			  alert("휴대폰 형식이 틀립니다.ex(010-1234-1234)");
 			  $("#phone").val("");		 
-//			  $("#phone").focus(). - 무한루프돔
+
 		      return false;
 	     }
 		$.ajax({
 			url: '/member/phonecheck?userPhone='+ user_phone,
-			type: 'get' ,
+			type: 'post',
 			success : function(data){
 				console.log(data);
 				if(data > 0) {
 					alert("이미 가입된 번호입니다.");
 					  $("#phone").val("");	
-					  //$("#phone").focus(); - 무한루프돔
+	
 					return false;
 				}		
 				else {
@@ -76,7 +76,7 @@ $(document).ready(function(){
 	});
 	
 	
-	$('#email').on('focusout', function(event){
+/*	$('#email').on('focusout', function(event){
 		
 		 var emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		 var user_email = $('#email').val();
@@ -88,12 +88,12 @@ $(document).ready(function(){
 	     if(!emailReg.test(user_email)){
 	         alert("이메일 형식이 틀립니다.");
 	           $("#email").val("");
-	         //  $("#email").focus();
+
 	         return false;
          }
 		 $.ajax({
 			   url : '/member/emailcheck?userEmail='+user_email,
-			   type : 'get' ,
+			   type: 'post',
 			   success : function(data){
 				   if(data>0){
 					   alert("이미 등록된 이메일입니다.");
@@ -107,7 +107,7 @@ $(document).ready(function(){
 				   console.log("실패");
 			   } //end-error
 		 })// ajax	
-	});
+	});*/
 	
 	
 	

@@ -40,7 +40,7 @@ public class Membercontroller {
 	
 	//------------------------------------ idCheck -----------------------------------------//
 	
-	@GetMapping("/idcheck")
+	@PostMapping("/idcheck")
     @ResponseBody
 	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {
          
@@ -49,31 +49,20 @@ public class Membercontroller {
 	 } //idCheck
 
 	//------------------------------------ phonecheck -----------------------------------------//
-	@GetMapping("/phonecheck")
+	@PostMapping("/phonecheck")
 	@ResponseBody
 	  public int phoneCheck(@RequestParam("userPhone") String user_phone) throws Exception{
 		return memberservice.DuplicatePhone(user_phone);
 	}
 	
 	//------------------------------------ emailcheck -----------------------------------------//
-	@GetMapping("/emailcheck")
+	@PostMapping("/emailcheck")
 	@ResponseBody
 	   public int emailcheck(@RequestParam("userEmail") String user_email) throws Exception{
 		  return memberservice.DuplicateEmail(user_email);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//------------------------------------ login -----------------------------------------//
 	
 	@GetMapping("/login")
