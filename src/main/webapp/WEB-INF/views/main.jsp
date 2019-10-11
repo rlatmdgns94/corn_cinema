@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+    
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> --%>
+
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,9 +61,9 @@
                                     <div class="movie-content">
                                         <div class="movie_img">
                                             <a href="javascript:void(0);">
-                                                <c:forEach items="${boxMovie.viewvo}" var="boxMoiveView">
-                                                    <img src="${boxMoiveView.view_path}">
-                                                </c:forEach>
+                                             <%--    <c:forEach items="${boxMovie.viewvo}" var="boxMoiveView"> --%>
+                                                    <img src="/resources/img/movie_poster/${boxMovie.view_path}">
+                                               <%--  </c:forEach> --%>
                                             </a>
                                         </div>
                                         <div class="movie-info">
@@ -76,7 +80,9 @@
                                         </div>
                                         <div class="movie-btn-area">
                                             <a href="#" class="movie-btn">예매하기</a>
-                                            <a href="#" class="movie-btn">상세보기</a>
+                                      
+						     		
+                                            <a href="${path}/movie_detail?movie_num=${boxMovie.movie_num}"class="movie-btn">상세보기</a>
                                         </div>
                                     </div>
                                 </div>
@@ -91,9 +97,9 @@
                                     <div class="movie-content">
                                         <div class="movie_img">
                                             <a href="javascript:void(0);">
-                                                <c:forEach items="${newMovie.viewvo}" var="newMoiveView">
-                                                    <img src="${newMoiveView.view_path}">
-                                                </c:forEach>
+<%--                                                 <c:forEach items="${newMovie.viewvo}" var="newMoiveView"> --%>
+                                                    <img src="/resources/img/movie_poster/${newMovie.view_path}">
+<%--                                                 </c:forEach> --%>
                                             </a>
                                         </div>
                                         <div class="movie-info">
@@ -112,7 +118,7 @@
                                         </div>
                                         <div class="movie-btn-area">
                                             <a href="#" class="movie-btn">예매하기</a>
-                                            <a href="#" class="movie-btn">상세보기</a>
+                                            <a href="${path}/movie_detail?movie_num=${newMovie.movie_num}" class="movie-btn">상세보기</a>
                                         </div>
                                     </div>
                                 </div>

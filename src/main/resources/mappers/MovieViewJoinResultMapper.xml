@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.mapper.MovieViewJoinMapper">
+
+	<select id="movieList"
+		resultType="com.acorn.domain.MovieViewJoinResultVO">
+
+		select
+		movie.movie_num,
+		title,
+		story,
+		actor,
+		director,
+		opening_day,
+		film_rate,
+		running_time,
+		avg_score,
+		movie_genre,
+		view_path
+		from
+		tbl_Movie as movie INNER JOIN tbl_view as img
+		ON
+		movie.movie_num = img.movie_num
+		ORDER BY opening_day desc
+
+	</select>
+	
+	<select id="movieRead"
+		resultType="com.acorn.domain.MovieViewJoinResultVO">
+
+		select
+		movie.movie_num,
+		title,
+		story,
+		actor,
+		director,
+		opening_day,
+		film_rate,
+		running_time,
+		avg_score,
+		movie_genre,
+		view_path
+		from
+		tbl_Movie as movie INNER JOIN tbl_view as img
+		ON
+		movie.movie_num = img.movie_num
+		
+		WHERE movie.movie_num = #{moive.movie_num}
+		ORDER BY opening_day desc
+
+	</select>
+	
+</mapper>

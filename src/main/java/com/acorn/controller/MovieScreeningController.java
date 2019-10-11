@@ -1,4 +1,3 @@
-/*
 package com.acorn.controller;
 
 import java.util.List;
@@ -10,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.acorn.domain.MovieScreeningVO;
-import com.acorn.service.MovieScreeningService;
+import com.acorn.domain.MovieViewJoinResultVO;
+import com.acorn.service.MovieViewJoinResultService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -21,15 +20,15 @@ import lombok.extern.log4j.Log4j;
 public class MovieScreeningController {
 	
 	@Inject
-	private MovieScreeningService service;
+	private MovieViewJoinResultService service;
 	
 	@GetMapping("/movie")
 	public void MoiveScreeningGetMovie( Model model ) throws Exception {
-//		log.info("MovieScreeningController::MoiveScreeningGetMovie invoked");
+		log.info("MovieScreeningController::MoiveScreeningGetMovie invoked");
 		
-		List<MovieScreeningVO> list = service.movieList();
+		List<MovieViewJoinResultVO> list = service.movieList();
 		
-//		log.info("MovieScreeningController list :" + list);
+		log.info("MovieScreeningController list :" + list);
 		
 		model.addAttribute("list", list);
 	}
@@ -38,7 +37,7 @@ public class MovieScreeningController {
 		
 		@GetMapping("/reserve")
 		public String reserve() {
-//			log.info("reserve invoked");
+			log.info("reserve invoked");
 			
 			return "contents/movie/reserve";
 		} //예매
@@ -46,5 +45,3 @@ public class MovieScreeningController {
 	}
 
 }
-
-*/

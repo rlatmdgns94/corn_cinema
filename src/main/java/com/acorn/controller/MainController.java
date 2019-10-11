@@ -9,30 +9,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.acorn.domain.MovieScreeningVO;
-//import com.acorn.service.MovieScreeningService;
+import com.acorn.domain.MovieViewJoinResultVO;
+import com.acorn.domain.ViewVO;
+import com.acorn.service.MovieViewJoinResultService;
 
 import lombok.extern.log4j.Log4j;
 
 
 @Controller
 @Log4j
-
 public class MainController {
-	//@Inject
-	//private MovieScreeningService service;
+	@Inject
+	private MovieViewJoinResultService service;
 
 	  @GetMapping("/")  
 	  public String Main(Model model) throws Exception {
 		   log.info("Get-Main");	
 		   
 		   
-		   /*
-		   List<MovieScreeningVO> list1 = service.movieList();  //박스오피스
-		   List<MovieScreeningVO> list2 = service.movieList(); //최신상영작
-			model.addAttribute("list1", list1);   log.info("list1: " + list1);
-			model.addAttribute("list2", list2);   log.info("list2: " + list2);
-		   */
+		   
+		   List<MovieViewJoinResultVO> list1 = service.movieList();  //박스오피스
+		   List<MovieViewJoinResultVO> list2 = service.movieList(); //최신상영작
+			model.addAttribute("list1", list1); 
+			model.addAttribute("list2", list2); 
+		   
 		  return "index";	  
 	  }
 	  

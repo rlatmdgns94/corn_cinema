@@ -17,7 +17,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RunWith(SpringRunner.class)
 @ContextConfiguration(
-		locations= {"file:src/main/webapp/WEB-INF/spring/**/*.xml"}
+		locations= {"file:src/main/webapp/WEB-INF/spring/root-context.xml"}
 		)
 
 public class LoginDAOTest {

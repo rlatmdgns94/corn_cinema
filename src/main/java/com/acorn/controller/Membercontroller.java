@@ -79,21 +79,15 @@ public class Membercontroller {
   	 String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
      dto.setPassword(encryPassword);
 	  
-  	  log.info(" dto:" + dto );	
-	  log.info(" model:" + model);
-      log.info("loginservice:" + loginservice);
-   
+
      MemberVo vo = loginservice.checkLogin(dto);
         
        if(vo==null) {
          log.info("로그인 실패 !");		    
            return "redirect:/member/login";      // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
         } //if  	
-        
-      	//로그인에 성공했다면 찾아낸 사용자 정보를 view 로 전달
- 		 log.info("vo전달 !! : :" + vo);
- 		 
- 		 model.addAttribute("memberInfo",vo);       //requset 영역 공유 !! ★ ★ ★ 
+
+ 		 model.addAttribute("memberInfo",vo);   
            return "/index";  
         } //login_POST()
     	
@@ -147,13 +141,10 @@ public class Membercontroller {
 		  vo.setPhone(dto.getPhone());
 		  vo.setEmail(dto.getEmail());   
 		  
-		  log.info("member_modify :: vo"+ vo);	  
-		  
 		  session.setAttribute("login" ,vo);
-		  
-		  
+		   
      	  memberservice.modify(vo);
-		  log.info("member_modify :: vo"+ vo);
+
 		  	  
 		  return "redirect:/";
 	               

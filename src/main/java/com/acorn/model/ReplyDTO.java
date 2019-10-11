@@ -1,5 +1,7 @@
 package com.acorn.model;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class FindDTO {
+public class ReplyDTO {
 	
 	private String id;
-    private String name;
-	private String email;
-	private String password;
+	private String comment;
+	private double score;
+	private Date updatedate;
 }

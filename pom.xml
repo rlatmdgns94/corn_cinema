@@ -216,15 +216,12 @@
 	        <artifactId>mail</artifactId>
 	        <version>1.4</version>
 	    </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+	    
 		<dependency>
-		    <groupId>commons-codec</groupId>
-		    <artifactId>commons-codec</artifactId>
-		    <version>1.9</version>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
 		</dependency>
-		        
-		  
 
 
 	</dependencies>

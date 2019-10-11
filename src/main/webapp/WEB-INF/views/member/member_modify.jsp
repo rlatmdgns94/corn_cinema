@@ -19,11 +19,7 @@
             </div>
             <div class="join-insert-wrap">
                 <table class="join-table">
-                    <%
-                        //   scriptlet
-                          Object memberInfo = session.getAttribute("login");
-                          System.out.println("::::::memberInfo: ::::::::::::::::::"+ memberInfo);
-                     %>
+
                     <caption class="blind">회원가입 정보입력</caption>
                     <colgroup>
                         <col style="width:20%">

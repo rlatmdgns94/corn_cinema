@@ -43,13 +43,9 @@ public class LoginInterceptor implements HandlerInterceptor{
         //이 속성객체를 세션영역에서 제거.       
         HttpSession session = request.getSession();
         if(session.getAttribute(loginkey) !=null ) {
-        	  System.out.println("loginkey" + loginkey); // 세션 제거전 log
-        	  
-              System.out.println("세션 제거 !!");
-              
-        	  session.removeAttribute(loginkey); 
-        	  System.out.println("loginkey : "+ loginkey); //세션 제거후 log
-        
+
+      	  session.removeAttribute(loginkey); 
+
         }    
         System.out.println("preHandle NEXT !!");
        return true; // true = NEXT 로 이동!	
@@ -82,11 +78,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 
 		//MemberInfo info = (MemberInfo) modelMap.get("userInfo");
 		MemberVo memberInfo = (MemberVo) modelMap.get("memberInfo");
-		
-		 log.info("modelMap : " + modelMap);	
-		 log.info("----------------- userInfo: " + memberInfo);
-		 
-		
+				
 		 
 		  if(memberInfo !=null)  {
 
@@ -100,8 +92,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 		System.out.println(" ==== id: ====="+session.getAttribute(loginkey));
 		  
-	     log.info("loginkey: "  +  loginkey);
-	     log.info("memberInfo:  " + memberInfo);
 
 	    Object orignalRequestURI = session.getAttribute("originalURIkey");
 	       

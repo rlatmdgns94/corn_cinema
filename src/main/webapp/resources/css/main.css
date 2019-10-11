@@ -244,11 +244,10 @@
     background: #666;
 }
 .notice{
-	overflow:hidden;
     margin: -15px;
 }
 .notice li{
-	float: left;
+    display: inline-block;
     margin:15px;
 }
 .notice li a{

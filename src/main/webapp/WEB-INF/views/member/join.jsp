@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -68,7 +67,7 @@
                                 <input type="email" id="email" name="email">
                                 <span class="error-message" id="emailMessage" role="alert" style="display:none"></span>
                             </td>
-                        </tr>	
+                        </tr>   
                     </tbody>
                 </table>
             </div>
@@ -78,6 +77,7 @@
             </div>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="/resources/js/join.js"></script>
 </body>
 

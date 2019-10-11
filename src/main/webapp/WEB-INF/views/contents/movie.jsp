@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>최신개봉작</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap&subset=korean"
         rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/style.css">
@@ -25,29 +25,16 @@
         <div class="l_content">
             <div class="cinema-movie-wrap">
                 <h3 class="cinema-movie-title">최신개봉작</h3>
-                <ul class="cinema-movie">
-                
-                
-                    <%  System.out.println("+++++++++");
-                    	List<String> values = (List<String>) request.getAttribute("list");
-                    	System.out.println("- newMovie: "+values);
-                    	System.out.println("+++++++++");
-                    %>
+                <ul class="cinema-movie">  
                 
                     <c:forEach items="${list}" var="newMovie">
                     
-                    <% System.out.println("================================================");
-                    	%>
                         <li>
                             <div class="movie-content">
                                 <div class="movie_img">
                                     <a href="javascript:void(0);">
                                     
-                                        <c:forEach items="${newMovie.viewvo}" var="newMoiveView">
-                    	<%  System.out.println("*******************************"); %>
-                                            <img src="${newMoiveView.view_path}">
-                                              <% System.out.println("newMoiveView.movie_num"); %>
-                                        </c:forEach>
+                                            <img src="/resources/img/movie_poster/${newMovie.view_path}">
                                         
                                     </a>
                                 </div>
@@ -55,21 +42,20 @@
                                     <h3 class="movie-title">
                                         <a href="">
                                             <span class="age_ico">${newMovie.film_rate}</span>${newMovie.title}
-                                           <% System.out.println("newMovie.film_rate");%>
                  
                                         </a>
                                     </h3>
                                     <div class="info-text-area">
                                         <span class="info-text">
                                             <fmt:formatDate value="${newMovie.opening_day}" pattern="yyyy.MM.dd" />
-                                            개봉</span>                      <% System.out.println("newMovie.opening_day");%>
+                                            개봉</span> 
                                         <span class="info-text">관람 평점:${newMovie.avg_score}</span>
-                                              <% System.out.println("newMovie.avg_score");%>
+                                              
                                     </div>
                                 </div>
                                 <div class="movie-btn-area">
                                     <a href="#" class="movie-btn">예매하기</a>
-                                    <a href="${path}}/movie_detail?" class="movie-btn">상세보기</a>
+                                    <a href="${path}/movie_detail?movie_num=${newMovie.movie_num}" class="movie-btn">상세보기</a>
                                 </div>
                             </div>
                         </li>

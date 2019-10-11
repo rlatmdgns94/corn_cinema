@@ -14,7 +14,7 @@
   
 	email:  ${userpw.email} 
     name:   ${userpw.name}
-    pw:     ${userpw.password}
+    pw:     ${userpw.newPassword}
 			   
 
 
