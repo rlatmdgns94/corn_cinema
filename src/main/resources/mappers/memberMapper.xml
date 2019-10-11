@@ -41,7 +41,7 @@
 
    <delete id="deleteProfile">
 
-   DELETE FROM tbl_member WHERE id = #{user_id};
+   DELETE FROM tbl_member WHERE id = #{id}
 
    </delete>
 

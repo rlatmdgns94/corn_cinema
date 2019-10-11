@@ -1,9 +1,9 @@
 $(document).ready(function () {
 	$('#id').on('blur', function (event) {
 		var idReg = /^[a-zA-Z0-9]{6,10}$/;
-		var user_id = $('#id').val();
+		var user_id = $('#id');
 		
-		 if (user_id == "") {
+		 if (user_id.val() == "") {
 				$("#idMessage").show();
 				$("#idMessage").text("아이디를 입력해주세요.");
 				return false;
@@ -90,8 +90,8 @@ $(document).ready(function () {
 
 	$('#phone').on('blur', function (event) {
 		var phoneReg = /^\d{2,3}-\d{3,4}-\d{4}$/;
-		var user_phone = $('#phone').val();
-		if(user_phone===""){
+		var user_phone = $('#phone');
+		if(user_phone.val() === ""){
 			$("#phoneMessage").show();
 			$("#phoneMessage").text("휴대폰 번호를 입력해주세요.");
 			return false;
@@ -126,9 +126,9 @@ $(document).ready(function () {
 
 	$('#email').on('blur', function (event) {
 	    var emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	    var user_email = $('#email').val();
+	    var user_email = $('#email');
 	    
-	    if(user_email===""){
+	    if(user_email.val() === ""){
 	    	$("#emailMessage").show();
 			$("#emailMessage").text("이메일을 입력해주세요.");
 			return false;
