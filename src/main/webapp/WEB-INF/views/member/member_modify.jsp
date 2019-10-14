@@ -38,14 +38,15 @@
                         <tr>
                             <th scope="row"><label for="password">비밀번호</label></th>
                             <td>
-                                <input type="password" title="비밀번호" id="password" name="password" required="">
+                                <input type="password" title="비밀번호" id="password" name="password">
+                                <span class="error-message" id="pwMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="user_check_pw">비밀번호 확인</label></th>
+                            <th scope="row"><label for="password-check">*비밀번호 확인</label></th>
                             <td>
-                                <input type="password" title="비밀번호 확인" id="user_check_pw" name="user_check_pw"
-                                    required="">
+                                <input type="password" title="비밀번호 확인" id="password-check" name="user_check_pw">
+                                <span class="error-message" id="pwCheckMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>
@@ -79,7 +80,8 @@
         </form>
         
     </div>
-    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="/resources/js/member_modify.js"></script>
 </body>
 
 </html>

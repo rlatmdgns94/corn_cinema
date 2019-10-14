@@ -9,6 +9,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
+    <script>
+    	function emailAuthentiCation(){
+    		
+    		var email = $("[name='email']").val();   		  
+    		   console.log(email);    		 
+    		$.ajax({
+    			
+    			url : "/member/emailAuthen",
+    			type : "post",
+    			data : {"email":email},
+    			success : function(data){
+    				alert("이메일로 인증번호를 보냈습니다");
+    			},
+    			error : function(xhr){
+    				alert(xhr.status);
+    			}
+    		})
+    	}
+    	
+    	function authentiCation() {
+    		
+    		var authenNum = $("[name='number']").val();
+    		
+			$.ajax({
+    			
+    			url : "/member/authen",
+    			type : "post",
+    			data : {"authenNum":authenNum},
+    			success : function(data){
+    				if(data==1){
+    					alert("인증에 성공하셨습니다.");
+    				} else {
+    					alert("인증에 실패하셨습니다.");
+    				}
+    			},
+    			error : function(xhr){
+    				alert(xhr.status);
+    			}
+    		})
+    	}
+    </script>
 </head>
 
 <body>
@@ -65,9 +106,18 @@
                             <th scope="row"><label for="email">*이메일</label></th>
                             <td>
                                 <input type="email" id="email" name="email">
+                                <input type="button" value="인증" onclick="emailAuthentiCation()">
                                 <span class="error-message" id="emailMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>   
+                        <tr>
+                            <th scope="row"><label for="number">*인증번호</label></th>
+                            <td>
+                                <input type="text" id="number" name="number">
+                                <input type="button" value="확인" onclick="authentiCation()">
+                                <span class="error-message" id="emailMessageNum" role="alert" style="display:none"></span>
+                            </td>
+                        </tr> 
                     </tbody>
                 </table>
             </div>
