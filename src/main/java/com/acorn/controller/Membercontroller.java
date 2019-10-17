@@ -51,8 +51,7 @@ public class Membercontroller {
 	
 	@PostMapping("/idcheck")
     @ResponseBody
-	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {
-         
+	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {        
 		 return memberservice.DuplicateId(user_id);	 
 	
 	 } //idCheck
@@ -72,6 +71,14 @@ public class Membercontroller {
 		
 	}
 
+	@PostMapping("/emailmodify")
+	@ResponseBody
+       public int emailmodify(@RequestParam("myEmail") String myEmail) throws Exception{
+		  return memberservice.emailModifyCk(myEmail);
+	}
+	
+	
+	
 	//------------------------------------ login -----------------------------------------//
 	
 	@GetMapping("/login")
@@ -93,7 +100,9 @@ public class Membercontroller {
         
        if(vo==null) {
          log.info("로그인 실패 !");		    
+
            return "redirect:/member/login";      // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
+           
         } //if  	
 
  		 model.addAttribute("memberInfo",vo);   

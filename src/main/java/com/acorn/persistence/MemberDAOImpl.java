@@ -60,13 +60,20 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace+".phoneCheck", user_phone);
 		
 	} //phoneCheck
-
-	@Override
+ 
+	@Override                                 //회원가입  email
 	public int emailCheck(String user_email) throws Exception {
 		
 		 return sqlSession.selectOne(namespace+".emailCheck", user_email);
 
 	} //emailCheck
+
+	@Override                                //회원수정 email 변경시
+	public int emailUpdate(String myEmail) throws Exception {           
+
+		return sqlSession.selectOne(namespace+".updateEmailCk", myEmail);
+	
+	} //emailUpdate
 
 
 }

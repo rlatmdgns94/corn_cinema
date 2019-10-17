@@ -30,7 +30,7 @@
             </form>
         </div>
         <div id="findLoginid" class="findid_another">
-            혹시 아이디를 찾으시나요? <a href="" class="link_find">아이디 찾기</a>
+            혹시 아이디를 찾으시나요? <a href="find_id" class="link_find">아이디 찾기</a>
         </div>
     </div>
    </div>

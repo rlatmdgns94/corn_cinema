@@ -9,8 +9,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
+    <script>
+       function emailAuthentiCation(){
+    	   
+      		var email = $("[name='email']").val();   	
+    	      console.log(email);
+    	    
+    	      $.ajax({
+    			  url : "/member/emailAuthen",
+    	    	  type : "post",
+    	    	  data : {"email":email},
+    	          success : function(data){
+    	        	  alert("이메일로 인증번호를 전송하였습니다.");
+    	          },
+    	        error : function(){
+    	        	console.log("error");
+    	        	alert("이메일 확인 부탁드립니다");
+    	        }
+    	      })
+       }         
+          
+        function authentiCation(){
+        	 var authenNum = $("[name='number']").val();
+        	 
+        	 $.ajax({
+        		 url : "/member/authen",
+        		 type : "post",
+        		 data : {"authenNum":authenNum},
+        		 success : function(data){
+        			 if(data==1){
+   			          $("#emailMessageNum").show();
+			          $("#emailMessageNum").css("color","blue").text("인증이 확인되었습니다.!!")
+        			 }else{
+        				 $("#number").val("");
+        				 alert("인증번호를 입력해주세요.");
+        			 }
+        		 },
+        		 error : function(){
+        			 console.log("실패");
+        		 }
+        		 
+        		 
+        	 })
+        }
+               
+        
+    </script>
 </head>
-
 <body>
     <div class="main-join-wrap">
         <form class="join-form" action="/member/member_modify" method="POST">
@@ -65,9 +110,20 @@
                         <tr>
                             <th scope="row"><label for="email">이메일</label></th>
                             <td>
-                                <input type="email" id="email" name="email" required="" value=${login.email}>
+                                <input type="email" id="email" name="email" value=${login.email}>
+                                <input type="button" value="인증" onclick="emailAuthentiCation()">
+                                <span class="error-message" id="emailMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
+                        <tr>
+                            <th scope="row"><label for="number">인증번호</label></th>
+                            <td>
+                                <input type="text" id="number" name="number" placeholder="수정시 인증이필요합니다">
+                                <input type="button" value="인증번호" onclick="authentiCation()">
+                                <span class="error-message" id="emailMessageNum" role="alert" style="display:none"></span>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -80,8 +136,8 @@
         </form>
         
     </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="/resources/js/member_modify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/resources/js/member_modify.js"></script>
 </body>
 
 </html>

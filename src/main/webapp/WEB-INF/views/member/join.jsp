@@ -22,8 +22,8 @@
     			success : function(data){
     				alert("이메일로 인증번호를 보냈습니다");
     			},
-    			error : function(xhr){
-    				alert(xhr.status);
+    			error : function(){
+    				alert("이메일 확인 부탁드립니다.");
     			}
     		})
     	}
@@ -39,13 +39,16 @@
     			data : {"authenNum":authenNum},
     			success : function(data){
     				if(data==1){
-    					alert("인증에 성공하셨습니다.");
+    			          $("#emailMessageNum").show();
+    			          $("#emailMessageNum").css("color","blue").text("인증이 확인되었습니다.!!")
     				} else {
-    					alert("인증에 실패하셨습니다.");
+    					$("#number").val("");					
+    					alert("인증번호를 입력해주세요.");
+				
     				}
     			},
-    			error : function(xhr){
-    				alert(xhr.status);
+    			error : function(){
+    				console.log("실패")
     			}
     		})
     	}
