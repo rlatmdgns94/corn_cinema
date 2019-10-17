@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="movie-btn-area">
-                                    <a href="#" class="movie-btn">예매하기</a>
+                                    <a href="${path}/movie/screening/booking?movie_num=${newMovie.movie_num}" class="movie-btn">예매하기</a>
                                     <a href="${path}/movie_detail?movie_num=${newMovie.movie_num}" class="movie-btn">상세보기</a>
                                 </div>
                             </div>

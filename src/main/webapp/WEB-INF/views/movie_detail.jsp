@@ -44,7 +44,7 @@
                         <li><span><em>장르 : </em> ${movieRead.movie_genre} / <span>${movieRead.running_time}</span></span></li>
                     </ul>
                 </div>
-                <a href="" class="ticketing-btn">예매하기</a>
+                <a href="${path}/movie/screening/booking?movie_num=${movieRead.movie_num}" class="ticketing-btn">예매하기</a>
             </div>
         </div>
         <div class="movie-summary-area">

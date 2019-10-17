@@ -48,8 +48,8 @@ public class findController {
     	
     }
    
-    @PostMapping("/find_resultid")         
-    public String idfind_POST(FindDTO dto) throws Exception {
+    @PostMapping("/find_resultid")          //모델 없어도댐 그냥 출력용
+    public void idfind_POST(FindDTO dto , Model model) throws Exception {
 	log.info("::: idfind_POST :::");
 	
 	MemberVo vo = new MemberVo();
@@ -63,6 +63,12 @@ public class findController {
 	String id = findservice.findId(vo);
 	vo.setId(id);     
 	
+	log.info("vo----------------------:"+ vo);
+	
+	model.addAttribute("userid" , vo);
+	
+
+	
 	if(id!=null) {
 		
 		email.setContent("아이디는 "+id+" 입니다");
@@ -73,7 +79,6 @@ public class findController {
 	}else {
 		;;
 	}//if-else
-	return "member/login";
 	
   } //find_id
     
@@ -89,7 +94,7 @@ public class findController {
     
     
     @PostMapping("find_resultpw")
-    public String findpwd_POST(FindDTO dto) throws Exception {
+    public void findpwd_POST(FindDTO dto , Model model) throws Exception {
     	log.info("::: findpwd_POST :::");
     	
     	MemberVo vo = new MemberVo();
@@ -107,7 +112,11 @@ public class findController {
     	vo.setPassword(encryPassword);                    
     	
     	String password = findservice.findPw(vo);
-
+    	log.info(": : password ::" + password);
+    	
+    	   //새로운 비밀번호 세팅
+    	
+    	model.addAttribute("userpw" , vo);
     	
     	if(password!=null) {
     		
@@ -121,7 +130,6 @@ public class findController {
     	}else {
     		;;
     	}//if-else
-    	return "member/login";
     	
       } //findpwd_POST
     		

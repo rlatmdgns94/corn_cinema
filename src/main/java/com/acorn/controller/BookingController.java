@@ -1,5 +1,4 @@
 package com.acorn.controller;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.domain.BookingDTO;
+import com.acorn.domain.MovieViewJoinResultVO;
+import com.acorn.service.MovieViewJoinResultService;
 import com.acorn.service.ScreeningService;
 
 import lombok.extern.log4j.Log4j;
@@ -22,47 +23,53 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class BookingController {
 	
-	public static final String MOVIE_NUM = "_MOVIE_NUM_";
-			
+//	public static final String MOVIE_NUM = "_MOVIE_NUM_";
 	@Inject
 	ScreeningService service;
 	
+	@Inject 
+	  private MovieViewJoinResultService s2;
+	
 	@GetMapping("/booking")
 	public String doBooking(
-//			BookingDTO dto,
-			@RequestParam("movieNum")
-			String movieNum,
-			Model model) {
-//		model.addAttribute(MOVIE_NUM, dto.getMovieNum());
+			@RequestParam(value="movie_num", required = false)
+			String movie_num,Model model) throws Exception {
 		
 		BookingDTO dto = new BookingDTO();
+		model.addAttribute("movieRead",s2.movieRead(movie_num));
+		
 		//영화정보 페이지에서 예약버튼을 누르면 해당 영화번호를 받아와서 set으로 설정한다.
-		dto.setMovieNum("001");
-		model.addAttribute(dto);
+		dto.setMovieNum(movie_num);
+		
+		List<String> list = service.getCities(dto);
+		model.addAttribute("list", list); //여기까지 했고 jsp에 for-each문 생각해보자
+
 		
 		return "reserve";
 	}//doBooking
 	
-	
-	@PostMapping("/cities")	
-	public @ResponseBody List<String> doCities(BookingDTO dto) throws Exception {		
-		List<String> cities = service.getCities(dto);		
-		return cities;			
-	}//doCities
-	
+//	@GetMapping("/cities")
+//	public @ResponseBody List<String> doCities(BookingDTO dto) throws Exception {		
+//		List<String> cities = service.getCities(dto);		
+//		
+//		return cities;		
+//	}//doCities
 	
 	@PostMapping("/districts")	
-	public @ResponseBody List<String> doDistricts(BookingDTO dto) throws Exception {		
+	public @ResponseBody List<String> doDistricts(BookingDTO dto,Model model) throws Exception {		
+		
 		List<String> districts = service.getDistricts(dto);		
+		model.addAttribute("districts", districts);
 		return districts;			
 	}//doDistricts
 	
 	
 	@PostMapping("/dates")	
 	public @ResponseBody List<String> doDates(BookingDTO dto) throws Exception {		
-		List<String> dates = service.getDates(dto);		
+		List<String> dates = service.getDates(dto);
 		return dates;			
 	}//doDates
+
 	
 	@PostMapping("/times")	
 	public @ResponseBody List<String> doTimes(BookingDTO dto) throws Exception {		
@@ -71,7 +78,7 @@ public class BookingController {
 	}//doTimes
 	
 	
-	@PostMapping("/seats")	
+	@PostMapping("/seats")
 	public @ResponseBody List<String> doSeats(BookingDTO dto) throws Exception {		
 		List<String> seats = service.getSeats(dto);		
 		return seats;			
@@ -79,22 +86,3 @@ public class BookingController {
 	
 		
 }//end controller
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

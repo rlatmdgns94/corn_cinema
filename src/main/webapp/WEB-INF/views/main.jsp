@@ -61,7 +61,7 @@
                                     <div class="movie-content">
                                         <div class="movie_img">
                                             <a href="javascript:void(0);">
-                                             <%--    <c:forEach items="${boxMovie.viewvo}" var="boxMoiveView"> --%>
+                                           
                                                     <img src="/resources/img/movie_poster/${boxMovie.view_path}">
                                                <%--  </c:forEach> --%>
                                             </a>
@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="movie-btn-area">
-                                            <a href="#" class="movie-btn">예매하기</a>
+                                            <a href="${path}/movie/screening/booking?movie_num=${boxMovie.movie_num}" class="movie-btn">예매하기</a>
                                       
 						     		
                                             <a href="${path}/movie_detail?movie_num=${boxMovie.movie_num}"class="movie-btn">상세보기</a>

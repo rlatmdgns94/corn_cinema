@@ -24,7 +24,11 @@
                     <colgroup>
                         <col style="width:20%">
                     </colgroup>
-
+                    <%
+                        // scriptlet
+                        Object userVo = session.getAttribute("login");
+                        System.out.println("userVo:" + userVo);
+                    %>
                     <tbody>
                         <tr>
                             <th scope="row">아이디</th>

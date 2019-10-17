@@ -59,8 +59,10 @@ $(document).ready(function () {
         return false;
       }
       $.ajax({
-        url: '/member/idcheck?userId=' + user_id,
+        url: '/member/idcheck',
         type: 'post',
+        data:{userId: user_id},
+        dataType:'json',
         success: function (data) {
           console.log(data);
           if (data == 1) {
@@ -142,8 +144,10 @@ $(document).ready(function () {
       }
 
       $.ajax({
-        url: '/member/phonecheck?userPhone=' + user_phone,
+        url: '/member/phonecheck',
         type: 'post',
+        data: {userPhone: user_phone},
+        dataType : 'json',
         success: function (data) {
           console.log(data);
 
@@ -175,8 +179,10 @@ $(document).ready(function () {
         return false;
       }
       $.ajax({
-        url: '/member/emailcheck?userEmail=' + user_email,
+        url: '/member/emailcheck',
         type: 'post',
+        data:{userEmail: user_email},
+        dataType:'json',
         success: function (data) {
           console.log(data);
           if (data == 1) {
