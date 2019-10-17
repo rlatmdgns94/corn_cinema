@@ -17,10 +17,7 @@
                 </ul>
             </div>
             <ul class="user-menu">
-                <%                  // scriptlet
-                	Object userVO =	session.getAttribute("login");
-                    System.out.println("userVO: " + userVO);                  
-                %>
+
                 <c:choose>
                     <c:when test="${empty login}">
                         <li> <a href="/member/login">로그인</a></li>

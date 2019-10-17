@@ -19,5 +19,7 @@ public interface MemberDAO {
    
    public abstract int emailCheck(String user_email) throws Exception;
    
+   public abstract int emailUpdate(String myEmail) throws Exception;
+   
 	
 }

@@ -18,5 +18,7 @@ public interface MemberService {
    public abstract int DuplicatePhone(String user_phone) throws Exception;
    
    public abstract int DuplicateEmail(String user_email) throws Exception;
-	
+   
+   public abstract int emailModifyCk(String myEmail) throws Exception;
+  
 }

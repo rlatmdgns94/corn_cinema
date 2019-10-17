@@ -23,7 +23,7 @@ $(document).ready(function () {
         return false;
       }
       //비밀번호 확인
-      if ($("#password-check").val() !== $("#password-check").val()) {
+      if ($("#password").val() !== $("#password-check").val()) {
         $("#password-check").focus();
         return false;
       }
@@ -45,11 +45,24 @@ $(document).ready(function () {
       if (!emailReg.test($("#email").val())) {
         $("#email").focus();
         return false;
-      }
+      }  
+      if ($("#number").val() == "") {
+    	  
+          $("#number").focus();
+          $("#emailMessageNum").show();
+          $("#emailMessageNum").text("인증번호 확인 부탁드립니다.")
+          
+          return false;
+        }else{
+            $("#emailMessageNum").hide();
+        }
+
       $('.join-form').submit();
     });
     //회원가입 전송
-
+    
+//======================================================================================================================//
+    
     $('#id').on('blur', function (event) {
       var user_id = $('#id').val();
 
@@ -68,6 +81,7 @@ $(document).ready(function () {
           if (data == 1) {
             $("#idMessage").show();
             $("#idMessage").text("이미 가입된 아이디입니다.")
+            $("#id").val("");
             return false;
           } else if (!idReg.test(user_id)) {
             $("#idMessage").show();
@@ -154,6 +168,7 @@ $(document).ready(function () {
           if (data == 1) {
             $("#phoneMessage").show();
             $("#phoneMessage").text("사용 중인 휴대폰 번호입니다.");
+            $("#phone").val("");
             return false;
           } else if (!phoneReg.test(user_phone)) {
             $("#phoneMessage").show();
@@ -188,9 +203,12 @@ $(document).ready(function () {
           if (data == 1) {
             $("#emailMessage").show();
             $("#emailMessage").text("사용 중인 이메일입니다.");
+            $("#email").val("");
+            return false;
           } else if (!emailReg.test(user_email)) {
             $("#emailMessage").show();
             $("#emailMessage").text("이메일 형식이 틀립니다.");
+            return false;
           } //if
           else {
             $("#emailMessage").hide();

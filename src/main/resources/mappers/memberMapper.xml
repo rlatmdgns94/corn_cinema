@@ -70,14 +70,17 @@
      </select>
    
      
-     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Ckeck(email 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Ckeck(email 중복검사(join))ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
      
      <select id= "emailCheck" parameterType="string" resultType="int">
           SELECT count(*) from tbl_member where email=#{user_email}
      </select>
      
- 
- 
+   
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email updateCkeck(email 중복검사(update)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     <select id= "updateEmailCk" parameterType="string" resultType="int">
+          SELECT count(*) from tbl_member where not email= {myEmail}  
+     </select>
  
  
   </mapper>

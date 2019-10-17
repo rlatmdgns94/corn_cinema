@@ -78,5 +78,15 @@ private MemberDAO dao ;
 	} //DuplicateEmail
 
 
+	@Override
+	public int emailModifyCk(String myEmail) throws Exception {
+
+        log.info("emailModifyCk");
+		return dao.emailCheck(myEmail);
+	}
+
+
+
+
 	
 } //end interface

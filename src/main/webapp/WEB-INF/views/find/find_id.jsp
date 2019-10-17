@@ -31,7 +31,7 @@
         </div>
         <div id="findLoginpw" class="find_another">
             <!-- Forgot password? <a href="" class="link_find">Click here</a> -->
-            혹시 비밀번호를 찾으시나요? <a href="" class="link_find">비밀번호 찾기</a>
+            혹시 비밀번호를 찾으시나요? <a href="find_pw" class="link_find">비밀번호 찾기</a>
         </div>
     </div>
 </body>

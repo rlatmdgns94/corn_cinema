@@ -1,5 +1,7 @@
 package com.acorn.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.domain.MemberVo;
+import com.acorn.email.Email;
+import com.acorn.email.EmailAuthenNum;
+import com.acorn.email.EmailSender;
 import com.acorn.model.LoginDTO;
 import com.acorn.model.MemberDTO;
 import com.acorn.security.Sha256;
@@ -35,15 +40,18 @@ public class Membercontroller {
 	@Autowired
 	private LoginService loginservice;
 	
+	@Autowired
+	private Email email;
 	
+	@Autowired
+	private EmailSender emailSender;
 	
 	
 	//------------------------------------ idCheck -----------------------------------------//
 	
 	@PostMapping("/idcheck")
     @ResponseBody
-	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {
-         
+	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {        
 		 return memberservice.DuplicateId(user_id);	 
 	
 	 } //idCheck
@@ -63,6 +71,14 @@ public class Membercontroller {
 		
 	}
 
+	@PostMapping("/emailmodify")
+	@ResponseBody
+       public int emailmodify(@RequestParam("myEmail") String myEmail) throws Exception{
+		  return memberservice.emailModifyCk(myEmail);
+	}
+	
+	
+	
 	//------------------------------------ login -----------------------------------------//
 	
 	@GetMapping("/login")
@@ -87,7 +103,9 @@ public class Membercontroller {
         
        if(vo==null) {
          log.info("로그인 실패 !");		    
+
            return "redirect:/member/login";      // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
+           
         } //if  	
         
       	//로그인에 성공했다면 찾아낸 사용자 정보를 view 로 전달
@@ -125,6 +143,39 @@ public class Membercontroller {
 		  
 		return "/member/join_result";
 	} //join_result()
+	
+	
+	
+	@PostMapping("/emailAuthen")
+	@ResponseBody
+	public void emailAuthen(@RequestParam("email") String mail, HttpSession session) throws Exception {
+		
+		String randomNumber = EmailAuthenNum.AuthenNum();  //인증번호 6자리 생성
+		
+		session.setAttribute("randomNumber", randomNumber);
+		
+		email.setContent("인증번호는 :"+randomNumber+" 입니다");
+		email.setReceiver(mail);
+		email.setSubject(" corn_movie 인증번호 입니다.");
+		emailSender.SendEmail(email);
+
+	}
+	
+	@PostMapping("/authen")
+	@ResponseBody
+	public int authen(@RequestParam("authenNum") String authenNum, HttpSession session) throws Exception {
+		
+		int authenValue = 0;
+		String authenNumber = (String) session.getAttribute("randomNumber");
+		
+		if(authenNum.equals(authenNumber) ) {
+			authenValue = 1;
+			return authenValue;
+		}
+		
+		return authenValue;
+	}
+	
 	
 	
 	  //------------------------------------ modify -----------------------------------------//
