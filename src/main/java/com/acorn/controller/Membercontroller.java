@@ -115,9 +115,15 @@ public class Membercontroller {
 
 	// ------------------------------------ join-----------------------------------------//
 
+	@GetMapping("/agree")
+	public void agree() {
+		log.info("agree");
+
+	} // agree()
+	
 	@GetMapping("/join")
 	public void join() {
-		log.info("Get-join");
+		log.info("join");
 
 	} // join()
 

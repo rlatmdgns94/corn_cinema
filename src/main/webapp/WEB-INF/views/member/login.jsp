@@ -24,7 +24,7 @@
             </div>
             <div class="login-lnk">
                 <ul class="login-menu">
-                    <li><a href="/member/join">회원가입</a></li>
+                    <li><a href="/member/agree">회원가입</a></li>
                     <li><a href="/find/find_id">아이디 찾기</a></li>
                     <li><a href="/find/find_pw">비밀번호 찾기</a></li>
                 </ul>

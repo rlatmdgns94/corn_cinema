@@ -63,8 +63,7 @@ public class findController {
 	String id = findservice.findId(vo);
 	vo.setId(id);     
 	
-	if(id!=null) {
-		
+	if(id!=null) {	
 		email.setContent("아이디는 "+id+" 입니다");
 		email.setReceiver(mail);
 		email.setSubject(name+"님 corn_movie 'ID' 찾기 메일입니다");

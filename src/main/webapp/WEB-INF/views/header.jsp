@@ -21,7 +21,7 @@
                 <c:choose>
                     <c:when test="${empty login}">
                         <li> <a href="/member/login">로그인</a></li>
-                        <li> <a href="/member/join">회원가입</a></li>
+                        <li> <a href="/member/agree">회원가입</a></li>
                     </c:when>
                     <c:otherwise>
                         <li><a href="/member/mypage"> ${login.name}님 </a>
