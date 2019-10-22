@@ -14,13 +14,9 @@ public class MemberVo {
 	private String id;
 	private String password;
 	private String name;
-	private String phone;
 	private String email;
 	private Date regdate;
 	private Date updatedate;
-
-	// private List<TicketVO> ticket; < 조인
-	
 	
 }
 

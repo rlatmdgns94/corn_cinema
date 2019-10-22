@@ -37,8 +37,13 @@
         </interceptor>
         
         
-          <interceptor>
+         <interceptor>
             <mapping path="/member/mypage"/>
+            <beans:ref bean ="authInterceptor"/>
+        </interceptor>
+      
+         <interceptor>
+            <mapping path="/movie/screening/booking"/>
             <beans:ref bean ="authInterceptor"/>
         </interceptor>
       

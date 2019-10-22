@@ -12,7 +12,7 @@
     <script>
     	function emailAuthentiCation(){
     		
-    		var email = $("[name='email']").val();   		  
+    		var email = $('#email').val();   		  
     		   console.log(email);    		 
     		$.ajax({
     			
@@ -23,14 +23,14 @@
     				alert("이메일로 인증번호를 보냈습니다");
     			},
     			error : function(){
-    				alert("이메일 확인 부탁드립니다.");
+    				alert("이메일을 정확히 입력해주세요.");
     			}
     		})
     	}
     	
     	function authentiCation() {
     		
-    		var authenNum = $("[name='number']").val();
+    		var authenNum = $('#number').val();
     		
 			$.ajax({
     			
@@ -43,7 +43,7 @@
     			          $("#emailMessageNum").css("color","blue").text("인증이 확인되었습니다.!!")
     				} else {
     					$("#number").val("");					
-    					alert("인증번호를 입력해주세요.");
+    					alert("인증번호를 정확히 입력해주세요.");
 				
     				}
     			},
@@ -96,13 +96,6 @@
                             <td>
                                 <input type="text" title="이름" id="name" name="name">
                                 <span class="error-message" id="nameMessage" role="alert" style="display:none"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="phone">*휴대폰</label></th>
-                            <td>
-                                <input type="text" title="휴대폰" id="phone" name="phone">
-                                <span class="error-message" id="phoneMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
                         <tr>

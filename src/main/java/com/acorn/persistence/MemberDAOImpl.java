@@ -21,7 +21,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String namespace = "com.acorn.mapper.MemberMapper";
 		
 
-	@Override
+	@Override                                 //회원가입
 	public void insertMember(MemberVo vo) throws Exception {
 		
 		log.info("sqlSession : " + sqlSession);
@@ -30,7 +30,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	} //insertMember
 	
-	@Override
+	@Override                                 //회원정보수정
 	public void updateProfile(MemberVo vo) throws Exception {
 		
         log.info("updateProfile invoked");
@@ -38,42 +38,28 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	} //updateProfile
 
-	@Override
-	public void deleteProfile(MemberVo vo) throws Exception {
+	@Override                                 //회원탈퇴
+	public int deleteProfile(MemberVo vo) throws Exception {
 		
-	    log.info("deleteProfile invoked");
-	    sqlSession.delete(namespace+".deleteProfile", vo);
+	    int userRemoveCount = sqlSession.delete(namespace+".deleteProfile", vo);
+	    return userRemoveCount;
 		      
 	} //deleteProfile
 
-	@Override
+	@Override                                //회원가입 id 중복체크
 	public int idCheck(String user_id) throws Exception {
 	    
-	
-		return sqlSession.selectOne(namespace+".idCheck", user_id);
+	   return sqlSession.selectOne(namespace+".idCheck", user_id);
 		
 	} //idCheck
 
-	@Override
-	public int phoneCheck(String user_phone) throws Exception {
-	
-		return sqlSession.selectOne(namespace+".phoneCheck", user_phone);
-		
-	} //phoneCheck
- 
-	@Override                                 //회원가입  email
+
+	@Override                                 //회원가입  email 중복체크
 	public int emailCheck(String user_email) throws Exception {
 		
-		 return sqlSession.selectOne(namespace+".emailCheck", user_email);
+	   return sqlSession.selectOne(namespace+".emailCheck", user_email);
 
 	} //emailCheck
-
-	@Override                                //회원수정 email 변경시
-	public int emailUpdate(String myEmail) throws Exception {           
-
-		return sqlSession.selectOne(namespace+".updateEmailCk", myEmail);
-	
-	} //emailUpdate
 
 
 }

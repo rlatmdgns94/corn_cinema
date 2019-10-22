@@ -44,12 +44,10 @@ private MemberDAO dao ;
 
 
 	@Override
-	public void remove(MemberVo vo) throws Exception {
-		
-         log.info("remove invoked");
-         log.info("vo:" + vo);
-         
-         dao.deleteProfile(vo);
+	public int remove(MemberVo vo) throws Exception {
+        
+		 int userRemoveCount = dao.deleteProfile(vo);
+         return userRemoveCount;
     	
 	} //remove
 
@@ -63,14 +61,6 @@ private MemberDAO dao ;
 
 
 	@Override
-	public int DuplicatePhone(String user_phone) throws Exception {
-		 
-		log.info("DuplicatePhone");  
-		return dao.phoneCheck(user_phone);
-	} //DuplicatePhone
-
-
-	@Override
 	public int DuplicateEmail(String user_email) throws Exception {
 		 
 	    log.info("DuplicateEmail");
@@ -78,15 +68,4 @@ private MemberDAO dao ;
 	} //DuplicateEmail
 
 
-	@Override
-	public int emailModifyCk(String myEmail) throws Exception {
-
-        log.info("emailModifyCk");
-		return dao.emailCheck(myEmail);
-	}
-
-
-
-
-	
 } //end interface

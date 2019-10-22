@@ -11,50 +11,36 @@
  	
   
 	   
-	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡinsert Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-	
-	  
+	 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡinsert Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 	  <insert id="insertMember"  parameterType="com.acorn.domain.MemberVo">
-	      insert into corn_movie.tbl_member (
-	        id, password, name, phone, email
-	      ) values(
-	       #{id}, #{password}, #{name}, #{phone}, #{email}
-	       )
-	   </insert>
-	   
-	   
-	   
-    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡupdate Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->   
-	   
-	<update id="updateProfile">
-	   update tbl_member set
-       password = #{password}, 
-       phone = #{phone}, 
-       email = #{email},
-       updatedate = now()
-       WHERE id =#{id}          
+	     insert into corn_movie.tbl_member (
+	       id, password, name, email
+	     ) values(
+	      #{id}, #{password}, #{name},#{email}
+	      )
+	  </insert>
+	     
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡudate Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->    
+	 <update id="updateProfile">
+	    update tbl_member set
+        password = #{password}, 
+        updatedate = now()
+        WHERE id =#{id}          
     </update>
-	   
-
 
     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡdelete Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->   
 
    <delete id="deleteProfile">
-
-   DELETE FROM tbl_member WHERE id = #{id}
-
+	   DELETE FROM tbl_member WHERE id = #{id} and password = #{password}
    </delete>
-
-	   
-	   
+    
 	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡlogin Checkㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 		   
 	 <select id="login" resultType="com.acorn.domain.MemberVo">    <!-- resultType -> UserVO 풀패키지명 -->
   
       SELECT * FROM tbl_member WHERE id= #{id} and password = #{password}
           
-     </select>
-	   
+     </select>	   
 
 	 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ id Ckeck(id 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
     
@@ -62,25 +48,10 @@
          SELECT count(*) from tbl_member where id=#{user_id}
      </select>
         
-     
-     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ phone Ckeck(phone 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-     
-     <select id= "phoneCheck" parameterType="string" resultType="int">
-         SELECT count(*) from tbl_member where phone=#{user_phone}
-     </select>
-   
-     
-     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Ckeck(email 중복검사(join))ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Ckeck(email 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
      
      <select id= "emailCheck" parameterType="string" resultType="int">
           SELECT count(*) from tbl_member where email=#{user_email}
      </select>
      
-   
-     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email updateCkeck(email 중복검사(update)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-     <select id= "updateEmailCk" parameterType="string" resultType="int">
-          SELECT count(*) from tbl_member where not email= {myEmail}  
-     </select>
- 
- 
   </mapper>

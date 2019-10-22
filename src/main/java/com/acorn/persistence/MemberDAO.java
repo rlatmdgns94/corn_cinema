@@ -11,15 +11,11 @@ public interface MemberDAO {
 
    public abstract void updateProfile(MemberVo vo) throws Exception;
    
-   public abstract void deleteProfile(MemberVo vo) throws Exception;
+   public abstract int deleteProfile(MemberVo vo) throws Exception;
 
    public abstract int idCheck(String user_id) throws Exception ;
 
-   public abstract int phoneCheck(String user_phone) throws Exception;
-   
    public abstract int emailCheck(String user_email) throws Exception;
-   
-   public abstract int emailUpdate(String myEmail) throws Exception;
    
 	
 }

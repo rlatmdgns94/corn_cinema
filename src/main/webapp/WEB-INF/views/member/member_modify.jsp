@@ -9,51 +9,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/resources/js/member_modify.js"></script>
     <script>
-       function emailAuthentiCation(){
+    function memberRemove(id) {
+    	
+       if(confirm("회원 탈퇴하시겠습니까?")==false){
     	   
-      		var email = $("[name='email']").val();   	
-    	      console.log(email);
-    	    
-    	      $.ajax({
-    			  url : "/member/emailAuthen",
-    	    	  type : "post",
-    	    	  data : {"email":email},
-    	          success : function(data){
-    	        	  alert("이메일로 인증번호를 전송하였습니다.");
-    	          },
-    	        error : function(){
-    	        	console.log("error");
-    	        	alert("이메일 확인 부탁드립니다");
-    	        }
-    	      })
-       }         
-          
-        function authentiCation(){
-        	 var authenNum = $("[name='number']").val();
-        	 
-        	 $.ajax({
-        		 url : "/member/authen",
-        		 type : "post",
-        		 data : {"authenNum":authenNum},
-        		 success : function(data){
-        			 if(data==1){
-   			          $("#emailMessageNum").show();
-			          $("#emailMessageNum").css("color","blue").text("인증이 확인되었습니다.!!")
-        			 }else{
-        				 $("#number").val("");
-        				 alert("인증번호를 입력해주세요.");
-        			 }
-        		 },
-        		 error : function(){
-        			 console.log("실패");
-        		 }
-        		 
-        		 
-        	 })
-        }
-               
-        
+    	   alert("탈퇴처리가 취소되었습니다.");
+    	   $("#password").val("");
+	       $("#password-check").val("");
+	       return;
+       } else {
+    	   
+	 	   var password = $('#password').val();
+	 	   var password_ck = $('#password-check').val();
+	
+	 	      if (password == "") {
+	 	          $("#password").focus();
+	 	          alert("비밀번호를 입력해주세요");	         
+	 	          return false;
+	 	        }
+	 	      if (password !== password_ck) {
+	 	          $("#password-check").focus();
+	 	          return false;
+	 	        }
+	 	   $.ajax({
+	 		   url: '/member/withdrawalCk',
+	 		   type: "post",
+	 		   data: {
+	 			   "password":password,
+	 			   "memberId":id
+	 		   },
+	 		   dataType:'json',
+	 		   success:function(data){
+	 			  if(data==1){			//비밀번호일치	  
+	 				 alert("정상적으로 처리되었습니다.");  
+	 			     location.href="/member/withdrawal_result"
+	 			  }else{
+	 				alert("비밀번호가 일치하지 않습니다.");
+	 				return; 
+	 			  }
+	 		   },
+	 		   error : function(){
+	 			   console.log("실패");
+	
+	 		   }
+	 		   
+	 	   }) 
+       }
+ }
     </script>
 </head>
 <body>
@@ -70,16 +75,19 @@
                         <col style="width:20%">
                     </colgroup>
                     <tbody>
+                    
                         <tr>
                             <th scope="row">
-                                아이디
+                                                                 아이디
                             </th>
                             <td>
                                 ${login.id}
                             </td>
                         </tr>
+                        
                         <input type="hidden" title="id" id="id" name="id" value=${login.id}>
                         <input type="hidden" title="name" id="name" name="name" value=${login.name}>
+                        <input type="hidden" title="email" id="email" name="email" value=${login.email}>
                         <tr>
                             <th scope="row"><label for="password">비밀번호</label></th>
                             <td>
@@ -87,6 +95,7 @@
                                 <span class="error-message" id="pwMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
+                        
                         <tr>
                             <th scope="row"><label for="password-check">*비밀번호 확인</label></th>
                             <td>
@@ -94,50 +103,33 @@
                                 <span class="error-message" id="pwCheckMessage" role="alert" style="display:none"></span>
                             </td>
                         </tr>
+                        
                         <tr>
                             <th>이름</th>
                             <td>
                                 ${login.name}
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row"><label for="phone">휴대폰</label></th>
-                            <td>
-                                <input type="phone" title="휴대폰" id="phone" name="phone" required=""
-                                    value=${login.phone}>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <th scope="row"><label for="email">이메일</label></th>
                             <td>
-                                <input type="email" id="email" name="email" value=${login.email}>
-                                <input type="button" value="인증" onclick="emailAuthentiCation()">
-                                <span class="error-message" id="emailMessage" role="alert" style="display:none"></span>
+                                ${login.email}
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row"><label for="number">인증번호</label></th>
-                            <td>
-                                <input type="text" id="number" name="number" placeholder="수정시 인증이필요합니다">
-                                <input type="button" value="인증번호" onclick="authentiCation()">
-                                <span class="error-message" id="emailMessageNum" role="alert" style="display:none"></span>
-                            </td>
-                        </tr>
-
-                    </tbody>
+                   </tbody>
                 </table>
             </div>
             <div class="join-button-wrap">
                 <input type="submit" value="수정" class="join-button join-submit">
         </form>
-        <form action="/member/withdrawal_result" method="POST">
-            <input type="hidden" title="id" id="id" name="id" value=${login.id}>
-            <input type="submit" value="탈퇴" class="join-button member-delete-btn">
-        </form>
+        <!-- <form action="/member/withdrawal_result" method="POST"> -->
+     <!--        <input type="hidden" title="id" id="id" name="id" value=${login.id}> -->
+            <input type="button" value="탈퇴" onclick="memberRemove('${login.id}')" class="join-button member-delete-btn" >
+        <!-- </form> -->
         
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="/resources/js/member_modify.js"></script>
+    
 </body>
 
 </html>

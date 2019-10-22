@@ -3,7 +3,6 @@ $(document).ready(function () {
     var idReg = /^[a-zA-Z0-9]{6,10}$/;
     var pwReg = /^[a-zA-Z0-9]{6,10}$/;
     var nameReg = /^[가-힣]+$/;
-    var phoneReg = /^\d{2,3}-\d{3,4}-\d{4}$/
     var emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/
     $('.join-submit').on('click', function (event) {
       //    event.preventDefault();
@@ -37,13 +36,10 @@ $(document).ready(function () {
         $("#name").focus();
         return false;
       }
-      //휴대폰
-      if (!phoneReg.test($("#phone").val())) {
-        $("#phone").focus();
-        return false;
-      }
+
       if (!emailReg.test($("#email").val())) {
-        $("#email").focus();
+    	//  $("#email").val("");
+          $("#email").focus();
         return false;
       }  
       if ($("#number").val() == "") {
@@ -56,7 +52,10 @@ $(document).ready(function () {
         }else{
             $("#emailMessageNum").hide();
         }
-
+       //authenValue 애가 1이 아니면 
+      //false 하고싶어서
+    
+      
       $('.join-form').submit();
     });
     //회원가입 전송
@@ -76,11 +75,14 @@ $(document).ready(function () {
         type: 'post',
         data:{userId: user_id},
         dataType:'json',
-        success: function (data) {
-          console.log(data);
-          if (data == 1) {
+        success: function(userId) {
+
+          console.log("userId:" ,userId);
+          console.log("user_id:" ,user_id);
+          
+          if (userId == 1) {
             $("#idMessage").show();
-            $("#idMessage").text("이미 가입된 아이디입니다.")
+            $("#idMessage").text("이미 가입된 아이디입니다.");
             $("#id").val("");
             return false;
           } else if (!idReg.test(user_id)) {
@@ -149,41 +151,6 @@ $(document).ready(function () {
       }
     });
 
-    $('#phone').on('blur', function (event) {
-      var user_phone = $('#phone').val();
-      if (user_phone === "") {
-        $("#phoneMessage").show();
-        $("#phoneMessage").text("휴대폰 번호를 입력해주세요.");
-        return false;
-      }
-
-      $.ajax({
-        url: '/member/phonecheck',
-        type: 'post',
-        data: {userPhone: user_phone},
-        dataType : 'json',
-        success: function (data) {
-          console.log(data);
-
-          if (data == 1) {
-            $("#phoneMessage").show();
-            $("#phoneMessage").text("사용 중인 휴대폰 번호입니다.");
-            $("#phone").val("");
-            return false;
-          } else if (!phoneReg.test(user_phone)) {
-            $("#phoneMessage").show();
-            $("#phoneMessage").text("휴대폰 형식이 틀립니다.ex(010-1234-1234)");
-            return false;
-          } else {
-            $("#phoneMessage").hide();
-            return false;
-          }
-        }, //end-success
-        error: function () {
-          console.log("실패");
-        } //end-error
-      }) //ajax
-    });
 
     $('#email').on('blur', function (event) {
       var user_email = $('#email').val();
@@ -208,6 +175,7 @@ $(document).ready(function () {
           } else if (!emailReg.test(user_email)) {
             $("#emailMessage").show();
             $("#emailMessage").text("이메일 형식이 틀립니다.");
+            $("#email").val("");
             return false;
           } //if
           else {
@@ -220,5 +188,22 @@ $(document).ready(function () {
         } //end-error
       }) //ajax
     });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   });
 });

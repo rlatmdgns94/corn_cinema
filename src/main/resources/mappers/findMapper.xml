@@ -9,21 +9,18 @@
  
  
 	 
-<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡfind id ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡfind id ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 	 
-	  <select id="findId"  resultType="string" parameterType="com.acorn.domain.MemberVo">
+   <select id="findId"  resultType="string" parameterType="com.acorn.domain.MemberVo">
 	  
-		SELECT id	
-		FROM tbl_member
-		WHERE name = #{name} AND email = #{email}
+	   SELECT id	
+	  FROM tbl_member
+	  WHERE name = #{name} AND email = #{email}
 
-	  </select>
+   </select>
 	   
-<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡfind password ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-    
-    
-    
-    
+   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡfind password ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+  
        <select id="findPw"  resultType="string" parameterType="com.acorn.domain.MemberVo">
 	  
 		SELECT password	
@@ -32,20 +29,15 @@
 
 	  </select>
 	   
-
-    
-    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡupdate password ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-    
-    
-      <update id="updatePw">
-       
-	    update tbl_member set
-	    password= #{password}
-	    WHERE id= #{id} AND email= #{email} 
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡupdate password ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
      
-      </update>
+    <update id="updatePw">
+       
+	  update tbl_member set
+	  password= #{password}
+	  WHERE id= #{id} AND email= #{email} 
+     
+    </update>
 	 	   
 	   
-	
-
 </mapper>

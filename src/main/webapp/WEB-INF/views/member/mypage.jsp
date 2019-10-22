@@ -24,11 +24,7 @@
                     <colgroup>
                         <col style="width:20%">
                     </colgroup>
-                    <%
-                         //   scriptlet
-                        Object memberInfo = session.getAttribute("login");
-                        System.out.println("memberInfo:" + memberInfo);
-                    %>
+
                     <tbody>
                         <tr>
                             <th scope="row">아이디</th>
@@ -37,10 +33,6 @@
                         <tr>
                             <th scope="row">이름</th>
                             <td>${login.name}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">전화번호</th>
-                            <td>${login.phone}</td>
                         </tr>
                         <tr>
                             <th scope="row">이메일</th>

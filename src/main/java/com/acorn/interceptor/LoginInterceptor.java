@@ -76,7 +76,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		// ModelAndView 객체를 이용하여 세션 스코프에 속성지정 
 		ModelMap modelMap = modelAndView.getModelMap();
 
-		//MemberInfo info = (MemberInfo) modelMap.get("userInfo");
 		MemberVo memberInfo = (MemberVo) modelMap.get("memberInfo");
 				
 		 
@@ -84,21 +83,18 @@ public class LoginInterceptor implements HandlerInterceptor{
 
 		session.setAttribute(loginkey, memberInfo); //	★세션 스코프에 공유
 	    
-		//---------------------------------------------------//
-	//	MemberVo tempVo = (MemberVo) session.getAttribute(loginkey);
-	//	log.info(tempVo.getId());
-		//---------------------------------------------------//
-		
+		  MemberVo memberInfo1 = (MemberVo) session.getAttribute(loginkey);
+	      String id = memberInfo1.getId();
 		
 		System.out.println(" ==== id: ====="+session.getAttribute(loginkey));
 		  
 
-	    Object orignalRequestURI = session.getAttribute("originalURIkey");
+	    String originalRequestURI = (String)session.getAttribute("originalRequestURI");
 	       
-	     log.info("orignalRequestURI : "  + orignalRequestURI );
+	     log.info("orignalRequestURI : "  + originalRequestURI );
 	      
 	         //가려고 하는 페이지가 있으면 "orignalRequestURI" 로 이동 // 아니면 "/" 로 이동 
-	     response.sendRedirect(orignalRequestURI!= null ? (String)orignalRequestURI :"/" ); 
+	     response.sendRedirect(originalRequestURI!= null ? (String)originalRequestURI :"/" ); 
 		
 		  } //if
 	     

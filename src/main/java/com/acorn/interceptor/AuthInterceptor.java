@@ -26,15 +26,20 @@ public class AuthInterceptor implements HandlerInterceptor{
 		if(queryString==null || queryString.equals("null")) {
 			queryString ="";
 		}else {
-			queryString+= "? " +queryString;
+			queryString= "?"+queryString;
 			log.info("queryString:" + queryString);
 		} //if-else
 		
 		   //최종적인 원래의 Request URI 저장 
         	String originalRequestURI = requestURI + queryString;
         	
+        	System.out.println("requestURI :" + requestURI);
+        	System.out.println("queryString:" + queryString);
+        	System.out.println("originalRequestURI:::::" + originalRequestURI);
+        	
+        	
         	HttpSession session = request.getSession();           
-        	session.setAttribute("originalURIkey", originalRequestURI); 
+        	session.setAttribute("originalRequestURI", originalRequestURI); 
         	
 	}//saveOriginalRequestURI
 	

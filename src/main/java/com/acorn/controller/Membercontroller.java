@@ -33,205 +33,183 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/member/*")
 public class Membercontroller {
-	
-	@Autowired  
+
+	@Autowired
 	private MemberService memberservice;
-	
+
 	@Autowired
 	private LoginService loginservice;
-	
+
 	@Autowired
 	private Email email;
-	
+
 	@Autowired
 	private EmailSender emailSender;
-	
-	
-	//------------------------------------ idCheck -----------------------------------------//
-	
-	@PostMapping("/idcheck")
-    @ResponseBody
-	 public int idCheck(@RequestParam("userId") String user_id ) throws Exception {        
-		 return memberservice.DuplicateId(user_id);	 
-	
-	 } //idCheck
 
-	//------------------------------------ phonecheck -----------------------------------------//
-	@PostMapping("/phonecheck")
+	// ------------------------------------ idCheck-----------------------------------------//
+
+	@PostMapping("/idcheck")
 	@ResponseBody
-	  public int phoneCheck(@RequestParam("userPhone") String user_phone) throws Exception{
-		return memberservice.DuplicatePhone(user_phone);
-	}
-	
-	//------------------------------------ emailcheck -----------------------------------------//
+	public int idCheck(@RequestParam("userId") String user_id) throws Exception {
+		return memberservice.DuplicateId(user_id);
+
+	} // idCheck
+
+	// ------------------------------------ emailcheck -----------------------------------------//
 	@PostMapping("/emailcheck")
 	@ResponseBody
-	   public int emailcheck(@RequestParam("userEmail") String user_email) throws Exception{
-		  return memberservice.DuplicateEmail(user_email);
-		
+	public int emailcheck(@RequestParam("userEmail") String user_email) throws Exception {
+		return memberservice.DuplicateEmail(user_email);
+
+	}// emailcheck
+	
+   //------------------------------withdrawal_password_ckeck---------------------------------------//
+	@PostMapping("withdrawalCk")
+	@ResponseBody
+	public int withdrawalCk(@RequestParam("password") String passwordCk, 
+			                @RequestParam("memberId") String memberId,
+			                HttpSession session) throws Exception {
+ 
+		int userRemoveCount = 0;
+
+		MemberVo vo = new MemberVo();
+
+		vo.setId(memberId);
+		vo.setPassword(Sha256.encrypt(passwordCk));
+		userRemoveCount = memberservice.remove(vo);
+
+		log.info("userRemoveCount:" + userRemoveCount);
+
+		if (userRemoveCount == 1) {           //삭제된 행이 있다면  ~
+			session.invalidate();             // 세션 제거 !
+		}
+
+		return userRemoveCount;
 	}
 
-	@PostMapping("/emailmodify")
-	@ResponseBody
-       public int emailmodify(@RequestParam("myEmail") String myEmail) throws Exception{
-		  return memberservice.emailModifyCk(myEmail);
-	}
-	
-	
-	
-	//------------------------------------ login -----------------------------------------//
-	
+	// ------------------------------------ login -----------------------------------------//
+
 	@GetMapping("/login")
 	public void login() {
-		
-		log.info("Get-Login");	
-	} //login()
 
-	
-    @PostMapping("login_Post")
-    public String login_result(LoginDTO dto , Model model) throws Exception {
-  	  log.info("POST-Login");
-  	  
-  	 String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
-     dto.setPassword(encryPassword);
-	  
-  	  log.info(" dto:" + dto );	
-	  log.info(" model:" + model);
-      log.info("loginservice:" + loginservice);
-   
-     MemberVo vo = loginservice.checkLogin(dto);
-        
-       if(vo==null) {
-         log.info("로그인 실패 !");		    
+		log.info("Get-Login");
+	} // login()
 
-           return "redirect:/member/login";      // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
-           
-        } //if  	
-        
-      	//로그인에 성공했다면 찾아낸 사용자 정보를 view 로 전달
- 		 log.info("vo전달 !! : :" + vo);
- 		 
- 		 model.addAttribute("memberInfo",vo);       //requset 영역 공유 !! ★ ★ ★ 
-           return "/index";  
-        } //login_POST()
-    	
-    
-   //------------------------------------ join -----------------------------------------//
-	
-    @GetMapping("/join")
-	public void join(){
+	@PostMapping("login_Post")
+	public String login_result(LoginDTO dto, Model model) throws Exception {
+		log.info("POST-Login");
+
+		String encryPassword = Sha256.encrypt(dto.getPassword()); // 비번 암호화
+		dto.setPassword(encryPassword);
+
+		MemberVo vo = loginservice.checkLogin(dto);
+
+		if (vo == null) {
+			log.info("로그인 실패 !");
+			return "redirect:/member/login"; // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
+		} // if
+
+		model.addAttribute("memberInfo", vo);
+		return "/index";
+	} // login_POST()
+
+	// ------------------------------------ join-----------------------------------------//
+
+	@GetMapping("/join")
+	public void join() {
 		log.info("Get-join");
-		
-	} //join()
-     
+
+	} // join()
+
 	@PostMapping("/join")
 	public String join_result(MemberDTO dto) throws Exception {
-		
-		log.info("POST_result");
-		
-		MemberVo vo = new MemberVo();
-		
-	   String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
-		
-          vo.setId(dto.getId());
-		  vo.setPassword(encryPassword);
-		  vo.setName(dto.getName());
-		  vo.setPhone(dto.getPhone());
-		  vo.setEmail(dto.getEmail());
 
-		  memberservice.regist(vo);
-		  
+		log.info("POST_result");
+
+		MemberVo vo = new MemberVo();
+
+		String encryPassword = Sha256.encrypt(dto.getPassword()); // 비번 암호화
+
+		vo.setId(dto.getId());
+		vo.setPassword(encryPassword); 
+		vo.setName(dto.getName());
+		vo.setEmail(dto.getEmail());
+
+		memberservice.regist(vo);
+
 		return "/member/join_result";
-	} //join_result()
-	
-	
-	
+	} // join_result()
+
 	@PostMapping("/emailAuthen")
 	@ResponseBody
 	public void emailAuthen(@RequestParam("email") String mail, HttpSession session) throws Exception {
+
+		String randomNumber = EmailAuthenNum.AuthenNum(); // 인증번호 6자리 생성
+
+		session.setAttribute("randomNumber", randomNumber); /*randomNumber번호를 
+		                                                    Session스코프에 공유.-> 인증 확인 번호와 일치 check 위함*/
 		
-		String randomNumber = EmailAuthenNum.AuthenNum();  //인증번호 6자리 생성
+		email.setContent("인증번호는 :" + randomNumber + " 입니다"); //내용
+		email.setReceiver(mail); //받는사람 메일  
+		email.setSubject("corn_movie 인증번호 입니다."); //제목
+		emailSender.SendEmail(email); //메일 전송
 		
-		session.setAttribute("randomNumber", randomNumber);
-		
-		email.setContent("인증번호는 :"+randomNumber+" 입니다");
-		email.setReceiver(mail);
-		email.setSubject(" corn_movie 인증번호 입니다.");
-		emailSender.SendEmail(email);
 
 	}
-	
+
 	@PostMapping("/authen")
 	@ResponseBody
 	public int authen(@RequestParam("authenNum") String authenNum, HttpSession session) throws Exception {
-		
+
 		int authenValue = 0;
 		String authenNumber = (String) session.getAttribute("randomNumber");
-		
-		if(authenNum.equals(authenNumber) ) {
+
+		if (authenNum.equals(authenNumber)) {  //인증번호 일치 여부 , 일치하면 = 1 return;
 			authenValue = 1;
 			return authenValue;
 		}
-		
+
 		return authenValue;
 	}
+
+	// ------------------------------------ modify -----------------------------------------//
+
+	@GetMapping("/member_modify")
+	public void modify() {
+		log.info("in회원정보수정페이지");
+	}
+
+	@PostMapping("/member_modify")
+	public String member_modify(MemberDTO dto, HttpSession session) throws Exception {
+
+		MemberVo vo = new MemberVo();
+
+		String encryPassword = Sha256.encrypt(dto.getPassword()); // 비번 암호화
+
+		vo.setName(dto.getName());
+		vo.setId(dto.getId());
+		vo.setPassword(encryPassword);
+		vo.setEmail(dto.getEmail());
+
+		session.setAttribute("login", vo);
+
+		memberservice.modify(vo);
+
+		return "redirect:/";
+	}
+
+	// ------------------------------------ withdrawal -----------------------------------------//
 	
-	
-	
-	  //------------------------------------ modify -----------------------------------------//
-	
-	  @GetMapping("/member_modify")
-	  public void modify() {
-	      log.info("in회원정보수정페이지");
-	   }
-		
-	  @PostMapping("/member_modify") 
-	  public String member_modify(MemberDTO dto , HttpSession session) throws Exception {
-		  
-		  MemberVo vo = new MemberVo();
-		  
-		   String encryPassword = Sha256.encrypt(dto.getPassword()); //비번 암호화
-			
-		  vo.setName(dto.getName());
-		  vo.setId(dto.getId());
-		  vo.setPassword(encryPassword);
-		  vo.setPhone(dto.getPhone());
-		  vo.setEmail(dto.getEmail());   
-		  
-		  log.info("member_modify :: vo"+ vo);	  
-		  
-		  session.setAttribute("login" ,vo);
-		  
-		  
-     	  memberservice.modify(vo);
-		  log.info("member_modify :: vo"+ vo);
-		  	  
-		  return "redirect:/";
-	               
-	  }
+	 @GetMapping("/withdrawal_result") 
+	 public void withdrawal_result() throws Exception { }
+
 	 
-	  
-	  //------------------------------------ withdrawal -----------------------------------------//
-	  
-	  
-	  @PostMapping("/withdrawal_result")
-	  public void withdrawal_result(HttpSession session , MemberDTO dto) throws Exception {
-		  
-		  MemberVo vo = new MemberVo();
-		  
-		  vo.setId(dto.getId());  
-		  log.info("withdrawal_result vo : " + vo);
-		  memberservice.remove(vo);
-          session.invalidate();  //세션제거
-	  } // withdrawal_result
-	  
+   // --------------------------------------mypage ---------------------------------------------//
+	 @GetMapping("/mypage")
+     public void mypage() {
 
-	  @GetMapping("/mypage")
-	  	public void mypage(){
-		  
 		log.info("mypage");
-	
-	  }//mypage
 
-	
-} //end class
+	}// mypage
+
+} // end class
