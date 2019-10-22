@@ -47,7 +47,7 @@
             6. "해지" : 회사 또는 회원이 서비스 사용 후 이용계약을 해약하는 것을 말합니다.<br>
             7. "휴면회원" : 메가박스 서비스를 이용한 마지막 날로부터 연속하여 12개월간 이용 내역이 없는 회원을 말합니다.<br>
           </div>
-          <span><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘이용약관’을 읽고 동의 합니다. (필수 동의)</span>
+          <label><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘이용약관’을 읽고 동의 합니다. (필수 동의)</label>
         </div>
         <div class="agreement">
           <h3>개인정보수집 및 이용안내</h3>
@@ -96,8 +96,7 @@
             - 포인트 거래 이력이 1년 이상 없는 고객<br>
             - 멤버십 카드 발급 및 삭제 등의 이력이 1년 이상 없는 고객<br>
           </div>
-          <span><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘개인정보수집 및 이용안내’을 읽고 동의 합니다. (필수
-            동의)</span>
+          <label><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘개인정보수집 및 이용안내’을 읽고 동의 합니다. (필수 동의)</label>
         </div>
       </div>
     </div>
