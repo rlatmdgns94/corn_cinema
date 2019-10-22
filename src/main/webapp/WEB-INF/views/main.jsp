@@ -24,24 +24,24 @@
             <li class="visual">
                 <a href="#none" class="img_wrap" style="background-image:url('/resources/img/jangssari.jpg')">
                     <span class="visual-text">
-                        <strong class="visual-text-title">타짜: 원 아이드 잭 <em>Tazza: One Eyed Jack</em></strong>
-                        <span class="visual-text-sub">인생을 바꿀 판이 시작된다</span>
+                        <strong class="visual-text-title">장사리: 잊혀진 영웅들 <em>Battle of Jangsari</em></strong>
+                        <span class="visual-text-sub">역사르르 뒤바꾼 전투, 잊혀진 772명의 기록</span>
                     </span>
                 </a>
             </li>
             <li class="visual">
                 <a href="" class="img_wrap" style="background-image:url('/resources/img/222.jpg')">
                     <span class="visual-text">
-                        <strong class="visual-text-title">타짜: 원 아이드 잭 <em>Tazza: One Eyed Jack</em></strong>
-                        <span class="visual-text-sub">인생을 바꿀 판이 시작된다</span>
+                        <strong class="visual-text-title">그것: 두번째 이야기 <em>It Chapter Two</em></strong>
+                        <span class="visual-text-sub">그것의 마지막</span>
                     </span>
                 </a>
             </li>
             <li class="visual">
                 <a href="" class="img_wrap" style="background-image:url('/resources/img/111.jpg')">
                     <span class="visual-text">
-                        <strong class="visual-text-title">타짜: 원 아이드 잭 <em>Tazza: One Eyed Jack</em></strong>
-                        <span class="visual-text-sub">인생을 바꿀 판이 시작된다</span>
+                        <strong class="visual-text-title">그것: 두번째 이야기 <em>It Chapter Two</em></strong>
+                        <span class="visual-text-sub">그것의 마지막</span>
                     </span>
                 </a>
             </li>

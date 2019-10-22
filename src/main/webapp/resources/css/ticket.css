@@ -40,9 +40,10 @@
     width: 80px;
 }
 .ticket-movie{
+	display: inline-block;
+	max-width: 172px;
+	margin-left: 20px;
     vertical-align: top;
-    display: inline-block;
-    margin-left: 20px;
 }
 .ticket-info-title{
     font-size: 18px;
@@ -136,4 +137,54 @@
 /* 좌석 */
 .seat_choice .seat-choice-content{
     display: none;
+}
+.select-message{
+	margin-top: 94px;
+	color: #999;
+    text-align: center;
+}
+.remain-seat{
+	font-size:16px;
+}
+.remain-seat::before{
+	content:"";
+	display:inline-block;
+	width:18px;
+	height:18px;
+	margin-top: -1px;
+    margin-right: 6px;
+    vertical-align: middle;
+	background:#666;
+}
+.select-person-area{
+	overflow:hidden;
+	margin-top:20px;
+	padding: 10px 10px;
+	border:1px solid #666;
+	background:#fff;
+}
+.select-title{
+	float:left;
+	line-height:34px;
+}
+.select-person{
+	float:right;
+	font-size:14px;
+	padding:5px 0;
+}
+.select-caption{
+	margin-top:5px;
+	font-size:13px;
+	color:#666;
+}
+.seat-line>button{
+	display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    background: #848484;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
 }

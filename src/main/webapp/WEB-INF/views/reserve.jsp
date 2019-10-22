@@ -1,195 +1,148 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Document</title>
 <link rel="stylesheet" href="/resources/css/style.css">
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.1.0/jquery-migrate.min.js"></script>
-   -->
 </head>
 
 <body>
-	<div id="container">
-		<h3 class="ticket-title">영화예매</h3>
-		<div class="ticket-info-area">
-			<ul class="ticket-info">
-				<li><span class="ticket-movie-poster"> <img
-						src="/resources/img/movie_poster/${movieRead.view_path}">
-				</span>
-					<div class="ticket-movie">
-						<div class="ticket-info-title">영화</div>
-						<div>${movieRead.title}</div>
-					</div></li>
-				<li>
-					<div class="ticket-info-title">관람일시</div>
-					<div id="txtDate"></div>
-					<div id="txtTime"></div>
-				</li>
-				<li>
-					<div class="ticket-info-title">선택좌석</div>
-					<div>일반석 D번 10</div>
-				</li>
-				<li>
-					<div class="ticket-info-title">총 결제금액</div>
-					<div class="ticket-price">8,000</div>
-				</li>
-			</ul>
-		</div>
-		<!-- 예매본문 -->
-		<div class="l_content">
-			<div class="box-step">
-				<dl class="cinema-choice">
-					<dt>
-						<span class="round">STEP 1</span> 영화관 선택
-					</dt>
-					<dd>
-						
-						<%--<ul>
-						 <c:forEach var="list" items = "${list}">
-							<li>
-							<button>${list}</button>
-							<li>
-						</c:forEach> 	  
-						</ul>--%>
-						 <ul class="choice-list cinema-choice-list">
-						 
-						 
-						 <%-- 첫번째 버튼 클릭하면 두번쨰 활성화되고 다시 쿼리문 수행--%>
-						 
-							<c:forEach items = "${list}" var="list">
-							<li>
-								<button value="${list}">${list}</button>						
-							</li>
-							</c:forEach>
-							
-							<!--<li>	
-								 <button class="active">서울</button>
-								<ul class="choice-list-detail on">
-									<li>
-										<button>강남</button>
-									</li>
-									<li>
-										<button>강남</button>
-									</li>
-									<li>
-										<button>강남</button>
-									</li>
-								</ul>  
-							</li> -->
-							
-							<!-- <li>
-								<button>경기도</button>
-								<ul class="choice-list-detail">
-									<li>
-										<button>수원</button>
-									</li>
-									<li>
-										<button>평택</button>
-									</li>
-									<li>
-										<button>안양</button>
-									</li>
-								</ul>
-							</li> -->
-						</ul>
-					</dd>
-				</dl>
-				<dl class="date_choice">
-					<dt>
-						<span class="round">STEP 2</span> 관람일 선택
-					</dt>
-					<dd>
-						<ul class="choice-list" id="listDate">
-							<li>
-								<button>2019년 10월03일 목요일</button> <input type="hidden"
-								value="20191003">
-							</li>
-							<li>
-								<button>2019년 10월05일 토요일</button> <input type="hidden"
-								value="20191005">
-							</li>
-							<li>
-								<button>2019년 10월06일 일요일</button> <input type="hidden"
-								value="20191006">
-							</li>
-						</ul>
-					</dd>
-				</dl>
-				<dl class="time_choice">
-					<dt>
-						<span class="round">STEP 3</span> 관람시간 선택
-					</dt>
-					<dd>
-						<!-- 선택 날짜에 관한 관람시간 리스트 -->
-						<ul class="choice-list" id="listTime">
-							<li>
-								<button class="">1회 10:00 (시네마1관)</button> <input type="hidden"
-								id="listTime_itemscheduleseq" value="0000102554"> <input
-								type="hidden" id="listTime_seattemplateseq" value="0000001698">
-								<input type="hidden" id="listTime_ticketingIntYn" value="Y">
-							</li>
-						</ul>
-						<!--  선택 전  -->
-					</dd>
-				</dl>
-				<dl class="seat_choice">
-					<dt>
-						<span class="round">STEP 4</span> 좌석 및 잔여석 확인
-					</dt>
-					<dd>
-						<div class="seat-choice-content">
-							<!-- 선택 시간에 관한 좌석 및 잔여석 -->
-							<div>일반석 : 19석</div>
-							<!--  선택 전-->
-							<div class="seat_type" id="tickectCountDiv"
-								style="display: block;">
-								<div>
-									<label for="ticketTypeCode">인원선택</label> <span> <select
-										id="ticketCount">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-											<option value="9">9</option>
-											<option value="10">10</option>
-									</select>
-									</span>
-								</div>
-								<p class="tx_deco">최대 10명까지 선택가능 합니다.</p>
-							</div>
-						</div>
-						<div class="txt_comment" id="seatComment" style="display: block;">관람시간을
-							선택해주세요.</div>
-					</dd>
-				</dl>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script>
-		
-		
-			
-	
-      	   $(document).ready(function () {
+   <div id="container">
+      <h3 class="ticket-title">영화예매</h3>
+      <div class="ticket-info-area">
+         <ul class="ticket-info">
+            <li><span class="ticket-movie-poster"> <img
+                  src="/resources/img/movie_poster/${movieRead.view_path}">
+            </span>
+               <div class="ticket-movie">
+                  <div class="ticket-info-title">영화</div>
+                  <div>${movieRead.title}</div>
+               </div></li>
+            <li>
+               <div class="ticket-info-title">관람일시</div>
+               <div id="txtDate"></div>
+               <div id="txtTime"></div>
+            </li>
+            <li>
+               <div class="ticket-info-title">선택좌석</div>
+               <div>일반석 D번 10</div>
+            </li>
+            <li>
+               <div class="ticket-info-title">총 결제금액</div>
+               <div class="ticket-price">8,000</div>
+            </li>
+         </ul>
+      </div>
+      <!-- 예매본문 -->
+      <div class="l_content">
+         <div class="box-step">
+            <dl class="cinema-choice">
+               <dt>
+                  <span class="round">STEP 1</span> 영화관 선택
+               </dt>
+               <dd>
+                  <ul class="choice-list cinema-choice-list">
+                     <%-- 첫번째 버튼 클릭하면 두번쨰 활성화되고 다시 쿼리문 수행--%>
+                     <c:forEach items="${list}" var="list">
+                        <li>
+                           <button value="${list}">${list}</button>
+                           <ul class="choice-list-detail"  id="city-list">                                 
+                           </ul>
+                        </li>
+                     </c:forEach>
+                  </ul>
+               </dd>
+            </dl>
+            <dl class="date_choice">
+               <dt>
+                  <span class="round">STEP 2</span> 관람일 선택
+               </dt>
+               <dd>
+                  <p class="select-message">영화관을 선택해주세요.</p>
+                  <ul class="choice-list" id="date-list">
+                     
+                  </ul>
+               </dd>
+            </dl>
+            <dl class="time_choice">
+               <dt>
+                  <span class="round">STEP 3</span> 관람시간 선택
+               </dt>
+               <dd>
+                    <p class="select-message">관람일을 선택해주세요.</p>
+                  <!-- 선택 날짜에 관한 관람시간 리스트 -->
+                  <ul class="choice-list" id="time-list">
+                     
+                  </ul>
+                  <!--  선택 전  -->
+               </dd>
+            </dl>
+            <dl class="seat_choice">
+               <dt>
+                  <span class="round">STEP 4</span> 좌석 및 잔여석 확인
+               </dt>
+               <dd>
+                    <p class="select-message">관람시간을 선택해주세요.</p>
+                  <div class="seat-choice-content">
+                     <!-- 선택 시간에 관한 좌석 및 잔여석 -->
+                     <div class="remain-seat">일반석 : <span id="remain-seat-num"></span>석</div> <!-- 몇좌석 남았는지 seat-v에 넣기 ajax로-->
+                     <!--  선택 전-->
+                     <div class="select-person-area">
+                         <label for="ticketCount" class="select-title">인원선택</label>
+                         <span> 
+                         <select  id="ticketCount" class="select-person">
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                           </select>
+                           </span>
+                        </div>
+                      <p class="select-caption">※최대 10명까지 선택가능 합니다.</p>
+                  </div>
+               </dd>
+            </dl>
+         </div>
+         <div class="seat-area">   		
+	      	<ul class="all-seats">
+	      		<li>
+	      			<div class="seat-line">
+	      				<span>A</span>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      				<button>1</button>
+	      			</div>      				
+	      		</li>
+	      	</ul>
+	      </div>
+      </div>
+   </div>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+   <script>
+     
+            $(document).ready(function () {
             //영화관 선택
             $('.cinema-choice-list>li>button').on('click', function () {
                 $(".cinema-choice-list>li>button").removeClass("active");
@@ -197,65 +150,132 @@
                 $('.choice-list-detail').removeClass("on");
                 $(this).siblings('.choice-list-detail').addClass("on");
             });
-            $('.choice-list-detail>li>button').on('click', function () {
+            //영화도시,관람일
+            $('.cinema-choice-list').on('click','.choice-list-detail>li>button',function () {
                 $(".choice-list-detail>li>button").removeClass("active");
-                $(this).addClass("active");
-            });
-            //관람일 선택
-            $('.date_choice .choice-list>li>button').on('click', function () {
-                $(".date_choice .choice-list>li>button").removeClass("active");
-                $(this).addClass("active");
-                $('#txtDate').text($(this).text());
-            });
-            // 관람일
-            $('.choice-list-detail>li>button').on('click', function () {
+                $(this).addClass("active");              
                 if (!$(this).hasClass('active')) {
                     $('.date_choice>dd>.choice-list').removeClass('on');
                 }
                 else {
+                	$('.date_choice>dd>.select-message').hide();
                     $('.date_choice .choice-list').addClass('on');
                 }
             });
+            //관람일 선택
+            $(document).on('click', '.date_choice .choice-list>li>button', function () {
+                $(".date_choice .choice-list>li>button").removeClass("active");
+                $(this).addClass("active");
+                $('#txtDate').text($(this).text());
+            });
+         
             // 관람시간
-            $('.date_choice .choice-list>li>button').on('click', function () {
+            $(document).on('click', '.date_choice .choice-list>li>button', function () {              
                 if (!$(this).hasClass('active')) {
                     $('.time_choice>dd>.choice-list').removeClass('on');
                 }
                 else {
+                	$('.time_choice>dd>.select-message').hide();
                     $('.time_choice .choice-list').addClass('on');
                 }
             });
             //관심시간 선택
-            $('.time_choice .choice-list>li>button').on('click', function () {
+            $(document).on('click', '.time_choice .choice-list>li>button', function () {
                 $(".time_choice .choice-list>li>button").removeClass("active");
                 $(this).addClass("active");
                 $('#txtTime').text($(this).text());
             });
             // 좌석
-            $('.time_choice .choice-list>li>button').on('click', function () {
+            $(document).on('click','.time_choice .choice-list>li>button', function () {
                 if (!$(this).hasClass('active')) {
-                    $('.seat_choice .seat-choice-content').removeClass('on');
+                    $('.seat-choice-content').removeClass('on');
                 }
                 else {
-                    $('.seat_choice .seat-choice-content').addClass('on');
+                	$('.seat_choice .select-message').hide();
+                    $('.seat-choice-content').addClass('on');
                 }
             });
             // ajax
+              //영화관지역
             $('.cinema-choice-list>li>button').on('click', function () {
-                var cinema = $(this).val();
+                cinema = $(this).val();
                 console.log(cinema);
                 $.ajax({
-                    url: '/movie/screening/districts?cinema='+cinema,
+                    url: '/movie/screening/districts?movie_num=${movieRead.movie_num}&cinema=' + cinema,
                     type: 'post',
-                    success: function (data) {
-                     console.log(data)
+                    success: function (data   ) {
+                       console.log("영화관 지역 :"+data); 
+                       var cityList="";
+                       /* for(var idx = 0; idx < data.length; idx++) {
+                        str+="<li><button value="+ data[idx] +">" + data[idx] + "</button></li>";
+                       } */
+                       $.each(data, function(index, item){
+                          console.log(index,item);
+                          cityList+="<li><button value="+ item+">" + item + "</button></li>";
+                       });
+                       $(".choice-list-detail").html(cityList);   
                     }, //end-success
                     error: function () {
                       console.log("실패");
                     } //end-error
                   }) //ajax
             });
-
+            //관람일
+            $(document).on('click','#city-list>li>button', function () {
+               dist = $(this).val();
+               console.log("지역:" + cinema);
+               console.log("도시:"+dist);
+                $.ajax({
+                    url: '/movie/screening/dates?movie_num=${movieRead.movie_num}&cinema=' + cinema +'&dist=' + dist,
+                    type: 'post',
+                    success: function (data) {
+                    	var dateList="";
+                       $.each(data, function(index, item){
+                          console.log(index,item);
+                          dateList+="<li><button value="+ item+">" + item + "</button></li>";
+                       });
+                       $("#date-list").html(dateList);   
+                    }, //end-success
+                    error: function () {
+                      console.log("실패");
+                    } //end-error
+                  }) //ajax
+            });
+            //관람시간
+             $(document).on('click','#date-list>li>button', function () {
+               dates = $(this).val();
+                $.ajax({
+                    url: '/movie/screening/times?movie_num=${movieRead.movie_num}&cinema=' + cinema +'&dist=' + dist +'&dates=' + dates,
+                    type: 'post',
+                    success: function (data) {
+                    	console.log(data);
+                    	var timeList="";
+                       $.each(data, function(index, item){                     
+                          timeList+="<li><button value="+ item+">" + item + "</button></li>";
+                       });
+                       $("#time-list").html(timeList);   
+                    }, //end-success
+                    error: function () {
+                      console.log("실패");
+                    } //end-error
+                  }) //ajax
+            });
+            //좌석
+             $(document).on('click','#time-list>li>button', function () {
+            	 times = $(this).val();                
+                  $.ajax({
+                      url: '/movie/screening/seats?movie_num=${movieRead.movie_num}&cinema=' + cinema +'&dist=' + dist +'&dates=' + dates +'&times=' + times,
+                      type: 'post',
+                      success: function (data) {
+                    	  var seatsList="";
+                    	  $('#remain-seat-num').html(data.length);
+                         console.log(data);
+                      }, //end-success
+                      error: function () {
+                        console.log("실패");
+                      } //end-error
+                    }) //ajax
+              });
         }); 
     </script>
 </body>
