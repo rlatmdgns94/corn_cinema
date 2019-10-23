@@ -12,8 +12,8 @@
 </head>
 
 <body>
-  <div class="join_result_wrap">
-    <div class="join_result">
+  <div class="join-result-wrap">
+    <div class="join-result">
       <img src="/resources/img/task-complete.png">
       <div class="join-result-main">회원가입 완료</div>
       <div class="join-result-sub">[<strong>CORN CINEMA</strong>] 회원이 되신 것을 환영합니다.</div>
