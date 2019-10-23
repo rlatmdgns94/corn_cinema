@@ -1,63 +1,79 @@
 @charset "utf-8";
-.mypage-wrap{
-    padding: 100px 0;
-}
-/* 회원정보 */
-.member-info-wrap{
-    text-align: right;
-}
-.mypage-content{
-    padding-top: 50px;
-    text-align: left;
-}
-.member-info ,.ticket-history{
-    margin-top: 10px;
-    width: 100%;
-}
-.member-info th, .member-info td{
-    font-size: 16px;
-}
-.member-info th{
-    padding: 10px 0px;
-    background: #eaeaea;
-    text-align: center;
-}
-.member-info td{
-    padding-left: 20px;
-    border-bottom: 1px solid #efefef;
-}
-.member-info tbody{
-    border-top: 2px solid #ccc;
-}
-.mypage-subtitle{
-    font-size:18px;
-}
-.member-modify-btn{
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px !important;
-    font-size: 16px;
-}
-/* 예매내역 */
-.ticket-history-wrap{
-    margin-top: 100px;
-}
-.ticket-history{
-    text-align: center;
+
+.mypage-wrap {
+  padding: 100px 0;
 }
 
-.ticket-history th{
-    background: #eaeaea;
-    padding: 10px 0;
-    font-size: 16px;
+/* 회원정보 */
+.member-info-wrap {
+  text-align: right;
 }
-.ticket-history td{
-    padding: 15px 0;
-    border-bottom: 1px solid #ccc;
-    font-size: 14px;
+
+.mypage-content {
+  padding-top: 50px;
+  text-align: left;
 }
-.mypage-btn{
-    padding: 5px 10px;
-    color: #fff;
-    background: #666;
+
+.member-info,
+.ticket-history {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.member-info th,
+.member-info td {
+  font-size: 16px;
+}
+
+.member-info th {
+  padding: 10px 0px;
+  background: #eaeaea;
+  text-align: center;
+}
+
+.member-info td {
+  padding-left: 20px;
+  border-bottom: 1px solid #efefef;
+}
+
+.member-info tbody {
+  border-top: 2px solid #ccc;
+}
+
+.mypage-subtitle {
+  font-size: 18px;
+}
+
+.member-modify-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px !important;
+  font-size: 16px;
+}
+
+/* 예매내역 */
+.ticket-history-wrap {
+  margin-top: 100px;
+}
+
+.ticket-history {
+  text-align: center;
+}
+
+.ticket-history th {
+  background: #eaeaea;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.ticket-history td {
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.mypage-btn {
+  padding: 5px 10px;
+  color: #fff;
+  background: #666;
 }

@@ -21,8 +21,8 @@ $(document).ready(function () {
       return false;
     }
     //비밀번호 확인
-    if ($("#password").val() !== $("#password-check").val()) {
-      $("#password-check").focus();
+    if ($("#password").val() !== $("#passwordCheck").val()) {
+      $("#passwordCheck").focus();
       return false;
     }
     // 아이디랑 비밀번호랑 같은지
@@ -41,8 +41,8 @@ $(document).ready(function () {
       $("#email").focus();
       return false;
     }
-    if ($("#certification-number").val() == "") {
-      $("#certification-number").focus();
+    if ($("#CertiFicationNumber").val() == "") {
+      $("#CertiFicationNumber").focus();
       $("#emailMessageNum").show();
       $("#emailMessageNum").text("인증번호 확인 부탁드립니다.")
       return false;
@@ -50,8 +50,8 @@ $(document).ready(function () {
       $("#emailMessageNum").hide();
     }
 
-    if ($("#certification-number").val() !== "") {
-      var authenNum = $('#certification-number').val();
+    if ($("#CertiFicationNumber").val() !== "") {
+      var authenNum = $('#CertiFicationNumber').val();
       $.ajax({
         url: "/member/authen",
         type: "post",
@@ -64,7 +64,7 @@ $(document).ready(function () {
             $("#emailMessageNum").css("color", "blue").text("인증이 확인되었습니다.!!");
             $('.join-form').submit();
           } else {
-            $("#certification-number").val("");
+            $("#CertiFicationNumber").val("");
             alert("인증번호를 정확히 입력해주세요.");
             return false;
           }
@@ -137,13 +137,13 @@ $(document).ready(function () {
     }
   });
 
-  $('#password-check').on('blur', function (event) {
-    if ($('#password-check').val() == "") {
+  $('#passwordCheck').on('blur', function (event) {
+    if ($('#passwordCheck').val() == "") {
       $("#pwCheckMessage").show();
       $("#pwCheckMessage").text("비밀번호 확인을 입력해주세요.");
       return false;
-    } else if ($("#password").val() !== $("#password-check").val()) {
-      $("#password-check").val("");
+    } else if ($("#password").val() !== $("#passwordCheck").val()) {
+      $("#passwordCheck").val("");
       $("#pwCheckMessage").show();
       $("#pwCheckMessage").text("비밀번호랑 비밀번호 확인이 다릅니다.");
       return false;
@@ -224,7 +224,7 @@ $(document).ready(function () {
     })
   }
   function authentiCation() {
-    var authenNum = $('#certification-number').val();
+    var authenNum = $('#CertiFicationNumber').val();
     $.ajax({
       url: "/member/authen",
       type: "post",
@@ -233,11 +233,11 @@ $(document).ready(function () {
       },
       success: function (data) {
         if (data == 1) {
-          $('#certification-number').attr("disabled", true);
+          $('#CertiFicationNumber').attr("disabled", true);
           alert("인증이 확인되었습니다.!!");
           $('#certification-confirm').remove();
         } else {
-          $("#certification-number").val("");
+          $("#CertiFicationNumber").val("");
           alert("인증번호를 정확히 입력해주세요.");
         }
       },
@@ -246,6 +246,6 @@ $(document).ready(function () {
       }
     })
   }
-  $('#email-authentiCation').on('click', emailAuthentiCation);
-  $('#certification-confirm').on('click', authentiCation);
+  $('#emailAuthentiCation').on('click', emailAuthentiCation);
+  $('#CertiFicationConfirm').on('click', authentiCation);
 });

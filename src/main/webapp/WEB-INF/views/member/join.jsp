@@ -41,9 +41,9 @@
               </td>
             </tr>
             <tr>
-              <th scope="row"><label for="password-check">*비밀번호 확인</label></th>
+              <th scope="row"><label for="passwordCheck">*비밀번호 확인</label></th>
               <td>
-                <input type="password" title="비밀번호 확인" id="password-check" name="user_check_pw">
+                <input type="password" title="비밀번호 확인" id="passwordCheck" name="user-check-pw">
                 <span class="error-message" id="pwCheckMessage" role="alert" style="display:none"></span>
               </td>
             </tr>
@@ -58,15 +58,15 @@
               <th scope="row"><label for="email">*이메일</label></th>
               <td>
                 <input type="email" id="email" name="email">
-                <input type="button" value="인증" id="email-authentiCation">
+                <input type="button" value="인증" id="emailAuthentiCation">
                 <span class="error-message" id="emailMessage" role="alert" style="display:none"></span>
               </td>
             </tr>
             <tr>
               <th scope="row"><label for="number">*인증번호</label></th>
               <td>
-                <input type="text" id="certification-number">
-                <input type="button" id="certification-confirm" value="확인">
+                <input type="text" id="CertiFicationNumber">
+                <input type="button" id="CertiFicationConfirm" value="확인">
               </td>
             </tr>
           </tbody>

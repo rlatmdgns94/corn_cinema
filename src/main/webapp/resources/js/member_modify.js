@@ -14,8 +14,8 @@ $(document).ready(function () {
         return false;
       }
       //비밀번호 확인
-      if ($("#password").val() !== $("#password-check").val()) {
-        $("#password-check").focus();
+      if ($("#password").val() !== $("#passwordCheck").val()) {
+        $("#passwordCheck").focus();
         return false;
       }
       // 아이디랑 비밀번호랑 같은지
@@ -48,15 +48,15 @@ $('.join-form').submit();  //회원정보수정 전송
      }
    });
 
-   $('#password-check').on('blur', function (event) {
-     if ($('#password-check').val() == "") {
+   $('#passwordCheck').on('blur', function (event) {
+     if ($('#passwordCheck').val() == "") {
        $("#pwCheckMessage").show();
        $("#pwCheckMessage").text("비밀번호 확인을 입력해주세요.");
        return false;
-     } else if ($("#password").val() !== $("#password-check").val()) {
+     } else if ($("#password").val() !== $("#passwordCheck").val()) {
        $("#pwCheckMessage").show();
        $("#pwCheckMessage").text("비밀번호랑 비밀번호 확인이 다릅니다.");
-       $("#password-check").val("");
+       $("#passwordCheck").val("");
        return false;
      } else {
        $("#pwCheckMessage").hide();

@@ -8,13 +8,13 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <body>
   <div class="visual">
     <ul class="slick-items">
       <li class="visual">
-        <a href="" class="img_wrap" style="background-image:url('/resources/img/tazza.jpg')">
+        <a href="" class="img-wrap" style="background-image:url('/resources/img/tazza.jpg')">
           <span class="visual-text">
             <strong class="visual-text-title">타짜: 원 아이드 잭 <em>Tazza: One Eyed Jack</em></strong>
             <span class="visual-text-sub">인생을 바꿀 판이 시작된다</span>
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li class="visual">
-        <a href="#none" class="img_wrap" style="background-image:url('/resources/img/jangssari.jpg')">
+        <a href="#none" class="img-wrap" style="background-image:url('/resources/img/jangssari.jpg')">
           <span class="visual-text">
             <strong class="visual-text-title">장사리: 잊혀진 영웅들 <em>Battle of Jangsari</em></strong>
             <span class="visual-text-sub">역사르르 뒤바꾼 전투, 잊혀진 772명의 기록</span>
@@ -30,7 +30,7 @@
         </a>
       </li>
       <li class="visual">
-        <a href="" class="img_wrap" style="background-image:url('/resources/img/222.jpg')">
+        <a href="" class="img-wrap" style="background-image:url('/resources/img/222.jpg')">
           <span class="visual-text">
             <strong class="visual-text-title">그것: 두번째 이야기 <em>It Chapter Two</em></strong>
             <span class="visual-text-sub">그것의 마지막</span>
@@ -38,7 +38,7 @@
         </a>
       </li>
       <li class="visual">
-        <a href="" class="img_wrap" style="background-image:url('/resources/img/111.jpg')">
+        <a href="" class="img-wrap" style="background-image:url('/resources/img/111.jpg')">
           <span class="visual-text">
             <strong class="visual-text-title">그것: 두번째 이야기 <em>It Chapter Two</em></strong>
             <span class="visual-text-sub">그것의 마지막</span>
@@ -61,14 +61,13 @@
                   <div class="movie-content">
                     <div class="movie_img">
                       <a href="javascript:void(0);">
-
                         <img src="/resources/img/movie_poster/${boxMovie.view_path}">
                         <%--  </c:forEach> --%>
                       </a>
                     </div>
                     <div class="movie-info">
                       <h3 class="movie-title">
-                        <a href=""><span class="age_ico age_19">${boxMovie.film_rate}</span>${boxMovie.title}</a>
+                        <a href=""><span class="age-ico">${boxMovie.film_rate}</span>${boxMovie.title}</a>
                       </h3>
                       <div class="info-text-area">
                         <span class="info-text">
@@ -79,8 +78,6 @@
                     <div class="movie-btn-area">
                       <a href="${path}/movie/screening/booking?movie_num=${boxMovie.movie_num}"
                         class="movie-btn">예매하기</a>
-
-
                       <a href="${path}/movie_detail?movie_num=${boxMovie.movie_num}" class="movie-btn">상세보기</a>
                     </div>
                   </div>
@@ -104,7 +101,7 @@
                     <div class="movie-info">
                       <h3 class="movie-title">
                         <a href="">
-                          <span class="age_ico age_all">${newMovie.film_rate}</span>${newMovie.title}
+                          <span class="age-ico">${newMovie.film_rate}</span>${newMovie.title}
                         </a>
                       </h3>
                       <div class="info-text-area">
@@ -134,7 +131,7 @@
     </div>
     <!-- 공지사항 -->
     <div class="notice-wrap">
-      <div class="l_content notice-inner">
+      <div class="layout-content notice-inner">
         <h3 class="notice-title">NOTICE</h3>
         <ul class="notice">
           <li>

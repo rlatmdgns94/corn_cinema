@@ -23,7 +23,7 @@
                 <li class="stit-area">
                     <span>
                         <strong>등록일: </strong>
-                        <em class="regist_day">2019.09.26</em>
+                        <em class="regist-day">2019.09.26</em>
                     </span>
                 </li>
             </ul>

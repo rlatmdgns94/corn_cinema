@@ -3,7 +3,7 @@
     position: relative;
     height: 650px;
 }
-.img_wrap {
+.img-wrap {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -186,16 +186,16 @@
     margin-top:-4px;
     margin-right: 10px;
 }
-.age_19{
+.age-19{
     background-position: -90px 0;
 }
-.age_all{
+.age-all{
     background-position: 0 0;
 }
-.age_15{
+.age-15{
     background-position: -60px 0;
 }
-.age_12{
+.age-12{
     background-position: -30px 0;
 }
 /* 영화관이미지 */

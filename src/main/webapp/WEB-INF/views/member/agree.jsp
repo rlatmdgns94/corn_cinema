@@ -47,7 +47,8 @@
             6. "해지" : 회사 또는 회원이 서비스 사용 후 이용계약을 해약하는 것을 말합니다.<br>
             7. "휴면회원" : 메가박스 서비스를 이용한 마지막 날로부터 연속하여 12개월간 이용 내역이 없는 회원을 말합니다.<br>
           </div>
-          <label><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘이용약관’을 읽고 동의 합니다. (필수 동의)</label>
+          <label><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘이용약관’을 읽고 동의 합니다. (필수
+            동의)</label>
         </div>
         <div class="agreement">
           <h3>개인정보수집 및 이용안내</h3>
@@ -68,7 +69,6 @@
             - 신규 서비스 개발 및 맞춤 서비스 제공<br>
             - 개인 프로필 설정<br>
             - 포토카드 서비스 이용<br>
-
             3. 개인정보의 수집 방법 및 수집 동의<br>
             "회사"는 다음과 같은 방법으로 개인정보를 수집하고 동의를 받습니다.<br>
             (1) 개인정보 수집 방법<br>
@@ -80,7 +80,6 @@
             개인정보 수집과 관련하여 "회사"는 개인정보 처리방침을 통해 그 내용을 고지하고 있으며,<br>
             개인정보의 항목과 이용 목적 및 보유기간, 거부권에 대해 고지 후 내용에 대해 동의 버튼을<br>
             클릭하면 개인정보 수집에 동의한 것으로 봅니다.<br>
-
             4. 개인정보의 이용·보관 기간<br>
             "회사"는 개개인정보의 수집 및 제공 받은 목적이 달성되면 개인정보를 파기함을 원칙으로 합니다. 다만, 다음 각 호의 경우 일정기간 동안
             예외적으로 수집한 회원정보의 전부 또는 일부를 보관할 수 있습니다.<br>
@@ -96,18 +95,19 @@
             - 포인트 거래 이력이 1년 이상 없는 고객<br>
             - 멤버십 카드 발급 및 삭제 등의 이력이 1년 이상 없는 고객<br>
           </div>
-          <label><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘개인정보수집 및 이용안내’을 읽고 동의 합니다. (필수 동의)</label>
+          <label><input type="checkbox" name="agreement" class="agreement-checkobx"> 위의 ‘개인정보수집 및 이용안내’을 읽고 동의 합니다. (필수
+            동의)</label>
         </div>
       </div>
     </div>
     <div class="join-button-wrap">
-      <button class="join-button join-submit" id="agreement-confirm">확인</button>
+      <button class="join-button join-submit" id="agreementConfirm">확인</button>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $('#agreement-confirm').on('click', function () {
+      $('#agreementConfirm').on('click', function () {
         if ($('input:checkbox[name=agreement]:checked').length == $('input:checkbox[name=agreement]').length) {
           location.href = 'join';
           return false;
