@@ -207,8 +207,10 @@
   font-size: 13px;
   color: #666;
 }
-
-.seat-line>button {
+.all-seats{
+   text-align:center;
+}
+.all-seats>li>button {
   display: inline-block;
   position: relative;
   width: 24px;
@@ -219,3 +221,11 @@
   text-align: center;
   line-height: 24px;
 }
+.all-seats>li>button.selected {
+   background:#b60000;
+}
+.completed{
+   background:#d2d2d2 url(/resources/img/bg_disabled.gif) 50% 50% no-repeat !important;
+    text-indent: -9999px;
+    cursor: default;
+}   

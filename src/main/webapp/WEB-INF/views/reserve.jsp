@@ -246,6 +246,7 @@
       });
       //좌석
        $(document).on('click', '#timeList>li>button', function () {
+          
         times = $(this).val();
         $.ajax({
           url: '/movie/screening/seats?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
@@ -262,12 +263,23 @@
                 
                  console.debug('- seatCol:', seatCol);
                 for(var j = 0; j<seatCol.length; j++){
-                  seatList+= "<button value="+seatCol[j].seat_num+">" + seatCol[j].seat_num +"<span class='blind reserve-status'>"+seatCol[j].status+"</span></button>";
+                  if(seatCol[j].status==='Y'){
+                     seatList+= "<button class='completed' value="+seatCol[j].seat_num+" disabled='disabled'>" + seatCol[j].seat_num +"<span class='blind reserve-status'>"+seatCol[j].status+"</span></button>";                   
+                     
+                  }
+                  else{
+                     seatList+= "<button value="+seatCol[j].seat_num+">" + seatCol[j].seat_num +"<span class='blind reserve-status'>"+seatCol[j].status+"</span></button>";
+                  }
                 } // inner for
              
                 seatList+="</li>";
              } // outer for
-            $('.all-seats').html(seatList);  
+             
+             
+             
+                      
+            $('.all-seats').html(seatList); 
+            
           }, //end-success
           error: function () {
             console.log("실패");
@@ -286,18 +298,13 @@
             error: function () {
               console.log("실패");
             } //end-error
-          }) //ajax
+          }) //ajax       
       });
       
       $(document).on('click','.all-seats>li>button', function(){
          var cnt = $('#ticketCount').val();
          var selectedCnt = $('.selected').length+1;
          
-         if(cnt===selectedCnt){
-            if(!$('.all-seats>li>button').hasClass('selected')){
-               event.preventDefault();
-              }   
-         }
          //재 클릭후 버튼 선택 제거 
          if($(this).hasClass('selected')){
             $(this).removeClass('selected');
@@ -305,6 +312,10 @@
             seatSum.splice(seatSum.indexOf(removeSeat),1);
          }      
          else{
+             if(cnt < selectedCnt){
+                alert('인원수가 초과되었습니다. 좌석을 취소후에 선택해주세요.')
+                return false;
+             }
             $(this).addClass('selected'); 
             seatSum.push($(this).val());
          }
@@ -319,28 +330,26 @@
       
       $('#payment').on('click', function(){
          seatSum = seatSum.sort();
-         console.log(cinema,
-               dist,
-               dates,
-               times,seatSum);
-         
-         if(confirm("결제가 완료되었습니다. 마이페이지로 이동하시겠습니까?")) { //모달창?
-        	    window.location.href = "/member/mypage"
+         //console.log(cinema, dist, dates, times, seatSum);    
+         if(seatSum.length === 0){
+            alert('좌석을 선택해주세요.');
+            return false;
          }
+         if(confirm("마이페이지로 이동하시겠습니까?")) { //모달창?
+              window.location.href = "/member/mypage"
+          }
          
          $.ajax({
-            url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
-            dist + '&dates=' + dates + '&times=' + times+ '&seatSum=' +seatSum,
-            type: 'post',
-            success: function (data) {
-              console.log()
-            }, //end-success
-            error: function () {
-              console.log("실패");
-            } //end-error
-          }) //ajax
-         
-         
+              url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
+              dist + '&dates=' + dates + '&times=' + times+ '&seatSum=' +seatSum,
+              type: 'post',
+              success: function (data) {
+                console.log("결제")
+              }, //end-success
+              error: function () {
+                console.log("실패");
+              } //end-error
+           }) //ajax
       });
     });
 
