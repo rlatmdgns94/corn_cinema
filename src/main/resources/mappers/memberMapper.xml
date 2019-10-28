@@ -54,4 +54,38 @@
           SELECT count(*) from tbl_member where email=#{user_email}
      </select>
      
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ reset Pw(임시 비밀번호받기위한 check)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     
+     <select id="update_ResetPw" parameterType="string" resultType="int">
+              SELECT count(*) from tbl_member where id=#{id} and email=#{email}
+     </select>
+     
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마이페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+ 	<!-- 예매번호 출력 -->
+ 	
+ 	<select id= "showReservation"      
+ 	parameterType="com.acorn.domain.MypageVO">
+      
+ 		select distinct r.reservation_num, 
+ 			   s.movie_start_time, 
+ 			   m.title,
+ 			   c.local_info_dist, 
+ 			   r.reservation_date
+		from 
+			   tbl_reservation r, 
+			   tbl_movie m, 
+			   tbl_cinema c, 
+			   tbl_screening s
+		
+		where 
+			   r.movie_num=m.movie_num and m.movie_num=s.movie_num and s.cinema_num=c.cinema_num and 
+			   r.id=#{id}
+		
+		GROUP BY reservation_num;
+ 	
+ 	</select>
+     
+     
+     
+     
   </mapper>

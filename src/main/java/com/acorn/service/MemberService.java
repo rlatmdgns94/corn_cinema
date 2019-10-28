@@ -16,6 +16,8 @@ public interface MemberService {
    public abstract int DuplicateId(String user_id) throws Exception; 
 
    public abstract int DuplicateEmail(String user_email) throws Exception;
+
+   public abstract int getNewPw(MemberVo vo);
    
   
 }

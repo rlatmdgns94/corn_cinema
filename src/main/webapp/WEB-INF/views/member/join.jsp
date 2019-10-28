@@ -67,6 +67,7 @@
               <td>
                 <input type="text" id="CertiFicationNumber">
                 <input type="button" id="CertiFicationConfirm" value="확인">
+                 <span class="error-message" id="CertiFicationMessage" role="alert" style="display:none"></span>
               </td>
             </tr>
           </tbody>

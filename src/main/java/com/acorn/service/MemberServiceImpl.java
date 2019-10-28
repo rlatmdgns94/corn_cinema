@@ -57,6 +57,7 @@ private MemberDAO dao ;
 		
 		log.info("DuplicateId");
 		return dao.idCheck(user_id);
+		
 	} //DuplicateId
 
 
@@ -65,7 +66,17 @@ private MemberDAO dao ;
 		 
 	    log.info("DuplicateEmail");
 		return dao.emailCheck(user_email);
+		
 	} //DuplicateEmail
+
+
+	@Override
+	public int getNewPw(MemberVo vo) {
+		
+		log.info("getNewPw");
+        return  dao.reset_Password(vo);
+
+	} //getNewPw
 
 
 } //end interface

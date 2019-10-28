@@ -55,7 +55,7 @@ public class Membercontroller {
 
 	} // idCheck
 
-	// ------------------------------------ emailcheck -----------------------------------------//
+   // ------------------------------------ emailcheck -----------------------------------------//
 	@PostMapping("/emailcheck")
 	@ResponseBody
 	public int emailcheck(@RequestParam("userEmail") String user_email) throws Exception {
@@ -63,7 +63,7 @@ public class Membercontroller {
 
 	}// emailcheck
 	
-   //------------------------------withdrawal_password_ckeck---------------------------------------//
+   //------------------------------withdrawal_password_ckeck--------------------------------------//
 	@PostMapping("withdrawalCk")
 	@ResponseBody
 	public int withdrawalCk(@RequestParam("password") String passwordCk, 
@@ -85,10 +85,32 @@ public class Membercontroller {
 		}
 
 		return userRemoveCount;
-	}
+	} //withdrawalCk
 
-	// ------------------------------------ login -----------------------------------------//
+   //------------------------------reset_Password--------------------------------------//
+	@PostMapping("reset_Password")
+	@ResponseBody
+	public int reset_Password(@RequestParam("userId") String user_Id, 
+			                  @RequestParam("userEmail") String user_Email, 
+                              HttpSession session) throws Exception {
+ 
+		//	int Information_match = 0;
+			
+			MemberVo vo = new MemberVo();
+			
+			vo.setId(user_Id);
+			vo.setEmail(user_Email);
+			
+		//	System.out.println("Information_match::: " + Information_match);
+			
+			//Information_match = memberservice.getNewPw(vo);
+			//return Information_match;
+			return  memberservice.getNewPw(vo);
 
+		} // reset_Password
+	
+	
+   //------------------------------------ login -----------------------------------------//
 	@GetMapping("/login")
 	public void login() {
 
@@ -106,12 +128,13 @@ public class Membercontroller {
 
 		if (vo == null) {
 			log.info("로그인 실패 !");
+
 			return "redirect:/member/login"; // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
 		} // if
 
 		model.addAttribute("memberInfo", vo);
 		return "/index";
-	} // login_POST()
+	} // login_POST
 
 	// ------------------------------------ join-----------------------------------------//
 
@@ -119,13 +142,13 @@ public class Membercontroller {
 	public void agree() {
 		log.info("agree");
 
-	} // agree()
+	} // agree
 	
 	@GetMapping("/join")
 	public void join() {
 		log.info("join");
 
-	} // join()
+	} // join
 
 	@PostMapping("/join")
 	public String join_result(MemberDTO dto) throws Exception {
@@ -144,8 +167,11 @@ public class Membercontroller {
 		memberservice.regist(vo);
 
 		return "/member/join_result";
-	} // join_result()
+		
+	} // join_result
 
+	
+   //-------------------------------------------인증 및 확인-------------------------------------------------------//
 	@PostMapping("/emailAuthen")
 	@ResponseBody
 	public void emailAuthen(@RequestParam("email") String mail, HttpSession session) throws Exception {
@@ -160,8 +186,7 @@ public class Membercontroller {
 		email.setSubject("corn_movie 인증번호 입니다."); //제목
 		emailSender.SendEmail(email); //메일 전송
 		
-
-	}
+	} //emailAuthen
 
 	@PostMapping("/authen")
 	@ResponseBody
@@ -176,14 +201,16 @@ public class Membercontroller {
 		}
 
 		return authenValue;
-	}
-
+	} //authen
+  //--------------------------------------------------------------------------------------------------------//
+	
+	
 	// ------------------------------------ modify -----------------------------------------//
 
 	@GetMapping("/member_modify")
 	public void modify() {
 		log.info("in회원정보수정페이지");
-	}
+	} //modify
 
 	@PostMapping("/member_modify")
 	public String member_modify(MemberDTO dto, HttpSession session) throws Exception {
@@ -202,7 +229,8 @@ public class Membercontroller {
 		memberservice.modify(vo);
 
 		return "redirect:/";
-	}
+	} //member_modify
+
 
 	// ------------------------------------ withdrawal -----------------------------------------//
 	

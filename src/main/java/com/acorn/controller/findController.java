@@ -63,6 +63,9 @@ public class findController {
 	String id = findservice.findId(vo);
 	vo.setId(id);     
 	
+	 log.info("name:"+ name);
+	 log.info("mail:"+ mail);
+	
 	if(id!=null) {	
 		email.setContent("아이디는 "+id+" 입니다");
 		email.setReceiver(mail);
@@ -70,7 +73,8 @@ public class findController {
 		emailSender.SendEmail(email);
 		log.info(mail +"로아이디값 전송 !");
 	}else {
-		;;
+		log.info("redirect:/find/find_id");
+		return "redirect:/find/find_id";
 	}//if-else
 	return "member/login";
 	
@@ -110,7 +114,7 @@ public class findController {
     	
     	if(password!=null) {
     		
-    		email.setContent("비밀번호는 "+newPassword+" 입니다");
+    		email.setContent("임시 비밀번호는 "+newPassword+" 입니다");
     		email.setReceiver(mail);
     		email.setSubject(id+"님 corn_movie 'password' 찾기 메일입니다");
     		emailSender.SendEmail(email);
@@ -118,7 +122,7 @@ public class findController {
     		findservice.updatePw(vo);
     		
     	}else {
-    		;;
+    		return "redirect:/find/find_pw";
     	}//if-else
     	return "member/login";
     	

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	
   var idReg = /^[a-zA-Z0-9]{6,10}$/;
   var pwReg = /^[a-zA-Z0-9]{6,10}$/;
   var nameReg = /^[가-힣]+$/;
@@ -43,11 +44,9 @@ $(document).ready(function () {
     }
     if ($("#CertiFicationNumber").val() == "") {
       $("#CertiFicationNumber").focus();
-      $("#emailMessageNum").show();
-      $("#emailMessageNum").text("인증번호 확인 부탁드립니다.")
       return false;
     } else {
-      $("#emailMessageNum").hide();
+      $("#emailMessage").hide();
     }
 
     if ($("#CertiFicationNumber").val() !== "") {
@@ -60,8 +59,7 @@ $(document).ready(function () {
         },
         success: function (data) {
           if (data == 1) {
-            $("#emailMessageNum").show();
-            $("#emailMessageNum").css("color", "blue").text("인증이 확인되었습니다.!!");
+
             $('.join-form').submit();
           } else {
             $("#CertiFicationNumber").val("");
@@ -114,7 +112,7 @@ $(document).ready(function () {
       error: function () {
         console.log("실패");
       } //end-error
-    }) //ajax
+    }); //ajax
   });
 
   $('#password').on('blur', function (event) {
@@ -234,8 +232,10 @@ $(document).ready(function () {
       success: function (data) {
         if (data == 1) {
           $('#CertiFicationNumber').attr("disabled", true);
-          alert("인증이 확인되었습니다.!!");
-          $('#certification-confirm').remove();
+          $("#CertiFicationMessage").show();
+          $("#CertiFicationMessage").css("color", "blue").text("인증완료");
+          alert("인증이 확인되었습니다.");
+          $('#CertiFicationConfirm').remove();
         } else {
           $("#CertiFicationNumber").val("");
           alert("인증번호를 정확히 입력해주세요.");

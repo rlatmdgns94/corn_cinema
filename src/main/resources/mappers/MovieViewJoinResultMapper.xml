@@ -53,5 +53,12 @@
 		ORDER BY opening_day desc
 
 	</select>
+<!-- 	
+	<update id="scoreUpdate">
 	
+	update tbl_movie 
+	set avg_score=(select AVG(score) from tbl_comments where movie_num = #{movie_num}) 
+	where movie_num=#{movie_num};
+	</update>
+	 -->
 </mapper>

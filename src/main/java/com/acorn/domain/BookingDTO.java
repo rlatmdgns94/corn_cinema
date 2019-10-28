@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookingDTO {
 	
-//	private int screening_num;
 	private String movieNum;
 	private String infoCity;
 	private String infoDist;

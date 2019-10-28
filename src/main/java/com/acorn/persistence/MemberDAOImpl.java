@@ -61,5 +61,14 @@ public class MemberDAOImpl implements MemberDAO {
 
 	} //emailCheck
 
+	@Override                                 //임시 비밀번호(비밀번호찾기) 
+	public int reset_Password(MemberVo vo) {
+		
+		System.out.println("::reset_Password::");
+		return  sqlSession.selectOne(namespace+".update_ResetPw", vo);
+	   
+		      
+	}
+
 
 }

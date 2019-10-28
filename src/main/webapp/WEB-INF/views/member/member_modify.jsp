@@ -44,6 +44,8 @@
               location.href = "/member/withdrawal_result"
             } else {
               alert("비밀번호가 일치하지 않습니다.");
+              $("#password").val("");
+              $("#passwordCheck").val("");    
               return;
             }
           },

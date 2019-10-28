@@ -12,25 +12,25 @@
 </head>
 
 <body>
-  <div class="main-findid-wrap">
-    <div class="findid-title-main">
-      <p class="findid_title">아이디 찾기</p>
+  <div class="main-find-wrap">
+    <div class="find-title-main">
+      <p class="find_title">아이디 찾기</p>
     </div>
-    <div class="find-id-wrap">
+    <div class="find-wrap">
       <form action="/find/find_resultid" method="POST">
         <div class="find-form">
           <input type="text" id="name" name="name" placeholder="이름" title="이름입력"> <br>
           <input type="email" id="email" name="email" placeholder="가입된메일을 입력해주세요." title="메일 입력">
         </div>
-        <div class="find-btn">
-          <input type="submit" class="find-btn" value="확인">
-        </div>
+         <button type="button" class="find-btn" id="submitButton">확인</button>
       </form>
     </div>
     <div id="findLoginpw" class="find_another">
       혹시 비밀번호를 찾으시나요? <a href="find_pw" class="link-find">비밀번호 찾기</a>
     </div>
   </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/resources/js/findId.js"></script>
 </body>
 
 </html>

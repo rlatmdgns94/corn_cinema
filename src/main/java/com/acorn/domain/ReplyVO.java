@@ -1,22 +1,24 @@
 package com.acorn.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class ReplyVO {
 
 	private String id;
 	private String movie_num;
 	private String comment;
 	private double score;
+	private double avgscore;
 	
-	private Date regdate;
-	private Date updatedate;
+	private String regdate;
+	private String updatedate;
 
 }

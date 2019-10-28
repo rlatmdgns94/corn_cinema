@@ -19,20 +19,19 @@ public class MovieViewJoinResultServiceImpl
 	@Autowired
 	MovieViewJoinResultDAO dao;
 	
+	//영화정보 서비스
 	@Override
 	public List<MovieViewJoinResultVO> movieList() throws Exception {
 		
 		return dao.movieList();
 		
-	}  //movieList()
+	}  //movieList
 	
-	
-	  @Override 
-	  public MovieViewJoinResultVO movieRead(String movie_num) throws Exception{
+	 @Override 
+	 public MovieViewJoinResultVO movieRead(String movie_num) throws Exception{
 	  
-	  return dao.movieRead(movie_num); 
-	  
-	  }
+		  return dao.movieRead(movie_num);
+	}  //movieRead
 	 
 
 }  //end class

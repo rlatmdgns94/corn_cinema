@@ -29,7 +29,9 @@ public class MainController {
 		List<MovieViewJoinResultVO> list2 = service.movieList(); // 최신상영작
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);
-
+		
+		log.info("list1:::::"+list1) ;
+		
 		return "index";
 	}
 
