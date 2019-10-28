@@ -33,11 +33,11 @@
         </li>
         <li>
           <div class="ticket-info-title">선택좌석</div>
-          <div>일반석 D번 10</div>
+          <div id=seatInfo></div>
         </li>
         <li>
           <div class="ticket-info-title">총 결제금액</div>
-          <div class="ticket-price">8,000</div>
+          <div class="ticket-price"><span>0</span>원</div>
         </li>
       </ul>
     </div>
@@ -246,7 +246,7 @@
       });
       //좌석
        $(document).on('click', '#timeList>li>button', function () {
-          
+          seatSum=[];
         times = $(this).val();
         $.ajax({
           url: '/movie/screening/seats?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
@@ -264,7 +264,7 @@
                  console.debug('- seatCol:', seatCol);
                 for(var j = 0; j<seatCol.length; j++){
                   if(seatCol[j].status==='Y'){
-                     seatList+= "<button class='completed' value="+seatCol[j].seat_num+" disabled='disabled'>" + seatCol[j].seat_num +"<span class='blind reserve-status'>"+seatCol[j].status+"</span></button>";                   
+                     seatList+= "<button class='completed' value="+seatCol[j].seat_num+" disabled='disabled'>" + seatCol[j].seat_num +"</button>";                   
                      
                   }
                   else{
@@ -274,10 +274,7 @@
              
                 seatList+="</li>";
              } // outer for
-             
-             
-             
-                      
+                     
             $('.all-seats').html(seatList); 
             
           }, //end-success
@@ -302,33 +299,37 @@
       });
       
       $(document).on('click','.all-seats>li>button', function(){
+    	 
          var cnt = $('#ticketCount').val();
-         var selectedCnt = $('.selected').length+1;
+         var selectedCnt = $('.selected').length;
+         
          
          //재 클릭후 버튼 선택 제거 
          if($(this).hasClass('selected')){
             $(this).removeClass('selected');
             var removeSeat=$(this).val()
             seatSum.splice(seatSum.indexOf(removeSeat),1);
-         }      
-         else{
-             if(cnt < selectedCnt){
-                alert('인원수가 초과되었습니다. 좌석을 취소후에 선택해주세요.')
-                return false;
-             }
-            $(this).addClass('selected'); 
+         } 
+         else if(cnt < selectedCnt+1){
+             alert('인원수가 초과되었습니다. 좌석을 취소후에 선택해주세요.')
+             //$(this).addClass('');    
+             return false;
+          }
+         else{           
+            $(this).addClass('selected');  
             seatSum.push($(this).val());
-         }
-         
-           
-         console.log("seatSum:", seatSum);
+         }	         
+         console.log(seatSum);
       });
       
       $('#ticketCount').change(function(){
         $('.all-seats>li>button').removeClass('selected');
+        seatSum=[];
       });
       
       $('#payment').on('click', function(){
+    	  	  
+    	 console.log("seatSum:", seatSum);
          seatSum = seatSum.sort();
          //console.log(cinema, dist, dates, times, seatSum);    
          if(seatSum.length === 0){
@@ -336,8 +337,8 @@
             return false;
          }
          if(confirm("마이페이지로 이동하시겠습니까?")) { //모달창?
-              window.location.href = "/member/mypage"
-          }
+               window.location.href = "/member/mypage"
+         }
          
          $.ajax({
               url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
