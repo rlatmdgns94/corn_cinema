@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <jsp:include page="header.jsp"  flush="false"/>
+  <jsp:include page="header.jsp" flush="false" />
   <div id="container">
     <h3 class="ticket-title">영화예매</h3>
     <div class="ticket-info-area">
@@ -43,7 +43,7 @@
       </ul>
     </div>
     <!-- 예매본문 -->
-    <div class="layout-content">
+    <div class="layout-content reserve-wrap">
       <div class="box-step">
         <dl class="cinema-choice">
           <dt>
@@ -94,7 +94,8 @@
             <p class="select-message">관람시간을 선택해주세요.</p>
             <div class="seat-choice-content">
               <!-- 선택 시간에 관한 좌석 및 잔여석 -->
-              <div class="remain-seat">일반석 : <span id="remainSeatNum">${remainseats}</span>석</div> <!-- 몇좌석 남았는지 seat-v에 넣기 ajax로-->
+              <div class="remain-seat">일반석 : <span id="remainSeatNum">${remainseats}</span>석</div>
+              <!-- 몇좌석 남았는지 seat-v에 넣기 ajax로-->
               <!--  선택 전-->
               <div class="select-person-area">
                 <label for="ticketCount" class="select-title">인원선택</label>
@@ -118,18 +119,41 @@
           </dd>
         </dl>
       </div>
-      <div class="seat-area">
-        <ul class="all-seats">
-        </ul>
+      <div class="screen">
+        <span class="screen-title">SCREEN</span>
+        <div class="seat-area">
+          <span class="screen-stage">SCREEN</span>
+          <ul class="all-seats">
+          </ul>
+        </div>
       </div>
-      <button id="payment">결제</button>
+      <div class="reserve-note">
+        <div class="precautions"><strong>예매 시 주의사항</strong></div>
+        <div class="precautions-content">
+          <p>※ 예매시 주의 사항</p>
+          <p>1. 홈페이지 예매 후 현장에서 결제수단을 변경 할 수 없습니다.</p>
+          <p>2. 영화 날짜 및 시간 변경은 취소 후 다시 예매 진행을 하셔야 합니다.</p>
+          <p>3. 부분 취소 환불은 불가능합니다.</p>
+          <ul class="reserve-rule">
+            <li>※예매 취소 및 환불 규정</li>
+            <li>&nbsp; &nbsp;· 인터넷(모바일)예매 : 영화 상영 시간 20분 전까지 환불 가능.<br>
+              &nbsp; &nbsp; &nbsp; &nbsp;(인터넷(모바일)예매 후 현장에서 결제수단변경을 원하실 경우 상영시간 20분전까지 직접 예매 취소 후 재결제 하셔야 합니다.)
+            </li>
+            <li>&nbsp; &nbsp;· 현장예매 : 영화상영시간 전까지 취소 및 환불 가능.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="payment-area">
+        <button id="payment" class="join-submit join-button">결제</button>
+      </div>
     </div>
+    <jsp:include page="footer.jsp" flush="false" />
   </div>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script>
     $(document).ready(function () {
-       var seatSum =[];
+      var seatSum = [];
       //영화관 선택
       $('.cinema-choice-list>li>button').on('click', function () {
         $(".cinema-choice-list>li>button").removeClass("active");
@@ -228,6 +252,7 @@
       //관람시간
       $(document).on('click', '#dateList>li>button', function () {
         dates = $(this).val();
+
         $.ajax({
           url: '/movie/screening/times?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
             dist + '&dates=' + dates,
@@ -235,9 +260,11 @@
           success: function (data) {
             console.log(data);
             var timeList = "";
+
             $.each(data, function (index, item) {
               timeList += "<li><button value=" + item + ">" + item + "</button></li>";
             });
+
             $("#timeList").html(timeList);
           }, //end-success
           error: function () {
@@ -246,117 +273,120 @@
         }) //ajax
       });
       //좌석
-       $(document).on('click', '#timeList>li>button', function () {
-          seatSum=[];
+      $(document).on('click', '#timeList>li>button', function () {
+        seatSum = [];
+        $('#seatInfo').text("");
+        $('.ticket-price>span').text("0");
+
         times = $(this).val();
         $.ajax({
           url: '/movie/screening/seats?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
             dist + '&dates=' + dates + '&times=' + times,
           type: 'post',
-          
-          success: function (data) {     
-            var seatRow=data;
+
+          success: function (data) {
+            var seatRow = data;
             console.debug('- seatRow:', seatRow);
-            var seatList="";
-            for(var i = 0; i<seatRow.length; i++){
-                 seatList+="<li><span>"+i+"</span>";
-                var seatCol=seatRow[i].list;
-                
-                 console.debug('- seatCol:', seatCol);
-                for(var j = 0; j<seatCol.length; j++){
-                  if(seatCol[j].status==='Y'){
-                     seatList+= "<button class='completed' value="+seatCol[j].seat_num+" disabled='disabled'>" + seatCol[j].seat_num +"</button>";                   
-                     
-                  }
-                  else{
-                     seatList+= "<button value="+seatCol[j].seat_num+">" + seatCol[j].seat_num +"<span class='blind reserve-status'>"+seatCol[j].status+"</span></button>";
-                  }
-                } // inner for
-             
-                seatList+="</li>";
-             } // outer for
-                     
-            $('.all-seats').html(seatList); 
-            
+            var seatList = "";
+            for (var i = 0; i < seatRow.length; i++) {
+              seatList += "<li><span class='seat-title'>" + String.fromCharCode(i + 65) + "</span>";
+
+              var seatCol = seatRow[i].list;
+              console.debug('- seatCol:', seatCol);
+
+              for (var j = 0; j < seatCol.length; j++) {
+                if (seatCol[j].status === 'Y') {
+                  seatList += "<button class='completed' value=" + seatCol[j].seat_num +
+                    " disabled='disabled'>" + seatCol[j].seat_num + "</button>";
+                } else {
+                  seatList += "<button value=" + seatCol[j].seat_num + ">" + seatCol[j].seat_num +
+                    "<span class='blind reserve-status'>" + seatCol[j].status + "</span></button>";
+                }
+              } // inner for
+              seatList += "</li>";
+            } // outer for
+            $('.all-seats').html(seatList);
+            $('.screen-title').hide();
+            $('.screen-stage').show();
           }, //end-success
           error: function () {
             console.log("실패");
           } //end-error
         }) //ajax
-        
+
         $.ajax({
-            url: '/movie/screening/showSeat?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
-              dist + '&dates=' + dates + '&times=' + times,
-            type: 'post',
-            success: function (data) {
-              var seatsList = "";
-              $('#remainSeatNum').html(data);
-              console.log(data);
-            }, //end-success
-            error: function () {
-              console.log("실패");
-            } //end-error
-          }) //ajax       
+          url: '/movie/screening/showSeat?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
+            dist + '&dates=' + dates + '&times=' + times,
+          type: 'post',
+          success: function (data) {
+            var seatsList = "";
+            $('#remainSeatNum').html(data);
+            console.log(data);
+          }, //end-success
+          error: function () {
+            console.log("실패");
+          } //end-error
+        }) //ajax
       });
-      
-      $(document).on('click','.all-seats>li>button', function(){
-    	 
-         var cnt = $('#ticketCount').val();
-         var selectedCnt = $('.selected').length;
-         
-         
-         //재 클릭후 버튼 선택 제거 
-         if($(this).hasClass('selected')){
-            $(this).removeClass('selected');
-            var removeSeat=$(this).val()
-            seatSum.splice(seatSum.indexOf(removeSeat),1);
-         } 
-         else if(cnt < selectedCnt+1){
-             alert('인원수가 초과되었습니다. 좌석을 취소후에 선택해주세요.')
-             //$(this).addClass('');    
-             return false;
-          }
-         else{           
-            $(this).addClass('selected');  
-            seatSum.push($(this).val());
-         }	         
-         console.log(seatSum);
+
+      $(document).on('click', '.all-seats>li>button', function () {
+        var cnt = $('#ticketCount').val();
+        var selectedCnt = $('.selected').length;
+
+        //재 클릭후 버튼 선택 제거
+        if ($(this).hasClass('selected')) {
+          $(this).removeClass('selected');
+          var removeSeat = $(this).val()
+          seatSum.splice(seatSum.indexOf(removeSeat), 1);
+        } else if (cnt < selectedCnt + 1) {
+          alert('인원수가 초과되었습니다. 좌석을 취소후에 선택해주세요.')
+          //$(this).addClass('');
+          return false;
+        } else {
+          $(this).addClass('selected');
+          seatSum.push($(this).val());
+        }
+        console.log(seatSum);
+        $('#seatInfo').text(seatSum);
+        $('.ticket-price>span').text(seatSum.length * 8000);
       });
-      
-      $('#ticketCount').change(function(){
+
+      $('#ticketCount').change(function () {
         $('.all-seats>li>button').removeClass('selected');
-        seatSum=[];
+        seatSum = [];
+        $('#seatInfo').text("");
+        $('.ticket-price>span').text("0");
       });
-      
-      $('#payment').on('click', function(){
-    	  	  
-    	 console.log("seatSum:", seatSum);
-         seatSum = seatSum.sort();
-         //console.log(cinema, dist, dates, times, seatSum);    
-         if(seatSum.length === 0){
-            alert('좌석을 선택해주세요.');
-            return false;
-         }
-         if(confirm("예매가 완료되었습니다. 마이페이지로 이동하시겠습니까?")) { //모달창?
-               window.location.href = "/member/mypage"
-         }
-         
-         $.ajax({
-              url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
-              dist + '&dates=' + dates + '&times=' + times+ '&seatSum=' +seatSum,
-              type: 'post',
-              success: function (data) {
-                console.log("결제")
-              }, //end-success
-              error: function () {
-                console.log("실패");
-              } //end-error
-           }) //ajax
+
+      $('#payment').on('click', function () {
+        console.log($('#ticketCount').val())
+        console.log("seatSum:", seatSum);
+        seatSum = seatSum.sort();
+        //console.log(cinema, dist, dates, times, seatSum);
+        if (seatSum.length === 0) {
+          alert('좌석을 선택해주세요.');
+          return false;
+        } else if (seatSum.length < $('#ticketCount').val()) {
+          alert('선택한 인원수와 좌석 수가 맞지 않습니다.');
+          return false;
+        }
+        if (confirm("마이페이지로 이동하시겠습니까?")) { //모달창?
+          window.location.href = "/member/mypage"
+        }
+        $.ajax({
+          url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
+            dist + '&dates=' + dates + '&times=' + times + '&seatSum=' + seatSum,
+          type: 'post',
+          success: function (data) {
+            console.log("결제")
+          }, //end-success
+          error: function () {
+            console.log("실패");
+          } //end-error
+        }) //ajax
       });
     });
-
   </script>
-  	<jsp:include page="footer.jsp"  flush="false"/>
 </body>
 
 </html>
