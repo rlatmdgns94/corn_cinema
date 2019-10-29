@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  <jsp:include page="../header.jsp"  flush="false"/>
   <div id="container">
     <!-- 영화 탭 콘텐츠 -->
     <div class="layout-content">
@@ -74,6 +75,7 @@
     });
   </script>
   <script src="/resources/js/movie_age.js"></script>
+  <jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 
 </html>

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <jsp:include page="../header.jsp"  flush="false"/>
   <div class="main-find-wrap">
     <div class="find-title-main">
       <p class="find_title">비밀번호 찾기</p>
@@ -32,6 +33,7 @@
   </div>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="/resources/js/findPw.js"></script>
+    	<jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 
 </html>

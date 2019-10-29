@@ -6,29 +6,27 @@
 
 <mapper namespace="com.acorn.mapper.MovieViewJoinMapper">
 
-	<select id="movieList"
-		resultType="com.acorn.domain.MovieViewJoinResultVO">
+	  <select id="movieList"
+      resultType="com.acorn.domain.MovieViewJoinResultVO">
+      
+      select
+         movie.movie_num,
+         title,
+         opening_day,
+         film_rate,
+         running_time,
+         avg_score,
+         view_path   
+      from
+         tbl_Movie as movie INNER JOIN tbl_view as img
+      ON  movie.movie_num = img.movie_num
+      <![CDATA[
+      WHERE opening_day <= date(now())
+      ]]>
+      
+      ORDER BY opening_day desc
 
-		select
-		movie.movie_num,
-		title,
-		story,
-		actor,
-		director,
-		opening_day,
-		film_rate,
-		running_time,
-		avg_score,
-		movie_genre,
-		view_path
-		from
-		tbl_Movie as movie INNER JOIN tbl_view as img
-		ON
-		movie.movie_num = img.movie_num
-		ORDER BY opening_day desc
-
-	</select>
-	
+   </select>
 	<select id="movieRead"
 		resultType="com.acorn.domain.MovieViewJoinResultVO">
 

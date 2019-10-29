@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <jsp:include page="header.jsp"  flush="false"/>
   <div id="container">
     <h3 class="ticket-title">영화예매</h3>
     <div class="ticket-info-area">
@@ -336,7 +337,7 @@
             alert('좌석을 선택해주세요.');
             return false;
          }
-         if(confirm("마이페이지로 이동하시겠습니까?")) { //모달창?
+         if(confirm("예매가 완료되었습니다. 마이페이지로 이동하시겠습니까?")) { //모달창?
                window.location.href = "/member/mypage"
          }
          
@@ -355,6 +356,7 @@
     });
 
   </script>
+  	<jsp:include page="footer.jsp"  flush="false"/>
 </body>
 
 </html>

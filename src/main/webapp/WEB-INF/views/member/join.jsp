@@ -12,6 +12,7 @@
 </head>
 
 <body>
+ <jsp:include page="../header.jsp"  flush="false"/>
   <div class="main-join-wrap">
     <form class="join-form" action="/member/join" method="POST">
       <div class="join-title-main">
@@ -81,6 +82,7 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="/resources/js/join.js"></script>
+  <jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 
 </html>

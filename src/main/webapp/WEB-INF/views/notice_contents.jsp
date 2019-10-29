@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <jsp:include page="header.jsp"  flush="false"/>
     <div class="notice-area">
         <div class="notice-top">
             <h2 class="tit">공지사항</h2>
@@ -37,6 +38,7 @@
             <a href="#" class="join-button">목록으로</a>
         </div>
     </div>
+    <jsp:include page="footer.jsp"  flush="false"/>
 </body>
 
 </html>

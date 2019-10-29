@@ -32,6 +32,7 @@
   <div class="join-button-wrap">
     <a href="/" class="join-button join-submit">홈으로</a>
   </div>
+  <jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 
 </html>

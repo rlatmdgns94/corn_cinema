@@ -124,7 +124,7 @@ function commentModify(){
 
 
 <body>
-
+  	<jsp:include page="header.jsp"  flush="false"/>
   <div class="layout-content movie-detail-wrap">
     <div class="movie-detail">
       <div class="movie-detail-img">
@@ -297,5 +297,6 @@ function commentModify(){
    </c:otherwise>
 </c:choose>
 </div>
+	<jsp:include page="footer.jsp"  flush="false"/>
 </body>
 </html>

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<jsp:include page="../header.jsp"  flush="false"/>
   <div class="main-agree-wrap">
     <div class="agree_title_main">
       <h3 class="agree-title">약관동의</h3>
@@ -104,7 +105,7 @@
       <button class="join-button join-submit" id="agreementConfirm">확인</button>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>rh
   <script>
     $(document).ready(function () {
       $('#agreementConfirm').on('click', function () {
@@ -118,6 +119,8 @@
       });
     });
   </script>
+  
+  <jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 
 </html>

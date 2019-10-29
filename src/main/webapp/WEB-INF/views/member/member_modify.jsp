@@ -59,6 +59,7 @@
 </head>
 
 <body>
+  <jsp:include page="../header.jsp"  flush="false"/>
   <div class="main-join-wrap">
     <form class="join-form" action="/member/member_modify" method="POST">
       <div class="join-title-main">
@@ -120,7 +121,7 @@
     <input type="button" value="탈퇴" onclick="memberRemove('${login.id}')" class="join-button member-delete-btn">
     <!-- </form> -->
   </div>
-
+  <jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 
 </html>
