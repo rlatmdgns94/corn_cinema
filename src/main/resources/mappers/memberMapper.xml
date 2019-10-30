@@ -85,7 +85,15 @@
  	
  	</select>
      
-     
+     <select id= "MemberBoardList"      
+ 	  resultType="com.acorn.domain.MemberBoardVO">
+      
+ 		select 
+ 			*
+		from 
+			tbl_member;
+ 	
+ 	</select>
      
      
   </mapper>
