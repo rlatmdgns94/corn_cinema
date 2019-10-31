@@ -14,5 +14,5 @@ public class MypageVO {
    private String title;
    private String local_info_dist;
    private String reservation_date;
-   private String seat_location;
+   
 }// end class

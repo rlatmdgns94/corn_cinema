@@ -71,12 +71,23 @@ private MemberDAO dao ;
 
 
 	@Override
-	public int getNewPw(MemberVo vo) {
+	public int getNewPw(MemberVo vo) throws Exception {
 		
 		log.info("getNewPw");
         return  dao.reset_Password(vo);
 
 	} //getNewPw
+
+
+	@Override
+	public void connection_time(MemberVo vo) throws Exception {
+		
+		log.info("connection_time");
+	    dao.connection_time(vo);
+		
+	} //connection_time
+	
+	
 
 
 } //end interface

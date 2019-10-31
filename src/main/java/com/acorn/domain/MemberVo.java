@@ -18,6 +18,8 @@ public class MemberVo {
 	private String email;
 	private Date regdate;
 	private Date updatedate;
+	private Date connection_time;
+	private Date disconnected_time;
 
 	private List<ReplyVO> replyvo;
 	

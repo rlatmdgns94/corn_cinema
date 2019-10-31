@@ -9,6 +9,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="/resources/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="/resources/js/join.js"></script>
 </head>
 
 <body>
@@ -80,8 +82,6 @@
       </div>
     </form>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="/resources/js/join.js"></script>
   <jsp:include page="../footer.jsp"  flush="false"/>
 </body>
 

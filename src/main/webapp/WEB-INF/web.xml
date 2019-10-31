@@ -43,4 +43,11 @@
          <filter-name>encoding</filter-name>
          <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- 세션아웃 설정 -->
+    <session-config>
+       <session-timeout>2</session-timeout>
+    </session-config>
+    
+    
 </web-app>

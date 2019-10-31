@@ -17,7 +17,8 @@ public interface MemberDAO {
 
    public abstract int emailCheck(String user_email) throws Exception;
 
-   public abstract int reset_Password(MemberVo vo);
+   public abstract int reset_Password(MemberVo vo) throws Exception;
    
+   public abstract void connection_time(MemberVo vo) throws Exception;
 	
 }

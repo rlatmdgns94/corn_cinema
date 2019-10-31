@@ -1,6 +1,8 @@
 package com.acorn.controller;
 
-import java.util.List;
+
+import java.sql.Date;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.domain.MemberVo;
-import com.acorn.domain.MypageVO;
 import com.acorn.email.Email;
 import com.acorn.email.EmailAuthenNum;
 import com.acorn.email.EmailSender;
@@ -23,14 +24,11 @@ import com.acorn.model.MemberDTO;
 import com.acorn.security.Sha256;
 import com.acorn.service.LoginService;
 import com.acorn.service.MemberService;
-import com.acorn.service.MypageService;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Controller
 @Log4j
 @RequestMapping("/member/*")
@@ -47,10 +45,6 @@ public class Membercontroller {
 
 	@Autowired
 	private EmailSender emailSender;
-	
-	@Autowired
-	private MypageService service;
-	private final String loginkey = "login";
 
 	// ------------------------------------ idCheck-----------------------------------------//
 
@@ -137,8 +131,14 @@ public class Membercontroller {
 
 			return "redirect:/member/login"; // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
 		} // if
+		
+		model.addAttribute("memberInfo", vo);			
+		 vo.setConnection_time(null);
+		 
+		memberservice.connection_time(vo);
 
-		model.addAttribute("memberInfo", vo);
+		// memberservice
+	
 		return "/index";
 	} // login_POST
 
@@ -169,7 +169,7 @@ public class Membercontroller {
 		vo.setPassword(encryPassword); 
 		vo.setName(dto.getName());
 		vo.setEmail(dto.getEmail());
-
+ 
 		memberservice.regist(vo);
 
 		return "/member/join_result";
@@ -246,18 +246,10 @@ public class Membercontroller {
 	 
    // --------------------------------------mypage ---------------------------------------------//
 	 @GetMapping("/mypage")
-	   public void mypage(HttpSession session, Model model) throws Exception {
+     public void mypage() {
 
-	      MemberVo memberInfo1 = (MemberVo) session.getAttribute(loginkey);
-	      String id = memberInfo1.getId();
+		log.info("mypage");
 
-	      LoginDTO dto = new LoginDTO();
-	      dto.setId(id);
-	      
-	      
-	      List<MypageVO> list = service.getReservation(dto);
-	      model.addAttribute("list", list);
-
-	   }// mypage
+	}// mypage
 
 } // end class

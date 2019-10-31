@@ -6,114 +6,110 @@
   
   <mapper namespace ="com.acorn.mapper.MemberMapper">
   
-        
+  	   
   <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  CRUD  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
-    
+ 	
   
-      
-    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡinsertMemberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-     <insert id="insertMember"  parameterType="com.acorn.domain.MemberVo">
-        insert into corn_movie.tbl_member (
-          id, password, name, email
-        ) values(
-         #{id}, #{password}, #{name},#{email}
-         )
-     </insert>
-        
-    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡupdateMemberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->    
-    <update id="updateProfile">
-       update tbl_member set
+	   
+	 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡinsert Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+	  <insert id="insertMember"  parameterType="com.acorn.domain.MemberVo">
+	     insert into corn_movie.tbl_member (
+	       id, password, name, email
+	     ) values(
+	      #{id}, #{password}, #{name},#{email}
+	      )
+	  </insert>
+	     
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡudate Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->    
+	 <update id="updateProfile">
+	    update tbl_member set
         password = #{password}, 
         updatedate = now()
         WHERE id =#{id}          
     </update>
 
-    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡdeleteMemberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->   
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡdelete Memberㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->   
 
    <delete id="deleteProfile">
-      DELETE FROM tbl_member WHERE id = #{id} and password = #{password}
+	   DELETE FROM tbl_member WHERE id = #{id} and password = #{password}
    </delete>
     
-   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡlogin Checkㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-         
-    <select id="login" resultType="com.acorn.domain.MemberVo">    <!-- resultType -> UserVO 풀패키지명 -->
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡlogin Checkㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+		   
+	 <select id="login" resultType="com.acorn.domain.MemberVo">    <!-- resultType -> UserVO 풀패키지명 -->
   
       SELECT * FROM tbl_member WHERE id= #{id} and password = #{password}
           
-     </select>      
+     </select>	   
 
-    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ id Check(id 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+	 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ id Ckeck(id 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
     
      <select id= "idCheck" parameterType="string" resultType="int">
          SELECT count(*) from tbl_member where id=#{user_id}
      </select>
         
-     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Check(email 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ email Ckeck(email 중복검사)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
      
      <select id= "emailCheck" parameterType="string" resultType="int">
           SELECT count(*) from tbl_member where email=#{user_email}
      </select>
      
-     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ reset Password(임시 비밀번호받기위한 check)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ reset Pw(임시 비밀번호받기위한 check)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
      
      <select id="update_ResetPw" parameterType="string" resultType="int">
               SELECT count(*) from tbl_member where id=#{id} and email=#{email}
      </select>
      
+     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ사용자가 로그인한시간 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+     <update id ="loginTimeCheck">
+             UPDATE tbl_member
+			 SET connection_time = now()
+			 where id = #{id}
+     </update> 
+     
+     
+     
+     
      <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마이페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-    <!-- 예매번호 출력 -->
-    
-<resultMap id ="reserve" type ="com.acorn.domain.MypageVO">
-       <result column="reservation_num" property="reservation_num"/>
-       <result column="DATE_FORMAT(s.movie_start_time, '%Y년 %m월 %d일 %H시 %i분')" property="movie_start_time"/>
-       <result column="title" property="title"/>
-       <result column="local_info_dist" property="local_info_dist"/>
-       <result column="DATE_FORMAT(r.reservation_date, '%Y년 %m월 %d일 %H시 %i분')" property="reservation_date"/>
-       <result column="seat_location" property="seat_location"/>
-    </resultMap>
-    
-    <select id ="selectReservation" 
-      parameterType = "com.acorn.model.LoginDTO"
-      resultMap="reserve">
+ 	<!-- 예매번호 출력 -->
+ 	
+ 	<select id= "showReservation"      
+ 	parameterType="com.acorn.domain.MypageVO">
       
-      select distinct 
-         r.reservation_num, 
-         DATE_FORMAT(s.movie_start_time, '%Y년 %m월 %d일 %H시 %i분'),
-         m.title,
-         c.local_info_dist, 
-         DATE_FORMAT(r.reservation_date, '%Y년 %m월 %d일 %H시 %i분'),
-         r.seat_location
-      from 
-         tbl_reservation r, 
-         tbl_movie m, tbl_cinema c, 
-         tbl_screening s
-      where 
-         r.movie_num=m.movie_num and 
-         m.movie_num=s.movie_num and 
-         s.cinema_num=c.cinema_num and 
-         r.id=#{id}
-      GROUP BY 
-         reservation_num;
-      
-   </select>
+ 		select distinct r.reservation_num, 
+ 			   s.movie_start_time, 
+ 			   m.title,
+ 			   c.local_info_dist, 
+ 			   r.reservation_date
+		from 
+			   tbl_reservation r, 
+			   tbl_movie m, 
+			   tbl_cinema c, 
+			   tbl_screening s
+		
+		where 
+			   r.movie_num=m.movie_num and m.movie_num=s.movie_num and s.cinema_num=c.cinema_num and 
+			   r.id=#{id}
+		
+		GROUP BY reservation_num;
+ 	
+ 	</select>
      
-     
-    <delete id="deleteBooking">
+        <delete id="deleteBooking">
     
       delete from tbl_reservation where reservation_num=#{reservation_num};
       
    </delete>
    
    <select id= "MemberBoardList"      
- 	  resultType="com.acorn.domain.MemberBoardVO">
+      resultType="com.acorn.domain.MemberBoardVO">
       
- 		select 
- 			*
-		from 
-			tbl_member;
- 	
- 	</select>
-   
-   
-   
+       select 
+          *
+      from 
+         tbl_member;
+    
+    </select>
+     
+     
   </mapper>

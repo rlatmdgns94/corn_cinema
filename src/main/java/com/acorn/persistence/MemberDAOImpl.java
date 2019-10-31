@@ -70,5 +70,14 @@ public class MemberDAOImpl implements MemberDAO {
 		      
 	}
 
+	@Override
+	public void connection_time(MemberVo vo) throws Exception {
+	  
+		System.out.println("connection_time");
+		sqlSession.update(namespace+".loginTimeCheck",vo);
+		
+		
+	}
+
 
 }

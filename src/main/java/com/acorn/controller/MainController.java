@@ -45,6 +45,11 @@ public class MainController {
 	public String logout(HttpSession session) {
 		log.info("로그아웃!!");
 		session.removeAttribute("login");
+		
+		
+		
+		
+		
 		return "redirect:/";
 	}
 

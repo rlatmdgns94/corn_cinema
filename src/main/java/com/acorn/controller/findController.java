@@ -22,8 +22,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Log4j
 @Controller
 @RequestMapping("/find/*")
