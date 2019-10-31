@@ -1,6 +1,6 @@
 package com.acorn.controller;
 
-import java.util.Random;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.domain.MemberVo;
+import com.acorn.domain.MypageVO;
 import com.acorn.email.Email;
 import com.acorn.email.EmailAuthenNum;
 import com.acorn.email.EmailSender;
@@ -22,6 +23,7 @@ import com.acorn.model.MemberDTO;
 import com.acorn.security.Sha256;
 import com.acorn.service.LoginService;
 import com.acorn.service.MemberService;
+import com.acorn.service.MypageService;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -45,6 +47,10 @@ public class Membercontroller {
 
 	@Autowired
 	private EmailSender emailSender;
+	
+	@Autowired
+	private MypageService service;
+	private final String loginkey = "login";
 
 	// ------------------------------------ idCheck-----------------------------------------//
 
@@ -240,10 +246,18 @@ public class Membercontroller {
 	 
    // --------------------------------------mypage ---------------------------------------------//
 	 @GetMapping("/mypage")
-     public void mypage() {
+	   public void mypage(HttpSession session, Model model) throws Exception {
 
-		log.info("mypage");
+	      MemberVo memberInfo1 = (MemberVo) session.getAttribute(loginkey);
+	      String id = memberInfo1.getId();
 
-	}// mypage
+	      LoginDTO dto = new LoginDTO();
+	      dto.setId(id);
+	      
+	      
+	      List<MypageVO> list = service.getReservation(dto);
+	      model.addAttribute("list", list);
+
+	   }// mypage
 
 } // end class
