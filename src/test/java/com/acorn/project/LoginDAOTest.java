@@ -1,4 +1,4 @@
-package com.acorn.project;
+/*package com.acorn.project;
 
 import javax.inject.Inject;
 
@@ -35,8 +35,9 @@ public class LoginDAOTest {
 	  public void testMD() throws Exception{
 		   log.info("testMD()");
 		   log.info("dao:" + dao);
-		   
-		   LoginDTO dto = new LoginDTO("asdasd","123123");
+		
+		 * LoginDTO dto = new LoginDTO("asdasd","123123");
+		 
 		   log.info("dto :" + dto);
 		   
 		   MemberVo vo = dao.login(dto);
@@ -47,9 +48,10 @@ public class LoginDAOTest {
 	    	   log.info("\t + No user Found.");
 	       }
 		   
-	  }
+	  }*/
 	 
 	 
 	 
-	 
-}//end class
+/*
+ * }//end class
+ */

@@ -41,15 +41,16 @@
       parameterType="com.acorn.domain.BookingDTO"
       resultType="java.lang.String">
 
-      select distinct
-      local_info_dist
+      select 
+      	distinct
+      	local_info_dist
       from
-      tbl_cinema join
-      tbl_screening
+      	tbl_cinema join
+      	tbl_screening
       on( tbl_cinema.cinema_num = tbl_screening.cinema_num)
       where
-      movie_num=#{movieNum} and
-      local_info_city=#{infoCity};
+      	movie_num=#{movieNum} and
+      	local_info_city=#{infoCity};
 
    </select>
 
@@ -67,7 +68,9 @@
       where
       movie_num=#{movieNum} and
       local_info_city=#{infoCity} and
-      local_info_dist=#{infoDist};
+      local_info_dist=#{infoDist}
+      and movie_start_time > now()
+      ;
 
    </select>
 
@@ -76,8 +79,7 @@
       resultType="java.lang.String">
 
       select distinct
-      DATE_FORMAT(movie_start_time, '%H시%i분')
-      STARTTIME
+      DATE_FORMAT(movie_start_time, '%H시%i분') STARTTIME
       from
       tbl_cinema join tbl_screening
       on( tbl_cinema.cinema_num =
@@ -86,7 +88,9 @@
       movie_num = #{movieNum} and
       local_info_city = #{infoCity} and
       local_info_dist = #{infoDist} and
-      DATE_FORMAT(movie_start_time, '%Y-%m-%d') =${startTime};
+      DATE_FORMAT(movie_start_time, '%Y-%m-%d') =${startTime}
+      and movie_start_time > now()
+      ;
 
    </select>
 
@@ -146,7 +150,7 @@
             movie_num=#{movieNum} 
             and local_info_city=#{infoCity}
             and local_info_dist=#{infoDist}
-            and DATE_FORMAT(movie_start_time, '%Y-%m-%d %H시%i분') =${startTime}   ;           
+            and DATE_FORMAT(movie_start_time, '%Y-%m-%d %H시%i분') =${startTime};           
          
    </select>
 
@@ -166,8 +170,6 @@
       );
 
    </select>
-
-
 
 
    <insert id="InsertReservation"

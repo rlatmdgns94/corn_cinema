@@ -30,12 +30,12 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/movie/screening/*")
 @Controller
 public class BookingController {
-	
+
 	@Inject
 	ScreeningService service;
 	@Inject
 	private MovieViewJoinResultService s2;
-	
+
 	private final String loginkey = "login";
 
 	@GetMapping("/booking")
@@ -188,51 +188,50 @@ public class BookingController {
 		dto.setStartTime(startTime);
 
 		String state = service.getSeats(dto).size() + "/" + service.getTotalSeats(dto).size();
-		
-		
+
 		return state;
 	}// doShowSeat
 
 	@PostMapping("/reservation")
-    public @ResponseBody String doReservation(ReservationVO vo,BookingDTO dto,
-          @RequestParam(value = "cinema", required = false) String cinema,
-          @RequestParam(value = "movie_num", required = false) String movie_num,
-          @RequestParam(value = "dist", required = false) String dist,
-          @RequestParam(value = "dates", required = false) String dates,
-          @RequestParam(value = "times", required = false) String times,
-          @RequestParam(value = "seatSum", required = false) String seatSum, // 프론트에서 받기(구분자로 비교해서 넣어주기)
-          Model model, HttpSession session) throws Exception {      
-      
-    
-       dto.setMovieNum(movie_num);
-       dto.setInfoCity(cinema);
-       dto.setInfoDist(dist);
-       String startTime = "\'" + dates + " " + times + "\'";
-       dto.setStartTime(startTime);
-       
-       String scnum= service.getScreeningNum(dto);
-       
-       MemberVo memberInfo1 = (MemberVo) session.getAttribute(loginkey);
-       
-       String id = memberInfo1.getId();
-       log.info("좌석선태개ㅐ"+seatSum);
-       log.info("로그인 된 아이디ㅣㅣ"+id);
-       
-       vo.setMovie_num(movie_num);
-       vo.setId(id);
-       vo.setScreening_num(scnum);
-       int year = Calendar.getInstance().get(Calendar.YEAR);
-       
-       String data[] = seatSum.split(",");
-       int x = (int)(Math.random()*3000);
-      for(int i=0 ; i<data.length ; i++){
-          log.info("\t*********dtodto*****************\" : " + dto);
-          vo.setReservation_num("A"+year+Integer.toString(i+100)+x); //hash값? 중복 없는 random값? 넣기(생각)
-          vo.setSeat_location(data[i]);
-          service.InsertReservation(vo);            
-      }
-       
-       return "member/mypage";
-    
-    }//doReservation
+	public @ResponseBody String doReservation(ReservationVO vo, BookingDTO dto,
+			@RequestParam(value = "cinema", required = false) String cinema,
+			@RequestParam(value = "movie_num", required = false) String movie_num,
+			@RequestParam(value = "dist", required = false) String dist,
+			@RequestParam(value = "dates", required = false) String dates,
+			@RequestParam(value = "times", required = false) String times,
+			@RequestParam(value = "seatSum", required = false) String seatSum, // 프론트에서 받기(구분자로 비교해서 넣어주기)
+			Model model, HttpSession session) throws Exception {
+
+		dto.setMovieNum(movie_num);
+		dto.setInfoCity(cinema);
+		dto.setInfoDist(dist);
+		String startTime = "\'" + dates + " " + times + "\'";
+		dto.setStartTime(startTime);
+
+		String scnum = service.getScreeningNum(dto);
+
+		MemberVo memberInfo1 = (MemberVo) session.getAttribute(loginkey);
+
+		String id = memberInfo1.getId();
+
+		log.info("좌석선태개ㅐ" + seatSum);
+		log.info("로그인 된 아이디ㅣㅣ" + id);
+
+		vo.setMovie_num(movie_num);
+		vo.setId(id);
+		vo.setScreening_num(scnum);
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+
+		String data[] = seatSum.split(",");
+		int x = (int) (Math.random() * 3000);
+		for (int i = 0; i < data.length; i++) {
+			log.info("\t*********dtodto*****************\" : " + dto);
+			vo.setReservation_num("A" + year + Integer.toString(i + 100) + x); // hash값? 중복 없는 random값? 넣기(생각)
+			vo.setSeat_location(data[i]);
+			service.InsertReservation(vo);
+		}
+
+		return "member/mypage";
+
+	}// doReservation
 }// end controller

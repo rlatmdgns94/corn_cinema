@@ -289,7 +289,7 @@
             console.debug('- seatRow:', seatRow);
             var seatList = "";
             for (var i = 0; i < seatRow.length; i++) {
-              seatList += "<li><span class='seat-title'>" + String.fromCharCode(i + 65) + "</span>";
+              seatList += "<li><span>" + String.fromCharCode(i + 65) + "</span>";
 
               var seatCol = seatRow[i].list;
               console.debug('- seatCol:', seatCol);
@@ -369,10 +369,9 @@
         } else if (seatSum.length < $('#ticketCount').val()) {
           alert('선택한 인원수와 좌석 수가 맞지 않습니다.');
           return false;
-        }
-        if (confirm("마이페이지로 이동하시겠습니까?")) { //모달창?
-          window.location.href = "/member/mypage"
-        }
+        } 
+        
+        
         $.ajax({
           url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
             dist + '&dates=' + dates + '&times=' + times + '&seatSum=' + seatSum,
@@ -384,6 +383,11 @@
             console.log("실패");
           } //end-error
         }) //ajax
+        
+        if(confirm("결제가 완료되었습니다. 마이페이지로 이동합니다.")) {
+            window.location.href = "/member/mypage"
+        }
+               
       });
     });
   </script>

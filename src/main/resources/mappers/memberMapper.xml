@@ -77,33 +77,114 @@
      
      
     <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ마이페이지ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
- 	<!-- 예매번호 출력 -->
  	
- 	<select id= "showReservation"      
- 	parameterType="com.acorn.domain.MypageVO">
+   	<!-- 예매번호 출력 -->
+  	
+<resultMap id ="reserve" type ="com.acorn.domain.MypageVO">
+       <result column="reservation_num" property="reservation_num"/>
+       <result column="DATE_FORMAT(tbl_screening.movie_start_time, '%Y년 %m월 %d일 %H시 %i분')" property="movie_start_time"/>
+       <result column="title" property="title"/>
+       <result column="local_info_dist" property="local_info_dist"/>
+       <result column="DATE_FORMAT(tbl_reservation.reservation_date, '%Y년 %m월 %d일 %H시 %i분')" property="reservation_date"/>
+       <result column="seat_location" property="seat_location"/>
+    </resultMap> 
+    
+    <select id ="selectReservation" 
+      parameterType = "com.acorn.model.LoginDTO"
+      resultMap="reserve">
       
- 		select distinct r.reservation_num, 
- 			   s.movie_start_time, 
- 			   m.title,
- 			   c.local_info_dist, 
- 			   r.reservation_date
-		from 
-			   tbl_reservation r, 
-			   tbl_movie m, 
-			   tbl_cinema c, 
-			   tbl_screening s
-		
-		where 
-			   r.movie_num=m.movie_num and m.movie_num=s.movie_num and s.cinema_num=c.cinema_num and 
-			   r.id=#{id}
-		
-		GROUP BY reservation_num
- 	
- 	</select>
+	  select 
+         tbl_reservation.reservation_num, 
+         DATE_FORMAT(tbl_screening.movie_start_time, '%Y년 %m월 %d일 %H시 %i분'),
+         tbl_movie.title, tbl_cinema.local_info_dist, 
+         DATE_FORMAT(tbl_reservation.reservation_date, '%Y년 %m월 %d일 %H시 %i분'), tbl_reservation.seat_location
+      from 
+         tbl_reservation left join tbl_movie
+         on tbl_reservation.movie_num=tbl_movie.movie_num
+         left join tbl_screening
+         on tbl_reservation.screening_num=tbl_screening.screening_num
+         left join tbl_cinema
+         on tbl_screening.cinema_num = tbl_cinema.cinema_num
+	
+      where 
+         tbl_reservation.id=#{id}
+      ORDER BY 
+      	 reservation_date desc;
+   </select>
      
-   <delete id="deleteBooking">
-      delete from tbl_reservation where reservation_num=#{reservation_num}
+ 
+     
+    <delete id="deleteBooking">
+    
+		delete from tbl_reservation where reservation_num=#{reservation_num};
+		
    </delete>
+   
+   
+    <resultMap id ="reserveOk" type ="com.acorn.domain.MypageVO">
+       <result column="reservation_num" property="reservation_num"/>
+       <result column="DATE_FORMAT(tbl_screening.movie_start_time, '%Y년 %m월 %d일 %H시 %i분')" property="movie_start_time"/>
+       <result column="title" property="title"/>
+       <result column="local_info_dist" property="local_info_dist"/>
+       <result column="DATE_FORMAT(tbl_reservation.reservation_date, '%Y년 %m월 %d일 %H시 %i분')" property="reservation_date"/>
+       <result column="seat_location" property="seat_location"/>
+    </resultMap> 
+    
+    <select id ="selectReservationOk" 
+      parameterType = "com.acorn.model.LoginDTO"
+      resultMap="reserveOk">
+        <![CDATA[
+ 	select tbl_reservation.reservation_num, 
+         DATE_FORMAT(tbl_screening.movie_start_time, '%Y년 %m월 %d일 %H시 %i분'),
+         tbl_movie.title, tbl_cinema.local_info_dist, 
+         DATE_FORMAT(tbl_reservation.reservation_date, '%Y년 %m월 %d일 %H시 %i분'), tbl_reservation.seat_location
+      from 
+         tbl_reservation left join tbl_movie
+         on tbl_reservation.movie_num=tbl_movie.movie_num
+         left join tbl_screening
+         on tbl_reservation.screening_num=tbl_screening.screening_num
+         left join tbl_cinema
+         on tbl_screening.cinema_num = tbl_cinema.cinema_num
+      where 
+         tbl_reservation.id=#{id} and tbl_screening.movie_start_time > DATE_SUB(NOW(), INTERVAL 20 minute)
+      ORDER BY 
+      	 reservation_date desc;
+   ]]>
+   </select>
+   
+   
+   <resultMap id ="reserveNOk" type ="com.acorn.domain.MypageVO">
+       <result column="reservation_num" property="reservation_num"/>
+       <result column="DATE_FORMAT(tbl_screening.movie_start_time, '%Y년 %m월 %d일 %H시 %i분')" property="movie_start_time"/>
+       <result column="title" property="title"/>
+       <result column="local_info_dist" property="local_info_dist"/>
+       <result column="DATE_FORMAT(tbl_reservation.reservation_date, '%Y년 %m월 %d일 %H시 %i분')" property="reservation_date"/>
+       <result column="seat_location" property="seat_location"/>
+    </resultMap> 
+    
+    <select id ="selectReservationNOk" 
+      parameterType = "com.acorn.model.LoginDTO"
+      resultMap="reserveNOk">
+        <![CDATA[
+     
+              select tbl_reservation.reservation_num, 
+         DATE_FORMAT(tbl_screening.movie_start_time, '%Y년 %m월 %d일 %H시 %i분'),
+         tbl_movie.title, tbl_cinema.local_info_dist, 
+         DATE_FORMAT(tbl_reservation.reservation_date, '%Y년 %m월 %d일 %H시 %i분'), tbl_reservation.seat_location
+      from 
+         tbl_reservation left join tbl_movie
+         on tbl_reservation.movie_num=tbl_movie.movie_num
+         left join tbl_screening
+         on tbl_reservation.screening_num=tbl_screening.screening_num
+         left join tbl_cinema
+         on tbl_screening.cinema_num = tbl_cinema.cinema_num
+	
+      where 
+         tbl_reservation.id=#{id} and tbl_screening.movie_start_time < now()
+      ORDER BY 
+      	 reservation_date desc;
+   ]]>
+   </select>
    
    <select id= "MemberBoardList"  parameterType="com.acorn.model.PageDTO" resultType="com.acorn.domain.MemberBoardVO">
        select 
@@ -142,13 +223,6 @@
          tbl_member 
          where id = #{member.id}
     </select>
-    
-    
-    
-    
-    
-    
-    
-    
+
     
   </mapper>
