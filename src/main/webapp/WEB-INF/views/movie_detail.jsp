@@ -19,6 +19,11 @@
 <script>
 
 var movie_num = '${movieRead.movie_num}';
+console.log(movie_num);
+
+
+
+
 var id = '${login.id}';
 
 

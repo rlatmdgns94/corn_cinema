@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .member-delete-btn {
-  position: absolute;
+  float: right;
   bottom: 0;
   right: 0;
 }

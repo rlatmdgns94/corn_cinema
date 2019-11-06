@@ -27,11 +27,13 @@ import lombok.extern.log4j.Log4j;
 	@Autowired
 	private ReplyService replyService;
 	
-	@RequestMapping(value ="/movie_detail")
+	@RequestMapping("/movie_detail")
 	public void movieRead(@RequestParam(value = "movie_num", required = false) String movie_num, Model model)
 			throws Exception {
 
 		model.addAttribute("movieRead", service.movieRead(movie_num));
+		
+		  System.out.println("===================================movie_num:" + movie_num);
 		model.addAttribute("replyList", replyService.replyList(movie_num));
 		} // movieRead
 	

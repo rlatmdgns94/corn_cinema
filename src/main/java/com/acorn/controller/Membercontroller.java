@@ -132,9 +132,9 @@ public class Membercontroller {
 			return "redirect:/member/login"; // return"/member/login"; << 대신 redirect 사용 안그러면 홈페이지 오류! ( F5 눌렀을때오류)
 		} // if
 		
-		model.addAttribute("memberInfo", vo);			
-		 vo.setConnection_time(null);
-		 
+		model.addAttribute("memberInfo", vo);		
+		
+    //	vo.setConnection_time(null); 
 		memberservice.connection_time(vo);
 
 		// memberservice

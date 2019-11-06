@@ -21,5 +21,7 @@ public interface MemberService {
    
    public abstract void connection_time(MemberVo vo) throws Exception; 
    
+   public abstract void disconnected_time(MemberVo vo) throws Exception;
+   
   
 }

@@ -20,5 +20,7 @@ public interface MemberDAO {
    public abstract int reset_Password(MemberVo vo) throws Exception;
    
    public abstract void connection_time(MemberVo vo) throws Exception;
+   
+   public abstract void disconnected_time(MemberVo vo) throws Exception;
 	
 }

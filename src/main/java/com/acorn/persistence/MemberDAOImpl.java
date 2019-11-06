@@ -79,5 +79,13 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
+	@Override
+	public void disconnected_time(MemberVo vo) throws Exception {
+	  
+		System.out.println("disconnected_time");
+		sqlSession.update(namespace+".logOutTimeCkeck",vo);
+		
+	}
+
 
 }

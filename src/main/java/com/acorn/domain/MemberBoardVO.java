@@ -19,9 +19,13 @@ public class MemberBoardVO {
 	//이메일
 	private String email;
 	//가입날짜
-	private Date regdate;
+	private String regdate;
 	//수정날짜 
-	private Date updatedate;
+	private String updatedate;
+	//회원 connection 시간
+	private String connection_time;
+	//회원 disconnected 시간
+	private String disconnected_time;
 }
 
 

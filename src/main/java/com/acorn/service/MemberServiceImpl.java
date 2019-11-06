@@ -86,6 +86,15 @@ private MemberDAO dao ;
 	    dao.connection_time(vo);
 		
 	} //connection_time
+
+
+	@Override
+	public void disconnected_time(MemberVo vo) throws Exception {
+	  
+		log.info("disconnected_time");
+		dao.disconnected_time(vo);
+		
+	}
 	
 	
 
