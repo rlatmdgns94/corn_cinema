@@ -23,8 +23,7 @@ public class MovieVO {
 	private double avg_score;	// 영화별 평점
 	private String movie_genre;  //영화 장르
 
-	private List<ViewVO> viewvo;
-
+	private List<ViewVO> viewvo;  //movie_view table join
 
 	public List<ViewVO> setList(List<ViewVO> viewvo) {
 		return this.viewvo = viewvo;
@@ -33,6 +32,7 @@ public class MovieVO {
 	public void addViewvo(ViewVO vo) {
 		viewvo.add(vo);
 	}
+	
 }
 
 

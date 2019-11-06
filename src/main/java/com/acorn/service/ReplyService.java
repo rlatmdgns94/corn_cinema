@@ -19,5 +19,9 @@ public interface ReplyService {
 	//삭제
 	public abstract int replyDelete(String id) throws Exception;
 
+
+
+	
+
 	
 }  //end interface

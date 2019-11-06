@@ -7,8 +7,9 @@
 <mapper namespace="com.acorn.mapper.ReplyMapper">
 
 
-
-   <select id="replyList" resultType="com.acorn.domain.MemberReplyJoinResultVO">
+ <!--  댓글 목록  -->
+   <select id="replyList" 
+   	resultType="com.acorn.domain.MemberReplyJoinResultVO">
    
       SELECT
          member.id,
@@ -16,7 +17,6 @@
          comm.movie_num,
          comm.comment,
          comm.score,
-
          CAST(DATE_FORMAT(comm.regdate, '%Y-%m-%d') AS CHAR(19) ) AS regdate,
          CAST(DATE_FORMAT(comm.updatedate, '%Y-%m-%d') AS CHAR(19) ) AS updatedate
 
@@ -24,20 +24,25 @@
          tbl_member as member INNER JOIN tbl_comments as comm
       ON 
          member.id = comm.id
-      WHERE comm.movie_num = #{moive.movie_num}
-       ORDER BY regdate DESC
+      WHERE 
+      	comm.movie_num = #{movie.movie_num}
+      ORDER BY 
+      	regdate DESC
    </select>
    
    
-   
-   <insert id = "replyCreate" parameterType = "com.acorn.domain.MemberReplyJoinResultVO">
+    <!--  댓글 등록 -->
+   <insert id = "replyCreate" 
+   	parameterType = "com.acorn.domain.MemberReplyJoinResultVO">
       insert into
           tbl_comments ( id, movie_num, comment, score )
       values ( #{id}, #{movie_num}, #{comment}, #{score} )
    </insert>
    
    
-   <update id="replyUpdate" parameterType="com.acorn.domain.MemberReplyJoinResultVO">
+    <!--  댓글 수정 -->
+   <update id="replyUpdate" 
+   	parameterType="com.acorn.domain.MemberReplyJoinResultVO">
       UPDATE tbl_comments 
       SET 
          comment = #{comment},
@@ -49,6 +54,7 @@
    </update>
    
    
+  <!--  댓글 삭제 -->
    <delete id = "replyDelete"  parameterType= "String">
       delete 
          from tbl_comments

@@ -21,9 +21,6 @@ import lombok.extern.log4j.Log4j;
  @Repository 
  public class ReplyDAOImpl implements ReplyDAO{
  
- 
-
- 
  @Inject
  private SqlSession sqlSession;
  private static final String namespace="com.acorn.mapper.ReplyMapper";
@@ -44,7 +41,7 @@ import lombok.extern.log4j.Log4j;
 		 String password= null;
 		 String name= null;
 		 String email= null;
-		 double score = 0.0;
+		 int score = 0;
 		 double avgscore = 0.0;
 		 String regdate= null;
 		 String updatedate= null;

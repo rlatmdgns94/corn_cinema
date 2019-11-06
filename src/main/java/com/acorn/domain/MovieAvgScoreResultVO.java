@@ -1,6 +1,6 @@
 package com.acorn.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,15 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReplyVO {
+public class MovieAvgScoreResultVO {
 
-	private String id;
-	private String movie_num;
-	private String comment;
-	private int score;
-	private double avgscore;
 	
-	private String regdate;
-	private String updatedate;
+	private String movie_num;  //pk
+	private double avg_score;	// 영화별 평점
+	
+	private String id;
+	private int score;
 
 }

@@ -26,7 +26,7 @@ public class MovieScreeningController {
 	public void MoiveScreeningGetMovie( Model model ) throws Exception {
 		log.info("MovieScreeningController::MoiveScreeningGetMovie invoked");
 		
-		List<MovieViewJoinResultVO> list = service.movieList();
+		List<MovieViewJoinResultVO> list = service.newMovieList();
 		
 		log.info("MovieScreeningController list :" + list);
 		

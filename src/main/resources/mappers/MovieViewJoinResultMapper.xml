@@ -6,27 +6,60 @@
 
 <mapper namespace="com.acorn.mapper.MovieViewJoinMapper">
 
-	  <select id="movieList"
-      resultType="com.acorn.domain.MovieViewJoinResultVO">
-      
-      select
-         movie.movie_num,
-         title,
-         opening_day,
-         film_rate,
-         running_time,
-         avg_score,
-         view_path   
-      from
-         tbl_Movie as movie INNER JOIN tbl_view as img
-      ON  movie.movie_num = img.movie_num
-      <![CDATA[
-      WHERE opening_day <= date(now())
-      ]]>
-      
-      ORDER BY opening_day desc
+ <!--  영화 리스트  -->
+	<select id="newMovieList"
+		resultType="com.acorn.domain.MovieViewJoinResultVO">
+		
+		select
+			movie.movie_num,
+			title,
+			opening_day,
+			film_rate,
+			running_time,
+			avg_score,
+			view_path	
+		from
+			tbl_Movie as movie INNER JOIN tbl_view as img
+		ON  movie.movie_num = img.movie_num
+		<![CDATA[
+		WHERE opening_day <= date(now())
+		]]>
+		
+		ORDER BY opening_day desc
 
-   </select>
+	</select>
+	
+	 <!--  영화 리스트  -->
+	<select id="boxMovieList"
+      resultType="com.acorn.domain.MovieViewJoinResultVO">
+
+	   select title, movie.movie_num, title,
+	         opening_day,
+	         film_rate,
+	         running_time,
+	         avg_score,
+	         view_path ,
+	         count(reservation.movie_num) as movienummm
+	   from 
+	   		tbl_movie as movie left join tbl_view as img
+	   ON 
+	   		 movie.movie_num = img.movie_num
+	   		 
+	   left join tbl_reservation as reservation
+	   ON 
+	   reservation.movie_num = movie.movie_num
+	   <![CDATA[
+	   WHERE 
+	   	opening_day <= date(now()) 
+	   group by 
+	   	movie.movie_num
+	   ORDER BY 
+	   	movienummm desc, opening_day desc;
+	     ]]>
+	</select>
+
+	
+	 <!--  영화 정보  -->
 	<select id="movieRead"
 		resultType="com.acorn.domain.MovieViewJoinResultVO">
 
@@ -51,12 +84,9 @@
 		ORDER BY opening_day desc
 
 	</select>
-<!-- 	
-	<update id="scoreUpdate">
 	
-	update tbl_movie 
-	set avg_score=(select AVG(score) from tbl_comments where movie_num = #{movie_num}) 
-	where movie_num=#{movie_num};
-	</update>
-	 -->
+
+	
+	
+	
 </mapper>

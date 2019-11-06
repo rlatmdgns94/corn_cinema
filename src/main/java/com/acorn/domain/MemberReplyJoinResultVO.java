@@ -21,7 +21,7 @@ public class MemberReplyJoinResultVO {
 	private String movie_num;  //영화 번호 pk
 	private String comment;  //한줄평
 	
-	private double score;  //별점 
+	private int score;  //별점 
 	private double avgscore;  //별점평균 
 	
 	private String regdate;  //등록 날짜
