@@ -7,7 +7,7 @@
 <body>
   <div id="header">
     <div class="header-inner">
-      <h1 class="header-logo"><a href=""><a href="/"><img src="/resources/img/logo.png" alt="콘시네마"></a></h1>
+      <h1 class="header-logo"><a href="/"><img src="/resources/img/logo.png" alt="콘시네마"></a></h1>
       <div id="gnb">
         <h2 class="blind">대표메뉴</h2>
         <ul class="nav">
