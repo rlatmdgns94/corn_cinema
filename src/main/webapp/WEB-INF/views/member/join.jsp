@@ -19,7 +19,7 @@
     <form class="join-form" action="/member/join" method="POST">
       <div class="join-title-main">
         <h2 class="join-title">회원가입</h2>
-      </div>
+      </div>movie-board-tablemovie-board-table
       <div class="join-insert-wrap">
         <table class="join-table">
           <caption class="blind">회원가입 정보입력</caption>

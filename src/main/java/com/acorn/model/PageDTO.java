@@ -15,7 +15,7 @@ public class PageDTO {
 	private boolean prev;		 		// 이전
 	private boolean next;				// 다음
 	private int displayPageNum = 5;	// 한 화면의 페이지 번호 갯수
-    private int tempEndPage;			// 끝 페이지 번호
+    private int tempEndPage;			// 마지막 끝 페이지 번호
     private String keyword;				// 검색키워드
     
     public PageDTO(int page, int perPageNum) {
@@ -85,7 +85,7 @@ public class PageDTO {
         System.out.println("tempEndPage:" + tempEndPage);
         
         if (endPage > tempEndPage) {
-        	System.out.println("endPage > tempEndPage");
+        	    System.out.println("endPage > tempEndPage");
         	    System.out.println("endPage:"+ endPage);
             endPage = tempEndPage;
         }

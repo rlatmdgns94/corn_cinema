@@ -109,14 +109,14 @@
       where 
          tbl_reservation.id=#{id}
       ORDER BY 
-      	 reservation_date desc;
+      	 reservation_date desc
    </select>
      
  
      
     <delete id="deleteBooking">
     
-		delete from tbl_reservation where reservation_num=#{reservation_num};
+		delete from tbl_reservation where reservation_num=#{reservation_num}
 		
    </delete>
    
@@ -148,7 +148,7 @@
       where 
          tbl_reservation.id=#{id} and tbl_screening.movie_start_time > DATE_SUB(NOW(), INTERVAL 20 minute)
       ORDER BY 
-      	 reservation_date desc;
+      	 reservation_date desc
    ]]>
    </select>
    
@@ -181,8 +181,7 @@
 	
       where 
          tbl_reservation.id=#{id} and tbl_screening.movie_start_time < now()
-      ORDER BY 
-      	 reservation_date desc;
+      ORDER BY reservation_date desc
    ]]>
    </select>
    
@@ -193,21 +192,18 @@
              email,
              regdate,
              updatedate,  
-             connection_time,  
-          
+             connection_time            
        from 
          tbl_member
        where id like concat('%',#{keyword},'%')
-       ORDER BY id asc
+            ORDER BY id asc
        limit #{pageStart}, 10
     </select>
      
     <select id="getMemberListCount" parameterType="com.acorn.model.PageDTO" resultType="int">
 		select count(id) from tbl_member 
-		where id like concat('%',#{keyword},'%')   	
+		where id like concat('%',#{keyword},'%')     	
     </select> 
-    
-    
     
     <select id = "MemberBoardOne" parameterType="String" resultType="com.acorn.domain.MemberBoardVO">
      
@@ -217,12 +213,14 @@
              email,
              regdate,
              updatedate,  
-             connection_time,  
-             disconnected_time            
+             connection_time
          from 
          tbl_member 
          where id = #{member.id}
     </select>
-
+    
+    
+    
+    
     
   </mapper>

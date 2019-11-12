@@ -5,12 +5,15 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.acorn.domain.MemberVo;
 import com.acorn.domain.MovieViewJoinResultVO;
 import com.acorn.domain.ViewVO;
+import com.acorn.service.MemberService;
 import com.acorn.service.MovieViewJoinResultService;
 
 import lombok.extern.log4j.Log4j;
@@ -20,7 +23,10 @@ import lombok.extern.log4j.Log4j;
 public class MainController {
 	@Inject
 	private MovieViewJoinResultService service;
-
+	
+	@Autowired
+	private MemberService memberservice;
+	
 	@GetMapping("/")
 	public String Main(Model model) throws Exception {
 		log.info("Get-Main");
@@ -42,9 +48,12 @@ public class MainController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session) throws Exception {
 		log.info("로그아웃!!");
-		session.removeAttribute("login");
+		 MemberVo vo = (MemberVo) session.getAttribute("login");
+	      memberservice.disconnected_time(vo); 
+		  session.removeAttribute("login");
+		  session.removeAttribute("login");
 		return "redirect:/";
 	}
 

@@ -46,7 +46,7 @@
 					</tbody>
 				</table>
 			</div>
-			<a href="member_modify" class="member-modify-btn mypage-btn">회원정보수정</a>
+			<a href="member_modify" class="member-modify-btn">회원정보수정</a>
 		</div>
 		<div class="ticket-history-wrap">
 			<h4 class="mypage-subtitle">예매확인/취소</h4>
