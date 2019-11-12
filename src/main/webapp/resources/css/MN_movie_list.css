@@ -143,6 +143,10 @@ a:link {
   line-height: 38px;
 }
 
+.choice{
+	background-color: red;
+}
+
 .movie-board-bottom > a {
   border: #e6e6e6 solid 1px; 
   font-size: 14px;

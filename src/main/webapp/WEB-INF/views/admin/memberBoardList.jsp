@@ -20,10 +20,6 @@
       
          var pageNum = $(this).attr("href");
            console.log("pageNum:" , pageNum);
-           
-              $(".paginate_button").css("background-color","red");
-      //      $("#selectPageNum").val(pageNum).css("background-color","red");
-     
            $("#keyword").val("");  
            $("#selectPageNum").val(pageNum);
 
@@ -108,18 +104,29 @@
    </table>
     
       <c:if test="${memberListCount>0}">   
-               <c:if test="${pageDTO.prev}">
-                  <a class="paginate_button" href="${pageDTO.startPage -1}">이전</a>
-               </c:if>
+           <c:if test="${pageDTO.prev}">
+               <a class="paginate_button" href="${pageDTO.startPage -1}">이전</a>
+           </c:if>
                
-               <c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+         <c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+            <c:choose>
+                <c:when test="${num == pageDTO.page}"><a href="${num}" class="choice">${num}</a></c:when>
+                <c:otherwise><a class="paginate_button" href="${num}"}>${num} </a></c:otherwise>
+            </c:choose>   
+         </c:forEach>
+               
+               
+               
+               
+           <%--      <c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
                   <a class="paginate_button" href="${num}">${num} </a>
-               </c:forEach>
+                  <a class="paginate_button" href="${num}">${num} </a>
+               </c:forEach> --%>
                
                <c:if test="${pageDTO.next}">
                   <a class="paginate_button" href="${pageDTO.endPage +1}">다음</a>
                </c:if>
-         </c:if>
+      </c:if>
     
   </div>  
 </form>
