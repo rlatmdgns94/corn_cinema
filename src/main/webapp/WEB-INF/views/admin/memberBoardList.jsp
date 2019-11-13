@@ -110,8 +110,8 @@
                
          <c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
             <c:choose>
-                <c:when test="${num == pageDTO.page}"><a href="${num}" class="choice">${num}</a></c:when>
-                <c:otherwise><a class="paginate_button" href="${num}"}>${num} </a></c:otherwise>
+                <c:when test="${num == pageDTO.page}"><a href="javascript:goPage(${num})" class="choice">${num}</a></c:when>
+                <c:otherwise><a class="paginate_button" href="${num}">${num} </a></c:otherwise>
             </c:choose>   
          </c:forEach>
                
