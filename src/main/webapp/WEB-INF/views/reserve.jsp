@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   
+
 <%@ page import="java.util.*"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -373,9 +373,9 @@
         } else if (seatSum.length < $('#ticketCount').val()) {
           alert('선택한 인원수와 좌석 수가 맞지 않습니다.');
           return false;
-        } 
-        
-        
+        }
+
+
         $.ajax({
           url: '/movie/screening/reservation?movie_num=${movieRead.movie_num}&cinema=' + cinema + '&dist=' +
             dist + '&dates=' + dates + '&times=' + times + '&seatSum=' + seatSum,
@@ -387,11 +387,11 @@
             console.log("실패");
           } //end-error
         }) //ajax
-        
-        if(confirm("결제가 완료되었습니다. 마이페이지로 이동합니다.")) {
-            window.location.href = "/member/mypage"
+
+        if (confirm("결제가 완료되었습니다. 마이페이지로 이동합니다.")) {
+          window.location.href = "/member/mypage"
         }
-               
+
       });
     });
   </script>

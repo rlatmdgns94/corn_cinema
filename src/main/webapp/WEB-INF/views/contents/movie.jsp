@@ -22,19 +22,19 @@
 </head>
 
 <body>
-  <jsp:include page="../header.jsp"  flush="false"/>
+  <jsp:include page="../header.jsp" flush="false" />
   <div id="container">
     <!-- 영화 탭 콘텐츠 -->
     <div class="layout-content">
       <div class="cinema-movie-wrap">
-        <h3 class="cinema-movie-title">최신개봉작</h3>
+        <h3 class="cinema-movie-title">상영작</h3>
         <ul class="cinema-movie">
           <c:forEach items="${list}" var="newMovie">
             <li>
               <div class="movie-content">
                 <div class="movie_img">
                   <a href="javascript:void(0);">
-                   <img src="<spring:url value='/image/${newMovie.view_name_key}'/>">
+                    <img src="<spring:url value='/image/${newMovie.view_name_key}'/>">
                   </a>
                 </div>
                 <div class="movie-info">
@@ -75,7 +75,7 @@
     });
   </script>
   <script src="/resources/js/movie_age.js"></script>
-  <jsp:include page="../footer.jsp"  flush="false"/>
+  <jsp:include page="../footer.jsp" flush="false" />
 </body>
 
 </html>

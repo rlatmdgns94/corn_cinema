@@ -13,12 +13,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>영화 상세 ( ${movieRead.title} )</title>
   <link rel="stylesheet" href="resources/css/style.css">
-  <style>
-  .active{
-  background-color: white;
-  color: black;
-  }
-  </style>
 </head>
 
 <body>
@@ -110,14 +104,14 @@
         </div>
       </c:otherwise>
     </c:choose>
-    
+
   </div>
   <jsp:include page="footer.jsp" flush="false" />
-  
-  
+
+
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script>
-   /*  $(document).ready(function () {
+    /*  $(document).ready(function () {
     	var commentLen = 0;
       getReply(commentLen);
 
@@ -129,7 +123,7 @@
     var commentLen = 0;
     //페이지가 뜰때마다 리스트 뿌려주기
     $(document).ready(function () {
-     
+
       getReply(commentLen);
 
     }); // (document).ready
@@ -169,7 +163,7 @@
                 console.log("*****commentLen  : ", commentLen);
                 console.log("*****last  : ", last);
               } //if -else 
-            	  
+
               console.log("key", key);
               console.log("value", value);
               console.log("*****id ", id);
@@ -184,7 +178,7 @@
               $writer += value.name.charAt(value.name.length - 1);
 
               if (value.id == id) {
-            	  
+
                 str += "<li class = 'lists-item' id='lists-item'>";
                 str += "<div class='review-box' id='review-box'>";
                 str += "<div class='result-score'>";
@@ -204,7 +198,7 @@
                 str += "</div>";
                 str += "</li>";
               } else {
-            	  console.log("here");
+                console.log("here");
                 str += "<li class = 'lists-item' id='lists-item'>";
                 str += "<div class='review-box' id='review-box'>";
                 str += "<div class='result-score'>";
@@ -223,20 +217,20 @@
 
               } //if-else 
               commentLen++;
-				
+
               if (data.length - commentLen > 0 && commentLen >= 5) {
-            	  
-              
-            	  console.log("commenLEn!!!");
-            	  
-              console.log("data.length: ", data.length);
-              console.log("commentLen: ", commentLen);
-              
-              str += "<div class='moreButtonDiv'><button onclick='getReply(";
-              str += commentLen;
-              str += ")'>더보기</button></div>";
-              
-              // if (commentLen >= 5) {
+
+
+                console.log("commenLEn!!!");
+
+                console.log("data.length: ", data.length);
+                console.log("commentLen: ", commentLen);
+
+                str += "<div class='moreButtonDiv'><button onclick='getReply(";
+                str += commentLen;
+                str += ")'>더보기</button></div>";
+
+                // if (commentLen >= 5) {
                 //str += "<div id='js-btn-wrap' class='btn-wrap' id='btn-wrap'><a href='javascript:;' class='button'>더보기</a></div>";
                 /* str += "<li onclick='getReply(";
                 str += commentLen;
@@ -269,9 +263,9 @@
 
       }); //ajax
     } //getReply
-    
+
     function more(commentLen) {
-    	
+
     }
 
 
@@ -408,7 +402,7 @@
 
       $(this).parents().parent("#review-box").html(str);
 
-     
+
       $("#score-modify").val(mod_score);
       $("#text-comment-modify").val(mod_comment);
     }); //replyModify click 
@@ -488,9 +482,7 @@
 
   <!--  더보기  페이징 처리 -->
   <script>
-  
-  
-/*   //더보기 버튼 클릭시   
+    /*   //더보기 버튼 클릭시   
   $(document).on("click", ".btn-wrap", function more () {
     console.log("더보기 버튼 클릭");
   }); //더보기 click
@@ -498,37 +490,37 @@
   </script>
 
 
-<script>
-  //더보기 버튼 클릭시   
-  $(window).on('load', function() {
-	  console.log("더보기 버튼 클릭");
-	  load('#lists-item', '4');
-	  $("#js-btn-wrap .button").on("click", function() {
-		  load('#lists-item', '4', '#js-btn-wrap .button' );
-	  })
-  }); //더보기 버튼 클릭? 
-  
-   function load (id, cnt, bth) {
-	   console.log("더보기 함수 진입");
-	   var girls_list = id+".lists-item:not(.active)";
-	   console.log("더보기 함수 진입:girls_list", girls_list);
-	   var girls_length = $(girls_list).length;
-	   console.log("더보기 함수 진입:girls_length", girls_length);
-	   var girls_total_cnt;
-	   console.log("더보기 함수 진입:girls_total_cnt", girls_total_cnt);
-	   
-	   if(cnt < girls_length) {
-		   girls_total_cnt = cnt;
-		   console.log("더보기 함수 진입:girls_total_cnt2", girls_total_cnt);
-	   } else {
-		   girls_total_cnt = girls_length;
-		   console.log("더보기 함수 진입:girls_total_cnt3", girls_total_cnt);
-		   /* $('.button').hide() */
-	   }
-	   $(girls_list + ":lt("+ girls_total_cnt + ")").addClass("active");
-  }  //load
+  <script>
+    //더보기 버튼 클릭시   
+    $(window).on('load', function () {
+      console.log("더보기 버튼 클릭");
+      load('#lists-item', '4');
+      $("#js-btn-wrap .button").on("click", function () {
+        load('#lists-item', '4', '#js-btn-wrap .button');
+      })
+    }); //더보기 버튼 클릭? 
 
+    function load(id, cnt, bth) {
+      console.log("더보기 함수 진입");
+      var girls_list = id + ".lists-item:not(.active)";
+      console.log("더보기 함수 진입:girls_list", girls_list);
+      var girls_length = $(girls_list).length;
+      console.log("더보기 함수 진입:girls_length", girls_length);
+      var girls_total_cnt;
+      console.log("더보기 함수 진입:girls_total_cnt", girls_total_cnt);
+
+      if (cnt < girls_length) {
+        girls_total_cnt = cnt;
+        console.log("더보기 함수 진입:girls_total_cnt2", girls_total_cnt);
+      } else {
+        girls_total_cnt = girls_length;
+        console.log("더보기 함수 진입:girls_total_cnt3", girls_total_cnt);
+        /* $('.button').hide() */
+      }
+      $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+    } //load
   </script>
 
 </body>
+
 </html>

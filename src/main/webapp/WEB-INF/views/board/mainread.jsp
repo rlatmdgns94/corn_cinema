@@ -1,76 +1,69 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link rel="stylesheet" href="/resources/css/style.css"> 
+  <link rel="stylesheet" href="/resources/css/style.css">
 </head>
+
 <body>
-<jsp:include page="../header.jsp"  flush="false"/>
-        <div class="notice-area">
-            <div class="notice-top">
-                <h2 class="tit">°øÁö»çÇ×</h2>
-                <p class="sub-tit">CON CINEMA ÀÇ ÁÖ¿äÇÑ ÀÌ½´ ¹× ¿©·¯°¡Áö ¼Ò½ÄµéÀ» È®ÀÎÇÒ½Ç ¼ö ÀÖ½À´Ï´Ù.</p>
-            </div>
-            
-            <form role="form" method="post">
-				<input type='hidden' name='bno' value="${boardVO.bno}">
-			</form>
-
-            <div class="board_view_area">
-                <ul class="top-title-faq">
-                    <li class="title"><strong>${boardVO.title}</strong></li>
-                    <li class="stit-area">
-                        
-                    </li>
-                </ul>
-
-                <div class="view-area">
-                    <p>
-                        ${boardVO.content}
-                    </p>
-                </div>
-            </div>
-            <div class="notice-button-wrap">
-               <!--  <a class="board-btn board-btn_submit"
-                href="/board/listAll">¸ñ·ÏÀ¸·Î</a>
+  <jsp:include page="../header.jsp" flush="false" />
+  <div class="notice-area">
+    <div class="notice-top">
+      <h2 class="tit">ê³µì§€ì‚¬í•­</h2>
+      <p class="sub-tit">CORN CINEMAì˜ ì£¼ìš”í•œ ì´ìŠˆ ë° ì—¬ëŸ¬ê°€ì§€ ì†Œì§ë“¤ í™•ì¸í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>
+    </div>
+    <form role="form" method="post">
+      <input type='hidden' name='bno' value="${boardVO.bno}">
+    </form>
+    <div class="board_view_area">
+      <ul class="top-title-faq">
+        <li class="title"><strong>${boardVO.title}</strong></li>
+        <li class="stit-area">
+        </li>
+      </ul>
+      <div class="view-area">
+        <p>
+          ${boardVO.content}
+        </p>
+      </div>
+    </div>
+    <div class="notice-button-wrap">
+      <!--  <a class="board-btn board-btn_submit"
+                href="/board/listAll">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
                 <a class="board-btn"
-                href="/board/modify">¼öÁ¤ÇÏ±â</a>
+                href="/board/modify">ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½</a>
                 <a class="board-btn board-btn_submit"
-                href="/board/remove">»èÁ¦ÇÏ±â</a> -->
-                <!-- <button id="modify" type="submit" class="board-btn board-btn_submit">¼öÁ¤ÇÏ±â</button>
-				<button id="delete" type="submit" class="board-btn">»èÁ¦ÇÏ±â</button>
-				<button id="list" 	type="submit" class="board-btn board-btn_submit">¸ñ·ÏÀ¸·Î</button> -->
-				<a href="/"  class="board-btn board-btn_submit">¸ŞÀÎÀ¸·Î</a>
-			</div>
-        </div>
-        <jsp:include page="../footer.jsp"  flush="false"/>
+                href="/board/remove">ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½</a> -->
+      <!-- <button id="modify" type="submit" class="board-btn board-btn_submit">ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½</button>
+				<button id="delete" type="submit" class="board-btn">ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½</button>
+				<button id="list" 	type="submit" class="board-btn board-btn_submit">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</button> -->
+      <a href="/" class="board-btn board-btn_submit">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+    </div>
+  </div>
+  <jsp:include page="../footer.jsp" flush="false" />
 </body>
-
 <script>
-	
-	$(document).ready(function(){
-		
-		var formObj = $("form[role='form']");
-		
-		console.log(formObj);
-		
-		$('#modify').on("click", function(){
-			formObj.attr("action", "/board/modify");
-			formObj.attr("method", "get");		
-			formObj.submit();
-		});
-		
-		$('#delete').on("click", function(){
-			formObj.attr("action", "/board/remove");
-			formObj.submit();
-		});
-		
-		$('#list').on("click", function(){
-			self.location = "/board/listAll";
-		});
-		
-	});
+  $(document).ready(function () {
+    var formObj = $("form[role='form']");
+    console.log(formObj);
+    $('#modify').on("click", function () {
+      formObj.attr("action", "/board/modify");
+      formObj.attr("method", "get");
+      formObj.submit();
+    });
 
+    $('#delete').on("click", function () {
+      formObj.attr("action", "/board/remove");
+      formObj.submit();
+    });
+
+    $('#list').on("click", function () {
+      self.location = "/board/listAll";
+    });
+
+  });
 </script>
+
 </html>

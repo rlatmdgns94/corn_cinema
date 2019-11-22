@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <jsp:include page="../header.jsp"  flush="false"/>
+  <jsp:include page="../header.jsp" flush="false" />
   <div class="main-find-wrap">
     <div class="find-title-main">
       <p class="find_title">아이디 찾기</p>
@@ -23,16 +23,16 @@
           <input type="text" id="name" name="name" placeholder="이름" title="이름입력"> <br>
           <input type="email" id="email" name="email" placeholder="가입된메일을 입력해주세요." title="메일 입력">
         </div>
-         <button type="button" class="find-btn" id="submitButton">확인</button>
+        <button type="button" class="find-btn" id="submitButton">확인</button>
       </form>
     </div>
     <div id="findLoginpw" class="find_another">
       혹시 비밀번호를 찾으시나요? <a href="find_pw" class="link-find">비밀번호 찾기</a>
     </div>
   </div>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="/resources/js/findId.js"></script>
-    <jsp:include page="../footer.jsp"  flush="false"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="/resources/js/findId.js"></script>
+  <jsp:include page="../footer.jsp" flush="false" />
 </body>
 
 </html>

@@ -33,7 +33,7 @@
     <a href="/" class="join-button join-submit">홈으로</a>
     <a href="/member/login" class="join-button">로그인</a>
   </div>
-  <jsp:include page="../footer.jsp"  flush="false"/>
+  <jsp:include page="../footer.jsp" flush="false" />
 </body>
 
 </html>

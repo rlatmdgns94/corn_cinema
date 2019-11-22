@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<jsp:include page="../header.jsp"  flush="false"/>
+  <jsp:include page="../header.jsp" flush="false" />
   <div class="main-agree-wrap">
     <div class="agree_title_main">
       <h3 class="agree-title">약관동의</h3>
@@ -119,8 +119,8 @@
       });
     });
   </script>
-  
-  <jsp:include page="../footer.jsp"  flush="false"/>
+
+  <jsp:include page="../footer.jsp" flush="false" />
 </body>
 
 </html>

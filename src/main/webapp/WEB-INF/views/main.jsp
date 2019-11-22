@@ -10,7 +10,6 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
-
 <body>
   <div class="visual">
     <ul class="slick-items">
@@ -131,21 +130,22 @@
       <div class="layout-content notice-inner">
         <h3 class="notice-title">NOTICE</h3>
         <ul class="notice">
-           <!-- 여기서부터 -->
-	        <c:forEach items="${list3}" var="BoardVO" begin="1" end="6">
-	          <li>
-	            <a href="/board/mainread?bno=${BoardVO.bno}">
-	              <div class="notice-content">
-	                <h4 class="notice-content-title">${BoardVO.title}</h4>
-	                <p class="notice-text">
-	                  ${BoardVO.content}
-	                </p>
-	                <span class="notice-date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value ="${BoardVO.regdate}"/></span>
-	              </div>
-	            </a>
-	          </li> 
-	         </c:forEach>  
-          <!-- 여기서까지--> 
+          <!-- 여기서부터 -->
+          <c:forEach items="${list3}" var="BoardVO" begin="1" end="6">
+            <li>
+              <a href="/board/mainread?bno=${BoardVO.bno}">
+                <div class="notice-content">
+                  <h4 class="notice-content-title">${BoardVO.title}</h4>
+                  <p class="notice-text">
+                    ${BoardVO.content}
+                  </p>
+                  <span class="notice-date">
+                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${BoardVO.regdate}" /></span>
+                </div>
+              </a>
+            </li>
+          </c:forEach>
+          <!-- 여기서까지-->
         </ul>
       </div>
     </div>

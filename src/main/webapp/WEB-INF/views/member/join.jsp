@@ -14,7 +14,7 @@
 </head>
 
 <body>
- <jsp:include page="../header.jsp"  flush="false"/>
+  <jsp:include page="../header.jsp" flush="false" />
   <div class="main-join-wrap">
     <form class="join-form" action="/member/join" method="POST">
       <div class="join-title-main">
@@ -70,7 +70,7 @@
               <td>
                 <input type="text" id="CertiFicationNumber">
                 <input type="button" id="CertiFicationConfirm" value="확인">
-                 <span class="error-message" id="CertiFicationMessage" role="alert" style="display:none"></span>
+                <span class="error-message" id="CertiFicationMessage" role="alert" style="display:none"></span>
               </td>
             </tr>
           </tbody>
@@ -82,7 +82,7 @@
       </div>
     </form>
   </div>
-  <jsp:include page="../footer.jsp"  flush="false"/>
+  <jsp:include page="../footer.jsp" flush="false" />
 </body>
 
 </html>
