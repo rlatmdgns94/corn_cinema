@@ -5,6 +5,8 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,7 +34,7 @@
               <div class="movie-content">
                 <div class="movie_img">
                   <a href="javascript:void(0);">
-                    <img src="/resources/img/movie_poster/${newMovie.view_path}">
+                   <img src="<spring:url value='/image/${newMovie.view_name_key}'/>">
                   </a>
                 </div>
                 <div class="movie-info">
@@ -42,10 +44,8 @@
                     </a>
                   </h3>
                   <div class="info-text-area">
-                    <span class="info-text">
-                      <fmt:formatDate value="${newMovie.opening_day}" pattern="yyyy.MM.dd" />
-                      개봉</span>
-                    <span class="info-text">관람 평점:${newMovie.avg_score}</span>
+                    <span class="info-text">${newMovie.opening_day}개봉</span>
+                    <span class="info-text">관람평점:${newMovie.avg_score}</span>
                   </div>
                 </div>
                 <div class="movie-btn-area">

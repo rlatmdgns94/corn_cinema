@@ -1,0 +1,53 @@
+body{
+    font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-weight: 600;
+    background-color:rgba(0, 0, 0, 0.007);
+    padding-left:220px;
+  }
+  
+  .header{
+    position: fixed;
+    width: 220px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding:20px 0;
+    background: #0f0f0f;
+    
+  }
+  .nav li a{
+    display: block;
+    padding: 15px 0 10px 12px;
+    font-size: 14px;
+    color:white;
+  }
+  .nav li:hover{
+    background-color:crimson;
+    color: rgb(15, 15, 15);
+  }
+  
+  .nav li:active {
+        background-color: #ffffff;
+        color: black;
+}
+      
+  .logoimg{
+    
+    padding:6px;
+    margin:10px;  
+  }
+  
+  .personimg{
+    float: right;
+    margin:15px 30px 10px 10px; 
+    border: 1px solid red;
+  }
+  .p-img{
+    float: right;
+    margin:0px 30px 10px 10px; 
+    width: 40px;
+    height: 40px;
+    padding: 10px 0px 10px 1800px;
+    border-bottom: solid 1px gray;
+    
+  }

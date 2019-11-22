@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,6 +13,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>영화 상세 ( ${movieRead.title} )</title>
   <link rel="stylesheet" href="resources/css/style.css">
+  <style>
+  .active{
+  background-color: white;
+  color: black;
+  }
+  </style>
 </head>
 
 <body>
@@ -21,7 +28,7 @@
     <div class="movie-detail">
       <div class="movie-detail-img">
         <a href="javascript:void(0);">
-          <img src="resources/img/movie_poster/${movieRead.view_path}">
+          <img src="<spring:url value='/image/${movieRead.view_name_key}'/>">
         </a>
       </div>
       <div class="movie-detail-info">
@@ -30,11 +37,10 @@
           <span class="blind">영화 상세 정보</span>
           <span class="score"><em>관람평점 : </em><span class="num"> </span> 점</span>
           <ul class="da2ta-movie">
-            <li><span><em>개봉일 : </em>
-                <fmt:formatDate value="${movieRead.opening_day}" pattern="yyyy.MM.dd" /></span></li>
+            <li><span><em>개봉일 : </em> ${movieRead.opening_day}</span></li>
             <li><span><em>감독 : </em>${movieRead.director}</span></li>
             <li><span><em>출연진 : </em>${movieRead.actor}</span></li>
-            <li><span><em>장르 : </em> ${movieRead.movie_genre} / <span>${movieRead.running_time}</span></span></li>
+            <li><span><em>장르 : </em> ${movieRead.movie_genre} / <span>${movieRead.running_time}</span>분</span></li>
           </ul>
         </div>
         <a href="${path}/movie/screening/booking?movie_num=${movieRead.movie_num}" class="ticketing-btn">예매하기</a>
@@ -100,27 +106,31 @@
 
         <div class="review-entry" id="review-entry">
           <ul class='review-content' id='review-content'>
-
           </ul>
         </div>
       </c:otherwise>
     </c:choose>
+    
   </div>
   <jsp:include page="footer.jsp" flush="false" />
+  
+  
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script>
-    $(document).ready(function () {
-      getReply();
+   /*  $(document).ready(function () {
+    	var commentLen = 0;
+      getReply(commentLen);
 
-    }); // (document).ready
+    }); // (document).ready */
 
     var movie_num = '${movieRead.movie_num}';
     var id = '${login.id}';
 
-
+    var commentLen = 0;
     //페이지가 뜰때마다 리스트 뿌려주기
     $(document).ready(function () {
-      getReply();
+     
+      getReply(commentLen);
 
     }); // (document).ready
 
@@ -129,7 +139,7 @@
 
 
     //댓글 리스트
-    function getReply() {
+    function getReply(commentLen) {
 
       $.ajax({
         url: "/comment_list", //요청 URL
@@ -142,16 +152,9 @@
         },
 
         success: function (data) { //성공
-          /*      console.log("=================== id " , id);
-               console.log("--data : \n", data); */
-
           var str = "";
-          var commentLen = 0;
           var last = 0;
-
-
           if (data.length - commentLen > 0) {
-            /*     console.log("*****data.length-commentLen  : " , data.length-commentLen ); */
 
             $.each(data, function (key, value) {
               if (data.length - commentLen >= 5) {
@@ -166,26 +169,23 @@
                 console.log("*****commentLen  : ", commentLen);
                 console.log("*****last  : ", last);
               } //if -else 
-
-
+            	  
               console.log("key", key);
               console.log("value", value);
               console.log("*****id ", id);
 
 
               var $writer = '';
-
               $writer += value.name.charAt(0);
-
               for (var i = 1; i < value.name.length - 1; i++) {
                 $writer += '*';
               }
 
               $writer += value.name.charAt(value.name.length - 1);
 
-
               if (value.id == id) {
-                str += "<li class = 'lists-item'>";
+            	  
+                str += "<li class = 'lists-item' id='lists-item'>";
                 str += "<div class='review-box' id='review-box'>";
                 str += "<div class='result-score'>";
                 str += "<span>평점 </span><span class='score-num' id = 'score-num'>" + value.score + "</span>";
@@ -204,7 +204,8 @@
                 str += "</div>";
                 str += "</li>";
               } else {
-                str += "<li class = 'lists-item'>";
+            	  console.log("here");
+                str += "<li class = 'lists-item' id='lists-item'>";
                 str += "<div class='review-box' id='review-box'>";
                 str += "<div class='result-score'>";
                 str += "<span>평점 </span><span class='score-num' id = 'score-num'>" + value.score + "</span>";
@@ -222,9 +223,24 @@
 
               } //if-else 
               commentLen++;
-
-              if (commentLen >= 5) {
-                str += "<div id='js-btn-wrap' class='btn-wrap'> 더보기</div>";
+				
+              if (data.length - commentLen > 0 && commentLen >= 5) {
+            	  
+              
+            	  console.log("commenLEn!!!");
+            	  
+              console.log("data.length: ", data.length);
+              console.log("commentLen: ", commentLen);
+              
+              str += "<div class='moreButtonDiv'><button onclick='getReply(";
+              str += commentLen;
+              str += ")'>더보기</button></div>";
+              
+              // if (commentLen >= 5) {
+                //str += "<div id='js-btn-wrap' class='btn-wrap' id='btn-wrap'><a href='javascript:;' class='button'>더보기</a></div>";
+                /* str += "<li onclick='getReply(";
+                str += commentLen;
+                str += ")'>더보기</li>"; */
 
                 return false;
               } //if
@@ -253,6 +269,10 @@
 
       }); //ajax
     } //getReply
+    
+    function more(commentLen) {
+    	
+    }
 
 
 
@@ -344,7 +364,7 @@
             console.log("reply_insert success");
             $("#text-comment").val("");
             $("#score option:eq(0)").attr("selected", "selected");
-            getReply();
+            getReply(commentLen);
             getAvgScoreResultUpdate();
             getAvgScoreResultSelect();
           }, //success
@@ -388,12 +408,11 @@
 
       $(this).parents().parent("#review-box").html(str);
 
-      /*    $(".review-btn-modify").hide(); */
+     
       $("#score-modify").val(mod_score);
       $("#text-comment-modify").val(mod_comment);
     }); //replyModify click 
   </script>
-
 
   <script>
     //댓글 수정 저장
@@ -419,7 +438,7 @@
         success: function () {
           getAvgScoreResultUpdate();
           getAvgScoreResultSelect();
-          getReply();
+          getReply(commentLen);
 
         }, //success
         error: function () {
@@ -436,7 +455,7 @@
       console.log(" 수정 취소 버튼 클릭");
       getAvgScoreResultUpdate();
       getAvgScoreResultSelect();
-      getReply();
+      getReply(commentLen);
 
     });
 
@@ -456,7 +475,7 @@
           success: function () {
             getAvgScoreResultUpdate();
             getAvgScoreResultSelect();
-            getReply();
+            getReply(commentLen);
 
           }, //success
           error: function () {
@@ -469,15 +488,47 @@
 
   <!--  더보기  페이징 처리 -->
   <script>
-    $(function () {
-
-
-
-    })
+  
+  
+/*   //더보기 버튼 클릭시   
+  $(document).on("click", ".btn-wrap", function more () {
+    console.log("더보기 버튼 클릭");
+  }); //더보기 click
+ */
   </script>
 
 
+<script>
+  //더보기 버튼 클릭시   
+  $(window).on('load', function() {
+	  console.log("더보기 버튼 클릭");
+	  load('#lists-item', '4');
+	  $("#js-btn-wrap .button").on("click", function() {
+		  load('#lists-item', '4', '#js-btn-wrap .button' );
+	  })
+  }); //더보기 버튼 클릭? 
+  
+   function load (id, cnt, bth) {
+	   console.log("더보기 함수 진입");
+	   var girls_list = id+".lists-item:not(.active)";
+	   console.log("더보기 함수 진입:girls_list", girls_list);
+	   var girls_length = $(girls_list).length;
+	   console.log("더보기 함수 진입:girls_length", girls_length);
+	   var girls_total_cnt;
+	   console.log("더보기 함수 진입:girls_total_cnt", girls_total_cnt);
+	   
+	   if(cnt < girls_length) {
+		   girls_total_cnt = cnt;
+		   console.log("더보기 함수 진입:girls_total_cnt2", girls_total_cnt);
+	   } else {
+		   girls_total_cnt = girls_length;
+		   console.log("더보기 함수 진입:girls_total_cnt3", girls_total_cnt);
+		   /* $('.button').hide() */
+	   }
+	   $(girls_list + ":lt("+ girls_total_cnt + ")").addClass("active");
+  }  //load
+
+  </script>
+
 </body>
-
-
 </html>

@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+ /* 전체 div */
+.mn-member-list-board-cinema{ 
+  line-height: 1.6em;  /* 줄간격 */
+  width: 1150px;
+  margin: 120px auto;
+  text-align: center;
+
+}
+ /* 전체 div */
+
+/* 검색  */
+.mn-member-top-menu-wrapper{
+  text-align: right;
+  vertical-align: middle;  /* 수직 정렬 */
+
+  width: 90%;
+  margin-top: 55px;
+}
+
+.mn-member-search-wrapper{
+  display: inline-block;
+  text-align: right;
+}
+
+.mn-member-top-menu-wrapper input {
+      height: 25px;
+    width: 160px;
+    margin-top: 5px;
+}
+
+#mn-member-search , #mn-member-allsearch{
+ border-style: none;
+    background-color: white;
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 1px;
+    background-color: #797979;
+    color: white;
+    line-height: 21px !important;
+}
+
+.mn-member-search-text{
+	height: 19px;
+	width: 162px
+}
+
+
+.thead-mn-member-board{
+  background-color: rgb(124, 124, 124);
+  color :rgb(243, 243, 243)
+}
+.thead-mn-member-board tr th{
+ 
+  border-top: 2px solid gray;
+  background-color: white;
+  color: black;
+
+  height: 40px;
+
+  text-align: left;
+  padding : 6px 0px 6px 10px;
+
+}
+.mn-member-board-table{
+  width: 80%;
+}
+.mn-member-board-table, .mn-member-board-table th, .mn-member-board-table td{
+ 
+  margin: 10px auto 0px auto;
+  border-bottom: #d9d9d9 solid 1px;
+  border-collapse: collapse;
+  text-align: left;
+
+  padding : 5px 0px 5px 10px;
+  
+}
+
+
+
+/* 하단 페이징 처리 */
+
+a:link {
+  text-decoration: none; /*  하이퍼링크 밑줄 표시 없애기*/
+}
+
+.trboard{
+   font-size : 15px;
+}
+.paginate_button{
+  border: #e6e6e6 solid 1px; 
+  font-size: 14px;
+  color: #201f2d;
+  margin: 0 2px;
+  padding: 5px;
+
+  text-align: center;
+  line-height: 38px;
+}
+
+.choice{
+   background-color: red;
+}
+
+
+/* 하단 페이징 처리 */

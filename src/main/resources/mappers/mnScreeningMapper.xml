@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace ="com.acorn.mapper.mnScreeningMapper">
+  
+	<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡMN screening board listㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+	<resultMap id ="showscreen" type ="com.acorn.domain.MNScreeningDTO">
+	   <result column="screening_num" property="screening_num"/>
+       <result column="title" property="title"/>
+       <result column="local_info_dist" property="local_info_dist"/>
+       <result column="local_info_city" property="local_info_city"/>
+       <result column="movie_start_time" property="movie_start_time"/>
+	</resultMap>
+	
+	 <select id="showScreeningList" 
+	 parameterType="com.acorn.domain.MNScreeningDTO"
+     resultMap="showscreen"> 
+      <![CDATA[
+	    select 
+	         tbl_screening.screening_num,
+	         tbl_movie.title, 
+	         tbl_cinema.local_info_city, 
+	         tbl_cinema.local_info_dist, 
+	         tbl_screening.movie_start_time
+		from 
+	         tbl_screening left join tbl_movie
+	         on tbl_screening.movie_num = tbl_movie.movie_num
+	         left join tbl_cinema
+	         on tbl_screening.cinema_num=tbl_cinema.cinema_num
+		order by tbl_screening.screening_num desc;
+          ]]>
+     </select>	   
+   
+   
+   	<!-- 페이징 처리 -->
+	<select id="mnScreeningListPage" 
+   		resultType="com.acorn.domain.MNScreeningDTO">
+	  <![CDATA[
+		select 
+	         tbl_screening.screening_num, tbl_movie.title, tbl_cinema.local_info_city, tbl_cinema.local_info_dist, 
+	         tbl_screening.movie_start_time
+		from 
+	         tbl_screening left join tbl_movie
+	         on tbl_screening.movie_num = tbl_movie.movie_num
+	         left join tbl_cinema
+	         on tbl_screening.cinema_num=tbl_cinema.cinema_num
+		order by tbl_screening.screening_num
+		limit #{page}, 10
+	  ]]>   
+   </select>
+   
+   
+   
+   <select id = "mnScreeningListCriteria"
+   		resultType="com.acorn.domain.MNScreeningDTO">
+	
+	  <![CDATA[
+		select 
+	         tbl_screening.screening_num, tbl_movie.title, tbl_cinema.local_info_city, tbl_cinema.local_info_dist, 
+	         tbl_screening.movie_start_time
+		from 
+	         tbl_screening left join tbl_movie
+	         on tbl_screening.movie_num = tbl_movie.movie_num
+	         left join tbl_cinema
+	         on tbl_screening.cinema_num=tbl_cinema.cinema_num
+		order by tbl_screening.screening_num desc
+		limit #{pageStart}, #{perPageNum}
+	  ]]>   
+   </select>
+   
+     <select id = "mnScreeningListCountPaging"
+   		resultType="int">
+	
+	  <![CDATA[
+		SELECT 
+			count(screening_num)
+		FROM tbl_screening
+		where
+			screening_num > 0;
+	  ]]>   
+   </select>
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ영화 제목 검색ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <select id = "mnScreeningTitle"
+   		resultType="com.acorn.domain.MNScreeningDTO">
+    select 
+	         title
+		from 
+	          tbl_movie
+	         
+		order by movie_num;
+   
+   </select>
+   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ영화 상영관 검색ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <select id = "mnScreeningCinema"
+   		resultType="com.acorn.domain.MNScreeningDTO">
+        select 
+	         distinct local_info_city
+		from 
+	         tbl_cinema
+	        
+		order by cinema_num;
+   
+   </select>
+     <select id = "mnScreeningDist"
+   		resultType="com.acorn.domain.MNScreeningDTO">
+        select 
+	         distinct local_info_dist
+		from 
+	         tbl_cinema
+	        
+		order by cinema_num;
+   
+   </select>
+   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ영화 날짜 검색ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <select id = "mnScreeningStartTime"
+   		resultType="com.acorn.domain.MNScreeningDTO">
+    select 
+	         distinct tbl_screening.movie_start_time
+		from 
+	         tbl_screening left join tbl_movie
+	         on tbl_screening.movie_num = tbl_movie.movie_num
+	         left join tbl_cinema
+	         on tbl_screening.cinema_num=tbl_cinema.cinema_num
+		order by tbl_screening.screening_num desc;
+   
+   </select>
+   
+	
+	  <insert id="InsertmnScreening"
+      parameterType="com.acorn.domain.MNScreeningDTO">
+   
+    insert into tbl_screening(movie_num,cinema_num, movie_start_time, movie_end_time) 
+	values ((select movie_num from tbl_movie where title=#{title}),
+	(select cinema_num from tbl_cinema where local_info_city=#{local_info_city}
+	 and local_info_dist=#{local_info_dist}),
+	(#{movie_start_time}),  (DATE_ADD(movie_start_time, INTERVAL 2 hour))
+	); 
+	</insert>
+    <!-- 삭제  -->
+    
+   <delete id="mnScreeningDelete">
+      delete from tbl_screening where screening_num = #{screening_num}
+   </delete>
+ <select id= "totalsales" parameterType="int" resultType="int">
+   <![CDATA[
+	  	select count(*)*8000
+		from tbl_reservation join tbl_screening
+		on (tbl_reservation.screening_num = tbl_screening.screening_num)
+		where cinema_num=#{cinema_num};
+   ]]>
+</select>
+
+	  
+	  <select id ="todaysales"
+	  	parameterType="int"
+	  	resultType="int">
+	  	<![CDATA[
+	  	select 
+	  		count(*)*8000
+		from 
+			tbl_reservation join tbl_screening
+		on (tbl_reservation.screening_num = tbl_screening.screening_num)
+		where 
+			cinema_num=#{cinema_num} and date_format(reservation_date, '%Y-%m-%d')= DATE_FORMAT(NOW(), '%Y-%m-%d');
+	 ]]>
+	  </select>
+	  
+	  <select id ="monthsales"
+	  	parameterType ="int"
+	  	resultType="int">
+	  		<![CDATA[
+	  	select 
+	  		count(*)*8000
+		from 
+			tbl_reservation join tbl_screening
+		on 
+			(tbl_reservation.screening_num = tbl_screening.screening_num)
+		where 
+			cinema_num=#{cinema_num} and date_format(reservation_date, '%Y-%m')= DATE_FORMAT(NOW(),'%Y-%m');
+	  	 ]]>
+	  </select>
+	  
+  </mapper>

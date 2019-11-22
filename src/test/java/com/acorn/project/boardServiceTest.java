@@ -1,5 +1,7 @@
 package com.acorn.project;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -7,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.acorn.domain.MovieViewJoinResultVO;
 import com.acorn.persistence.MemberBoardDAO;
 
 
@@ -27,4 +30,6 @@ public class boardServiceTest {
 	public void testMD() throws Exception{
 		System.out.println("- dao: "+dao);
 	}
+	
+
 }

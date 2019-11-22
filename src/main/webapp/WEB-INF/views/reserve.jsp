@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   
 <%@ page import="java.util.*"%>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,7 +14,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>예매페이지</title>
   <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 
@@ -20,7 +24,7 @@
     <h3 class="ticket-title">영화예매</h3>
     <div class="ticket-info-area">
       <ul class="ticket-info">
-        <li><span class="ticket-movie-poster"> <img src="/resources/img/movie_poster/${movieRead.view_path}">
+        <li><span class="ticket-movie-poster"> <img src="<spring:url value='/image/${movieRead.view_name_key}'/>">
           </span>
           <div class="ticket-movie">
             <div class="ticket-info-title">영화</div>

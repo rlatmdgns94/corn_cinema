@@ -1,0 +1,15 @@
+@import "common.css";
+@import "reset.css";
+@import "MN_movie_list.css"; 
+@import "MN_movie_register.css"; 
+@import "MN_movie_modify.css"; 
+@import "MN_movie_detail.css"; 
+@import "MN_header.css";
+@import "mn_main.css";
+@import "MN_screening_list.css"; 
+@import "MN_movie_book.css"; 
+@import "MN_register.css";
+@import "notice_contents.css";
+@import "memberBoardList.css";
+@import "admin_member_modify.css";
+

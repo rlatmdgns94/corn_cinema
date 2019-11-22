@@ -5,15 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.acorn.domain.MemberVo;
+import com.acorn.domain.BoardVO;
 import com.acorn.domain.MovieViewJoinResultVO;
-import com.acorn.domain.ViewVO;
-import com.acorn.service.MemberService;
+import com.acorn.service.BoardService;
 import com.acorn.service.MovieViewJoinResultService;
 
 import lombok.extern.log4j.Log4j;
@@ -21,11 +19,12 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class MainController {
+	
 	@Inject
 	private MovieViewJoinResultService service;
-	
-	@Autowired
-	private MemberService memberservice;
+
+	@Inject
+	private BoardService service2;
 	
 	@GetMapping("/")
 	public String Main(Model model) throws Exception {
@@ -33,8 +32,10 @@ public class MainController {
 
 		List<MovieViewJoinResultVO> list1 = service.boxMovieList(); // 박스오피스
 		List<MovieViewJoinResultVO> list2 = service.newMovieList(); // 최신상영작
+		List<BoardVO> list3 = service2.listAll();
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);
+		model.addAttribute("list3", list3);
 		
 		log.info("list1:::::"+list1) ;
 		
@@ -48,13 +49,18 @@ public class MainController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) throws Exception {
+	public String logout(HttpSession session) {
 		log.info("로그아웃!!");
-		 MemberVo vo = (MemberVo) session.getAttribute("login");
-	      memberservice.disconnected_time(vo); 
-		  session.removeAttribute("login");
-		  session.removeAttribute("login");
+		session.removeAttribute("login");
 		return "redirect:/";
 	}
+	
+	@GetMapping("/introduction")
+	public void introduction() {
+		log.info("3조 소개!!");
+
+	}
+	
+	
 
 }// end class

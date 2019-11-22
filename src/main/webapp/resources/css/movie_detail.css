@@ -1,4 +1,36 @@
 @charset "utf-8";
+
+.lists-item {
+    /* display: none; */
+}
+.lists-item.active {
+    display: table;
+}
+.is_comp.lists-item:after {
+    display: none;
+}
+.btn-wrap, .review-content, .review-entry {
+    display: block;
+}
+.main {
+    max-width: 640px;
+    margin: 0 auto;
+}
+ .review-content {
+    margin-bottom: 4rem;
+}
+/* .lists__item {
+    padding: 20px;
+    background: #EEE;
+} */
+/* .lists__item:nth-child(2n) {
+    background: #59b1eb;
+    color: #fff;
+ } */
+.btn-wrap {
+    text-align: center;
+}
+
 /* 영화상세 */
 .movie-detail-wrap {
   padding-top: 100px;
@@ -249,4 +281,29 @@
 
 .modify-cancel-btn{
    background: url(/resources/img/cancel.png) no-repeat; 
+}
+
+/* 더보기 버튼 */
+.moreButtonDiv {
+	
+	    line-height: 3.5em;
+	text-align: center;
+	background-color: gray; 
+	color: white; 
+	width: 100px; 
+	height: 50px; 
+
+	margin: 10px 488px;
+	
+}
+
+.moreButtonDiv button{
+	
+	    line-height: 3.5em;
+	text-align: center;
+
+	color: white; 
+
+
+	
 }

@@ -6,39 +6,43 @@
 
 <mapper namespace="com.acorn.mapper.MovieViewJoinMapper">
 
- <!--  영화 리스트  -->
+ <!-- 최신 영화 리스트  -->
 	<select id="newMovieList"
 		resultType="com.acorn.domain.MovieViewJoinResultVO">
-		
+		<![CDATA[
 		select
 			movie.movie_num,
 			title,
-			opening_day,
+			CAST(DATE_FORMAT(opening_day, '%Y.%m.%d') AS CHAR(19) ) AS opening_day,
+			CAST(DATE_FORMAT(closing_day, '%Y.%m.%d') AS CHAR(19) ) AS closing_day,
 			film_rate,
 			running_time,
 			avg_score,
-			view_path	
+			view_path,
+			view_name_key
 		from
 			tbl_Movie as movie INNER JOIN tbl_view as img
 		ON  movie.movie_num = img.movie_num
-		<![CDATA[
-		WHERE opening_day <= date(now())
-		]]>
+		
+		WHERE opening_day <= date(now()) and closing_day >= date(now())
+		
 		
 		ORDER BY opening_day desc
-
+	]]>
 	</select>
 	
-	 <!--  영화 리스트  -->
+	 <!-- 박스오피스 리스트  -->
 	<select id="boxMovieList"
       resultType="com.acorn.domain.MovieViewJoinResultVO">
-
+	<![CDATA[
 	   select title, movie.movie_num, title,
-	         opening_day,
+	         CAST(DATE_FORMAT(opening_day, '%Y.%m.%d') AS CHAR(19) ) AS opening_day,
+	         CAST(DATE_FORMAT(closing_day, '%Y.%m.%d') AS CHAR(19) ) AS closing_day,
 	         film_rate,
 	         running_time,
 	         avg_score,
-	         view_path ,
+	         view_path,
+	         view_name_key,
 	         count(reservation.movie_num) as movienummm
 	   from 
 	   		tbl_movie as movie left join tbl_view as img
@@ -48,9 +52,9 @@
 	   left join tbl_reservation as reservation
 	   ON 
 	   reservation.movie_num = movie.movie_num
-	   <![CDATA[
+	   
 	   WHERE 
-	   	opening_day <= date(now()) 
+	   	opening_day <= date(now()) and closing_day >= date(now())
 	   group by 
 	   	movie.movie_num
 	   ORDER BY 
@@ -59,7 +63,7 @@
 	</select>
 
 	
-	 <!--  영화 정보  -->
+	 <!--  영화 상세 정보  -->
 	<select id="movieRead"
 		resultType="com.acorn.domain.MovieViewJoinResultVO">
 
@@ -74,7 +78,8 @@
 		running_time,
 		avg_score,
 		movie_genre,
-		view_path
+		view_path,
+		view_name_key
 		from
 		tbl_Movie as movie INNER JOIN tbl_view as img
 		ON
@@ -84,9 +89,5 @@
 		ORDER BY opening_day desc
 
 	</select>
-	
-
-	
-	
 	
 </mapper>

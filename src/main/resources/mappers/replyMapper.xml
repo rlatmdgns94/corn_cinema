@@ -17,8 +17,8 @@
          comm.movie_num,
          comm.comment,
          comm.score,
-         CAST(DATE_FORMAT(comm.regdate, '%Y-%m-%d') AS CHAR(19) ) AS regdate,
-         CAST(DATE_FORMAT(comm.updatedate, '%Y-%m-%d') AS CHAR(19) ) AS updatedate
+         CAST(DATE_FORMAT(comm.regdate, '%Y.%m.%d') AS CHAR(19) ) AS regdate,
+         CAST(DATE_FORMAT(comm.updatedate, '%Y.%m.%d') AS CHAR(19) ) AS updatedate
 
       FROM
          tbl_member as member INNER JOIN tbl_comments as comm

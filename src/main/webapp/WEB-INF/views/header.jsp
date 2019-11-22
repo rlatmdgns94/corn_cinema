@@ -11,9 +11,9 @@
       <div id="gnb">
         <h2 class="blind">대표메뉴</h2>
         <ul class="nav">
-          <li><a href="javascript:void(0)">3조</a></li>
-          <li><a href="/contents/movie">최신개봉작</a></li>
-          <li><a href="javascript:void(0)">공지사항</a></li>
+          <li><a href="/introduction">3조</a></li>
+          <li><a href="/contents/movie">상영작</a></li>
+          <li><a href="/board/mainlistAll">공지사항</a></li>
         </ul>
       </div>
       <ul class="user-menu">

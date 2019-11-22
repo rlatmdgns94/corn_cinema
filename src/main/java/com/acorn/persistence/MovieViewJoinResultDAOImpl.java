@@ -34,7 +34,8 @@ public class MovieViewJoinResultDAOImpl implements MovieViewJoinResultDAO {
 	
 		String movie_num = null;  //pk
 		String title = null; //영화 제목
-		Date opening_day = null;	//영화 개봉일
+		String opening_day = null;	//영화 개봉일
+
 		String film_rate = null;	//관람등급
 		String running_time = null;	//상영시간
 		double avg_score = 0.0;	// 영화별 평점
@@ -78,14 +79,14 @@ public class MovieViewJoinResultDAOImpl implements MovieViewJoinResultDAO {
 	   
 	      String movie_num = null;  //pk
 	      String title = null; //영화 제목
-	      Date opening_day = null;   //영화 개봉일
+	      String opening_day = null;   //영화 개봉일
 	      String film_rate = null;   //관람등급
 	      String running_time = null;   //상영시간
 	      double avg_score = 0.0;   // 영화별 평점
 	      String view_path = null;
 
 	      int recordNum = 0;
-	      
+	     
 	      for(MovieViewJoinResultVO vo : list) {
 	         ++recordNum;
 	         

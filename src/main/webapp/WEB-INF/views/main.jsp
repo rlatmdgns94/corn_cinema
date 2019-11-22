@@ -4,6 +4,7 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> --%>
 
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -61,7 +62,7 @@
                   <div class="movie-content">
                     <div class="movie_img">
                       <a href="javascript:void(0);">
-                        <img src="/resources/img/movie_poster/${boxMovie.view_path}">
+                        <img src="<spring:url value='/image/${boxMovie.view_name_key}'/>">
                         <%--  </c:forEach> --%>
                       </a>
                     </div>
@@ -70,8 +71,7 @@
                         <a href=""><span class="age-ico">${boxMovie.film_rate}</span>${boxMovie.title}</a>
                       </h3>
                       <div class="info-text-area">
-                        <span class="info-text">
-                          <fmt:formatDate value="${boxMovie.opening_day}" pattern="yyyy.MM.dd" /> 개봉</span>
+                        <span class="info-text">${boxMovie.opening_day}개봉</span>
                         <span class="info-text">관람 평점:${boxMovie.avg_score}</span>
                       </div>
                     </div>
@@ -93,9 +93,7 @@
                   <div class="movie-content">
                     <div class="movie_img">
                       <a href="javascript:void(0);">
-                        <%--                                                 <c:forEach items="${newMovie.viewvo}" var="newMoiveView"> --%>
-                        <img src="/resources/img/movie_poster/${newMovie.view_path}">
-                        <%--                                                 </c:forEach> --%>
+                        <img src="<spring:url value='/image/${newMovie.view_name_key}'/>">
                       </a>
                     </div>
                     <div class="movie-info">
@@ -105,8 +103,7 @@
                         </a>
                       </h3>
                       <div class="info-text-area">
-                        <span class="info-text">
-                          <fmt:formatDate value="${newMovie.opening_day}" pattern="yyyy.MM.dd" /> 개봉</span>
+                        <span class="info-text">${newMovie.opening_day}개봉</span>
                         <span class="info-text">관람 평점:${newMovie.avg_score}</span>
                       </div>
                     </div>
@@ -134,72 +131,21 @@
       <div class="layout-content notice-inner">
         <h3 class="notice-title">NOTICE</h3>
         <ul class="notice">
-          <li>
-            <a href="#">
-              <div class="notice-content">
-                <h4 class="notice-content-title">공지사항제목제목제목</h4>
-                <p class="notice-text">
-                  sadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdad
-                </p>
-                <span class="notice-date">2019.09.09</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="notice-content">
-                <h4 class="notice-content-title">공지사항제목제목제목</h4>
-                <p class="notice-text">
-                  sadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdad
-                </p>
-                <span class="notice-date">2019.09.09</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="notice-content">
-                <h4 class="notice-content-title">공지사항제목제목제목</h4>
-                <p class="notice-text">
-                  sadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdad
-                </p>
-                <span class="notice-date">2019.09.09</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="notice-content">
-                <h4 class="notice-content-title">공지사항제목제목제목</h4>
-                <p class="notice-text">
-                  sadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdad
-                </p>
-                <span class="notice-date">2019.09.09</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="notice-content">
-                <h4 class="notice-content-title">공지사항제목제목제목</h4>
-                <p class="notice-text">
-                  sadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdad
-                </p>
-                <span class="notice-date">2019.09.09</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="notice-content">
-                <h4 class="notice-content-title">공지사항제목제목제목</h4>
-                <p class="notice-text">
-                  sadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdadsadasdadadadadadadaddasdad
-                </p>
-                <span class="notice-date">2019.09.09</span>
-              </div>
-            </a>
-          </li>
+           <!-- 여기서부터 -->
+	        <c:forEach items="${list3}" var="BoardVO" begin="1" end="6">
+	          <li>
+	            <a href="/board/mainread?bno=${BoardVO.bno}">
+	              <div class="notice-content">
+	                <h4 class="notice-content-title">${BoardVO.title}</h4>
+	                <p class="notice-text">
+	                  ${BoardVO.content}
+	                </p>
+	                <span class="notice-date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value ="${BoardVO.regdate}"/></span>
+	              </div>
+	            </a>
+	          </li> 
+	         </c:forEach>  
+          <!-- 여기서까지--> 
         </ul>
       </div>
     </div>

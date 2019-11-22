@@ -73,10 +73,6 @@ public class memberBoardCotroller {
 	   }
 	
 	
-	
-	
-	
-	
 	}
 	
 	

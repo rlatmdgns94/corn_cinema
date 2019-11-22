@@ -11,7 +11,6 @@
   display: inline-block;
   height: 30px;
   padding: 0 15px;
-  /* label의 패딩값과 일치 */
   border: 1px solid #d4d4d4;
   background-color: #fff;
   font-family: inherit;
@@ -19,7 +18,6 @@
   line-height: normal;
   vertical-align: middle;
   -webkit-appearance: none;
-  /* 네이티브 외형 감추기 */
   -moz-appearance: none;
   appearance: none
 }
@@ -111,7 +109,6 @@ td {
   padding: 0;
 }
 
-/* 선택시 on class 추가 */
 .on {
   display: block !important;
 }
