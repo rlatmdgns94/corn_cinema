@@ -66,31 +66,16 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 0px;
-}
-
-.col-2{
-    float: left;
     text-align: center;
-    margin-top: 10px;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-.col-2 span{
-    font-size: 25px;
 }
 
-.col-3{
-    float: left;
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 60px;
-    margin-right: 47px;
-}
 
-.col-3 span{
-    font-size: 25px;
-}
-
+.team-member{
+    font-size: 14px;
+    display:inline-block;
+    width: 250px;
+    margin: 0px 40px;
+} 
 .icon-part3{
     width: 1240px;
     background-color: #ffffff;
@@ -98,6 +83,7 @@
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 50px;
+    text-align: center;
 }
 
 .img-front{
