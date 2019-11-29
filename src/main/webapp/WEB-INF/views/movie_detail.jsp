@@ -502,7 +502,7 @@
 
     function load(id, cnt, bth) {
       console.log("더보기 함수 진입");
-      var girls_list = id + ".lists-item:not(.active)";
+      var girls_list = id + ".lists-item:not(.on)";
       console.log("더보기 함수 진입:girls_list", girls_list);
       var girls_length = $(girls_list).length;
       console.log("더보기 함수 진입:girls_length", girls_length);
@@ -517,7 +517,7 @@
         console.log("더보기 함수 진입:girls_total_cnt3", girls_total_cnt);
         /* $('.button').hide() */
       }
-      $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+     /* $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("on");*/
     } //load
   </script>
 

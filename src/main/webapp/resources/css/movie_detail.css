@@ -3,8 +3,8 @@
 .lists-item {
     /* display: none; */
 }
-.lists-item.active {
-    display: table;
+.lists-item.on {
+    display: block;
 }
 .is_comp.lists-item:after {
     display: none;

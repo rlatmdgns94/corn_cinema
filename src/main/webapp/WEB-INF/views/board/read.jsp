@@ -35,15 +35,9 @@
       </div>
     </div>
     <div class="notice-button-wrap">
-      <!--  <a class="board-btn board-btn_submit"
-                href="/board/listAll">�������</a>
-                <a class="board-btn"
-                href="/board/modify">�����ϱ�</a>
-                <a class="board-btn board-btn_submit"
-                href="/board/remove">�����ϱ�</a> -->
-      <button id="modify" type="submit" class="board-btn board-btn_submit">�����ϱ�</button>
-      <button id="delete" type="submit" class="board-btn">�����ϱ�</button>
-      <button id="list" type="submit" class="board-btn board-btn_submit">�������</button>
+      <button id="list" type="submit" class="board-btn board-btn_submit">목록</button>
+      <button id="modify" type="submit" class="board-btn board-btn_submit">수정</button>
+      <button id="delete" type="submit" class="board-btn">삭제</button>
     </div>
   </div>
   <script>
